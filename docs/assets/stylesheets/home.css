@@ -1,0 +1,91 @@
+
+:root {
+    --md-hue: 225deg;
+}
+
+.home-hero {
+    position: relative;
+    height: 500px;
+    max-height: 100vh;
+    margin-top: -2.5rem;
+
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        g circle:first-child {
+          animation: rotation-cw 300s linear infinite;
+          transform-origin: 50% 50%;
+        }
+        
+        g circle:last-child {
+          animation: rotation-ccw 300s linear infinite;
+          transform-origin: 50% 50%;
+        }
+    }
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    > div {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        text-align: center;
+        max-width: 800px;
+        margin: 4rem auto;
+        h1 {
+            font-size: 2rem;
+            color: #2bccc0;
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    }
+}
+
+.md-tabs {
+    margin-top: 2.5rem;
+    color: #fff;
+}
+
+.md-header {
+    background: transparent !important;
+    color: #fff;
+}
+/* .md-search__inner {
+    background: #000;
+
+    .md-search__icon {
+        color: #fff !important;
+    }
+    .md-search__input::placeholder {
+        color: #fff !important;
+    }
+} */
+
+
+@keyframes rotation-cw {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(359deg);
+}
+}
+
+@keyframes rotation-ccw {
+0% {
+    transform: rotate(359deg);
+}
+100% {
+    transform: rotate(0deg);
+}
+}
