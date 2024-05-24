@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+
+{% block extrahead %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{'assets/stylesheets/home.css'|url}}">
+{% endblock %}
+
+{% block hero %}
+    <div class="home-hero">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg">
+            <filter id="filter">
+                <feTurbulence type="fractalNoise" baseFrequency=".05"/>
+                <feComponentTransfer>
+                    <feFuncA type="table" tableValues="0 0 0 1 1"/>
+                </feComponentTransfer>
+                <feComposite in="SourceGraphic" operator="in"/>
+                <feMorphology radius="1" operator="dilate"/>
+            </filter>
+            <circle r="150%"/>
+            <g fill="none" stroke="#444" stroke-width="99.5%" filter="url(#filter)">
+                <circle cx="50%" cy="50%" r="57%" stroke-dasharray="2 60 .5 60"/>
+            </g>
+        </svg> -->
+        <canvas id="warpdrive"></canvas>
+        <script src="{{'assets/scripts/warpspeed.min.js'|url}}"></script>
+        <script>
+            new WarpSpeed("warpdrive", {
+                "speed": 2,
+                "speedAdjFactor": 0.03,
+                "density": 2,
+                "shape": "circle",
+                "warpEffect": true,
+                "warpEffectLength": 5,
+                "depthFade": true,
+                "starSize": 3,
+                "backgroundColor": "hsl(224,15%,14%)", //"hsl(263,45%,7%)",
+                "starColor": "#FFFFFF"
+            });
+        </script>
+        {% include "partials/tabs.html" %}
+        <div>
+            <h1>The Python web stack to build<br>sites and apps at light speed</h1>
+            <p>
+                From dev environment to UI framework to deployment,
+                Hyperflask integrates everything seamlessly
+                to let you focus on what you are building.
+            </p>
+            <a href="/getting-started">Get started</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block tabs %}{% endblock %}
+
+{% block content %}
+{{ page.content }}
+{% endblock %}
