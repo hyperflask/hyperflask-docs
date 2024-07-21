@@ -5,7 +5,7 @@
 
 .home-hero {
     position: relative;
-    height: 500px;
+    height: 600px;
     max-height: 100vh;
     margin-top: -2.5rem;
 
@@ -38,15 +38,34 @@
         z-index: 1;
         color: #fff;
         text-align: center;
-        max-width: 800px;
-        margin: 4rem auto;
+        max-width: 1000px;
+        margin: 6rem auto 0;
         h1 {
+            font-family: "Silkscreen", sans-serif;
             font-size: 2rem;
             color: #2bccc0;
         }
         p {
             font-size: 1rem;
             line-height: 1.5;
+            max-width: 750px;
+            margin: auto;
+        }
+        > a {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+            &:hover {
+                background: #fff;
+                color: #000;
+            }
+        
         }
     }
 }

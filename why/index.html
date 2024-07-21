@@ -113,7 +113,7 @@
 
     <!-- Header title -->
     <div class="md-header__title" data-md-component="header-title">
-      <img src="../assets/logo-green.svg" height="30">
+      <a href="/"><img src="../assets/logo-green.svg" height="30"></a>
     </div>
 
     <!-- Color palette toggle -->
@@ -124,7 +124,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
@@ -134,7 +134,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
@@ -294,6 +294,26 @@
     
   
   Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../components/buttons/" class="md-tabs__link">
+          
+  
+    
+  
+  Components
 
         </a>
       </li>
@@ -524,6 +544,8 @@
   
     
     
+      
+        
       
         
       
@@ -888,8 +910,6 @@
       
         
       
-        
-      
     
     
       
@@ -953,7 +973,7 @@
         
   
   <span class="md-ellipsis">
-    Tasks
+    Background tasks
   </span>
   
 
@@ -991,11 +1011,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../guides/pwa/" class="md-nav__link">
+      <a href="../guides/api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Progressive Web Apps
+    Building an API
   </span>
   
 
@@ -1016,28 +1036,7 @@
         
   
   <span class="md-ellipsis">
-    Push
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guides/apppy/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    app.py
+    Server push
   </span>
   
 
@@ -1050,71 +1049,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Going to production
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5">
-            <span class="md-nav__icon md-icon"></span>
-            Going to production
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guides/provisioning/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Provisioning
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1131,19 +1065,11 @@
         
   
   <span class="md-ellipsis">
-    Deploying
+    Deploy to production
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1157,6 +1083,8 @@
   
     
     
+      
+        
       
         
       
@@ -1212,9 +1140,217 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/pwa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Progressive Web Apps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How does it work?
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            How does it work?
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/forms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Forms
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1246,6 +1382,8 @@
       
         
       
+        
+      
     
     
       
@@ -1256,10 +1394,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1270,8 +1408,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Recipes
           </label>
@@ -1373,6 +1511,27 @@
   
   <span class="md-ellipsis">
     Using a CMS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/spa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Single Page Apps
   </span>
   
 
@@ -1509,9 +1668,10 @@
 <li>A new file format combining python code in frontmatter and html templates to define routes</li>
 <li>SQL focused ORM with <a href="https://github.com/hyperflask/sqlorm">sqlorm</a>, optimized for <a href="https://www.sqlite.org/">sqlite</a></li>
 <li>Modern asset pipeline using <a href="https://esbuild.github.io/">esbuild</a> and <a href="https://tailwindcss.com/">tailwindcss</a></li>
-<li>Easily create reusable components for your templates, compatible with <a href="https://storybook.js.org">Storybook</a></li>
-<li>Component library based on <a href="https://daisyui.com/">daisyUI</a> with icons from <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
 <li>Deep integration with <a href="https://htmx.org/">htmx</a></li>
+<li>Easily create reusable backend and frontend components, compatible with <a href="https://storybook.js.org">Storybook</a></li>
+<li>Build frontend components using Web Components, <a href="https://alpinejs.dev/">Alpine.js</a>, <a href="https://stimulus.hotwired.dev/">Stimulus</a> and more. Mix technologies at will.</li>
+<li>Component library based on <a href="https://daisyui.com/">daisyUI</a> with icons from <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
 <li>Seamless reactivity between frontend and backend</li>
 <li>Authentication and user management with social logins and MFA</li>
 <li>Static content collections to easily create blogs and manage static content</li>
@@ -1519,22 +1679,22 @@
 <li>Template based emails with <a href="https://mjml.io">mjml</a> support</li>
 <li>Background tasks using <a href="https://dramatiq.io/">dramatiq</a></li>
 <li>Push support for realtime pages using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">server-sent events</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps">PWA</a> support (with web push support)</li>
 <li>I18n using <a href="https://www.gnu.org/software/gettext/">gettext</a></li>
+<li>Easily create REST APIs and automatically generate documentation</li>
 <li>Static, hybrid or dynamic modes for content serving</li>
-<li>Good debugging experience with <a href="https://github.com/microsoft/debugpy">debugpy</a> and <a href="https://flask-debugtoolbar.readthedocs.io">Flask-DebugToolbar</a> dev tools</li>
 <li>Observable with <a href="https://opentelemetry.io/">OpenTelemetry</a></li>
 <li>Dev environment based on <a href="https://containers.dev/">Development Containers</a></li>
-<li>Provisioning and containerized deployments using <a href="https://opentofu.org">OpenTofu</a> and <a href="https://www.ansible.com">Ansible</a></li>
+<li>Deep integration with VS Code with full support for interactive debugging</li>
+<li>Deployments using <a href="https://www.ansible.com">Ansible</a> and <a href="https://kamal-deploy.org/">Kamal</a></li>
 </ul>
 <h2 id="the-hyperflask-umbrella">The Hyperflask umbrella</h2>
 <p>Many of the features of the Hyperflask framework are provided through Flask extensions and other libraries. A good portion of them are being developed under the Hyperflask umbrella. They are kept independant so they can be re-used in other projects outside of Hyperflask.</p>
 <p><a href="https://github.com/hyperflask">Checkout the Github organization</a> for the list of projects.</p>
 <h2 id="reasoning">Reasoning</h2>
 <p>There are so many choices to make nowadays: what backend framework, what build tools, what frontend framework, how to deploy, how to easily develop locally, etc...<br />
-The development world, and especially the javascript world, moves at a very fast pace which feels overwhelming and hard to keep track. There is a lot of good stuff happening but at the same time it often feels needlessly over engineered. The focus is mostly on frontend frameworks and the javascript stack.</p>
-<p>I think the "SPA everything" trend has reach its apogee. I never understood why use frontend component frameworks to build blogs as SPA apps. It seems ridiculous. This trend is shifting, with the rise of SSR in the javascript world. But it feels like they are rediscovering water.</p>
-<p>I do not find the direction React Server Components are taking appealing. Blurring the line between frontend and backend has been tried before and it often leads to spaghetti code bases that are hard to maintain. Furthermore, I feel the backend building experience in javascript has never been great, far from python, php or rails.</p>
+The development world, and especially the javascript world, moves at a very fast pace which feels overwhelming and hard to keep track. There is a lot of good stuff happening but at the same time it often feels overwhelming.</p>
+<p>I think the "SPA everything" trend has reach its apogee. I never understood why use frontend component frameworks to build blogs as SPA apps. This trend is shifting back, with the rise of SSR in the javascript world.</p>
+<p>I do not find the direction React Server Components are following appealing. Blurring the line between frontend and backend has been tried before and it often leads to spaghetti code bases that are hard to maintain. Furthermore, I feel the backend building experience in javascript has never been great, far from python, php or rails.</p>
 <p>At the same time, I feel the developer experience is lacking in many areas. There's so many moving parts to learn and manage, it's daunting. It's especially hard for beginners.</p>
 <p>In the end, I love Python and Flask and want to continue building modern websites with them. Unfortunately, I felt a lot of extensions have become outdated and Flask being minimalist, no large scale frameworks around it. Hyperflask is my attempt to a super-powered Flask-based stack.</p>
 <p>Hyperflask aims to be the Laravel of the Python world.</p>
@@ -1542,7 +1702,7 @@ The development world, and especially the javascript world, moves at a very fast
 <p>Hyperflask is inspired by many:</p>
 <ul>
 <li><a href="https://rubyonrails.org/">Ruby on Rails</a> because of their backend-first, one man framework philosophy</li>
-<li><a href="https://astro.build">Astro</a> for their page format and static content-first approach</li>
+<li><a href="https://astro.build">Astro</a> for their page format, component islands and static content-first approach</li>
 <li><a href="https://jekyllrb.com">Jekyll</a> for their content collections</li>
 <li><a href="https://htmx.org/">htmx</a> for allowing to build web sites with minimal custom js</li>
 <li><a href="https://laravel.com/">Laravel</a> for the everything included approach</li>
