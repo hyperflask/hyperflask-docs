@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../pages/">
+        <link rel="prev" href="../models/">
       
       
-        <link rel="next" href="../components/">
+        <link rel="next" href="../files/">
       
       
       <link rel="icon" href="../../assets/favicon.png">
@@ -80,16 +80,6 @@
       
     </div>
     <div data-md-component="announce">
-      
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-            
-<div align="center">⚠️ This is a work in progress project which is not functionnal yet ⚠️</div>
-
-          </div>
-          
-        </aside>
       
     </div>
     
@@ -308,7 +298,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../components/buttons/" class="md-tabs__link">
+        <a href="../../components/" class="md-tabs__link">
           
   
     
@@ -328,7 +318,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../recipes/sending-emails/" class="md-tabs__link">
+        <a href="../../recipes/going-to-production/" class="md-tabs__link">
           
   
     
@@ -338,6 +328,23 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
   
 
       
@@ -533,10 +540,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -556,11 +561,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -574,7 +579,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             Basics
@@ -609,11 +614,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../pages/" class="md-nav__link">
+      <a href="../config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pages
+    Configuration
   </span>
   
 
@@ -627,28 +632,18 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../pages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Collections
+    Pages
   </span>
   
 
       </a>
-      
     </li>
   
 
@@ -708,8 +703,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -719,17 +716,19 @@
       
         
       
+        
+      
     
     
       
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
         
           
           <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -743,7 +742,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
             Handling data
@@ -796,14 +795,111 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Collections
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Resources
+    Collections
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-backed-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      File-backed collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-backed-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data-backed collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-collections-programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing collections programmatically
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files
   </span>
   
 
@@ -829,8 +925,6 @@
   
     
     
-      
-        
       
         
       
@@ -941,27 +1035,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Building an API
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../push/" class="md-nav__link">
         
   
@@ -1011,206 +1084,70 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
         
-      
+  
+  <span class="md-ellipsis">
+    User management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../for-flask-users/" class="md-nav__link">
         
+  
+  <span class="md-ellipsis">
+    For Flask users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
       
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Extensions
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
-            <span class="md-nav__icon md-icon"></span>
-            Extensions
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Authentication
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pwa/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Progressive Web Apps
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
+        
       
         
       
         
       
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    How does it work?
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_7">
-            <span class="md-nav__icon md-icon"></span>
-            How does it work?
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Architecture
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Application
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
         
       
     
@@ -1226,16 +1163,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../components/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Components
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
@@ -1245,17 +1190,19 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../components/buttons/" class="md-nav__link">
+      <a href="../../components/icons/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Buttons
+    Icons
   </span>
   
 
@@ -1277,6 +1224,48 @@
   
   <span class="md-ellipsis">
     Forms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/modals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/daisyui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaisyUI components
   </span>
   
 
@@ -1344,6 +1333,27 @@
             Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/going-to-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Going to production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1450,30 +1460,29 @@
 
               
             
-              
-                
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/spa/" class="md-nav__link">
+      <a href="../../roadmap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Single Page Apps
+    Roadmap
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1498,6 +1507,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-backed-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      File-backed collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-backed-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data-backed collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-collections-programmatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing collections programmatically
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1520,8 +1573,54 @@
 
 
 <h1 id="collections">Collections</h1>
-<p>TODO</p>
-<p>In the meantime, see <a href="https://github.com/hyperflask/flask-collections">Flask-Collections</a></p>
+<p>Collections are a way to manage a collection of static pages generated from a content source.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This feature is provided by <a href="https://github.com/hyperflask/flask-collections">Flask-Collections</a></p>
+</div>
+<p>Your app can have multiple collections. Each collection has a set of entries.</p>
+<p>Each entry has a "slug", some content and a set of properties. Formats for each entries varies depending on the collection type.</p>
+<p>When the <code>is_markdown</code> property is set to true (which is automatic if a file-based entry has the <em>.md</em> extension), the content is rendered as markdown.</p>
+<p>When using a filename, it can contain a date prefix in the form of YYYY-MM-DD. The date will be available as the <code>date</code> property.</p>
+<h2 id="file-backed-collections">File-backed collections</h2>
+<p>In a directory named after the collection located in <em>app/collections</em>, use one file per entry.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>app/collections
+  blog/
+    2025-01-01-new-year.md
+    2025-02-01-second-month.md
+</code></pre></div>
+<p>Example <em>2025-01-01-new-year.md</em>:</p>
+<div class="highlight"><pre><span></span><code>---
+title: &quot;Happy new year!&quot;
+---
+Hello world
+</code></pre></div>
+<h2 id="data-backed-collections">Data-backed collections</h2>
+<p>These are collections where entries are all stored in a single structed file like CSV, JSON or YAML.</p>
+<p>Example <em>app/collections/blog.csv</em>:</p>
+<div class="highlight"><pre><span></span><code>slug,date,title,content
+new-year,2025-01-01,&quot;Happy new year!&quot;,&quot;Hello world&quot;
+</code></pre></div>
+<p>An sqlite database can also be used using the <em>.db</em> extension. A table or query must be provided a config.</p>
+<h2 id="configuring-collections">Configuring collections</h2>
+<p>Collections can be configured under the <code>COLLECTIONS</code> key. Create a subkey named after the collection that contains a dict of options.</p>
+<p>By default, collections are bound to a url under a path named after the collection. This can be overriden using the <code>url</code> config key.<br />
+You can also provide a layout template for collection entries. This template will receive an <code>entry</code> and <code>content</code> variable.</p>
+<div class="highlight"><pre><span></span><code>collections:
+    blog:
+        url: /blog
+        layout: layouts/post.html
+    categories:
+        path: meta.db
+        table: categories
+</code></pre></div>
+<p>To prevent a collection from being exposed via a URL, set url to false.</p>
+<h2 id="accessing-collections-programmatically">Accessing collections programmatically</h2>
+<p>Collections are accessible under <code>app.collections</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">blog</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">post</span><span class="o">.</span><span class="n">slug</span><span class="p">,</span> <span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">post</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+</code></pre></div>
 
 
 
@@ -1557,7 +1656,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../pages/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Pages">
+          <a href="../models/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Models">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1567,20 +1666,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Pages
+                Models
               </div>
             </div>
           </a>
         
         
           
-          <a href="../components/" class="md-footer__link md-footer__link--next" aria-label="Next: Components">
+          <a href="../files/" class="md-footer__link md-footer__link--next" aria-label="Next: Files">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Components
+                Files
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -12,7 +12,7 @@
         <link rel="prev" href="../tasks/">
       
       
-        <link rel="next" href="../api/">
+        <link rel="next" href="../push/">
       
       
       <link rel="icon" href="../../assets/favicon.png">
@@ -80,16 +80,6 @@
       
     </div>
     <div data-md-component="announce">
-      
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-            
-<div align="center">⚠️ This is a work in progress project which is not functionnal yet ⚠️</div>
-
-          </div>
-          
-        </aside>
       
     </div>
     
@@ -308,7 +298,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../components/buttons/" class="md-tabs__link">
+        <a href="../../components/" class="md-tabs__link">
           
   
     
@@ -328,7 +318,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../recipes/sending-emails/" class="md-tabs__link">
+        <a href="../../recipes/going-to-production/" class="md-tabs__link">
           
   
     
@@ -338,6 +328,23 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
   
 
       
@@ -607,11 +614,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../pages/" class="md-nav__link">
+      <a href="../config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pages
+    Configuration
   </span>
   
 
@@ -628,11 +635,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
+      <a href="../pages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Collections
+    Pages
   </span>
   
 
@@ -700,6 +707,8 @@
   
     
     
+      
+        
       
         
       
@@ -787,11 +796,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+      <a href="../collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resources
+    Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files
   </span>
   
 
@@ -819,8 +849,6 @@
   
     
     
-      
-        
       
         
       
@@ -919,6 +947,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Internationalization
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -929,27 +968,61 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
         
-  
-  <span class="md-ellipsis">
-    Building an API
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#marking-strings-for-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marking strings for translation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a translation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locale-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locale detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-translations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating translations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1011,206 +1084,70 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
         
-      
+  
+  <span class="md-ellipsis">
+    User management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../for-flask-users/" class="md-nav__link">
         
+  
+  <span class="md-ellipsis">
+    For Flask users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
       
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Extensions
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
-            <span class="md-nav__icon md-icon"></span>
-            Extensions
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Authentication
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pwa/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Progressive Web Apps
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
+        
       
         
       
         
       
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    How does it work?
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_7">
-            <span class="md-nav__icon md-icon"></span>
-            How does it work?
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Architecture
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Application
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
         
       
     
@@ -1226,16 +1163,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../components/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Components
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
@@ -1245,17 +1190,19 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../components/buttons/" class="md-nav__link">
+      <a href="../../components/icons/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Buttons
+    Icons
   </span>
   
 
@@ -1277,6 +1224,48 @@
   
   <span class="md-ellipsis">
     Forms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/modals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/daisyui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaisyUI components
   </span>
   
 
@@ -1344,6 +1333,27 @@
             Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/going-to-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Going to production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1450,30 +1460,29 @@
 
               
             
-              
-                
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/spa/" class="md-nav__link">
+      <a href="../../roadmap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Single Page Apps
+    Roadmap
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1498,6 +1507,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#marking-strings-for-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marking strings for translation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a translation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locale-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locale detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-translations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating translations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1520,8 +1573,82 @@
 
 
 <h1 id="internationalization">Internationalization</h1>
-<p>TODO</p>
-<p>In the meantime, see <a href="https://github.com/hyperflask/flask-babel-plus">Flask-Babel-Plus</a></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This feature is provided by <a href="https://github.com/hyperflask/flask-babel-hyper">Flask-Babel-Hyper</a></p>
+</div>
+<h2 id="marking-strings-for-translation">Marking strings for translation</h2>
+<p>Use <a href="https://docs.python.org/3/library/gettext.html#module-gettext">gettext functions</a> to mark all strings requiring translation.</p>
+<p>In templates:</p>
+<div class="highlight"><pre><span></span><code>{{_(&quot;this string will be translated&quot;)}}
+</code></pre></div>
+<p>In python:</p>
+<div class="highlight"><pre><span></span><code>from hyperflask import _
+
+_(&quot;this string will be translated&quot;)
+</code></pre></div>
+<p>Other available functions:</p>
+<table>
+<thead>
+<tr>
+<th>Full name</th>
+<th>Short name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gettext</td>
+<td>_</td>
+<td>Return a localized string</td>
+</tr>
+<tr>
+<td>ngettext</td>
+<td>_n</td>
+<td>Like gettext(), but consider plural forms</td>
+</tr>
+<tr>
+<td>pgettext</td>
+<td>_p</td>
+<td>Like gettext(), but specify the context</td>
+</tr>
+<tr>
+<td>lazy_gettext</td>
+<td>_lazy</td>
+<td>Like gettext(), but evaluation is delayed</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Format strings should be resolved after the translation has happenned.</p>
+<p>Bad: <code>_("hello %(name)s" % {"name": "world"})</code></p>
+<p>Good: <code>_("hello %(name)s") % {"name": "world"}</code></p>
+</div>
+<h2 id="creating-a-translation">Creating a translation</h2>
+<p>Run the following command:</p>
+<div class="highlight"><pre><span></span><code>$ hyperflask babel init LOCALE
+</code></pre></div>
+<p>Where LOCALE should be a locale code (eg: <code>fr</code>)</p>
+<p>Translate the generated po file in <em>app/translations/{LOCALE}/LC_MESSAGES</em> using a tool like <a href="https://poedit.net/">poedit</a>.</p>
+<p>Once all the translations have been completed, run the following command:</p>
+<div class="highlight"><pre><span></span><code>$ hyperflask babel compile
+</code></pre></div>
+<h2 id="locale-detection">Locale detection</h2>
+<p>Locale is automatically selected from, in order:</p>
+<ul>
+<li>the <code>locale</code> query string parameter</li>
+<li>the browser's Accept-Language header</li>
+<li>the default locale</li>
+</ul>
+<p>When the locale is set via the query string parameter, it is stored in the session until further change.</p>
+<h2 id="updating-translations">Updating translations</h2>
+<p>Run the following command:</p>
+<div class="highlight"><pre><span></span><code>$ hyperflask babel update
+</code></pre></div>
+<p>Add missing translations in po files then run the following command:</p>
+<div class="highlight"><pre><span></span><code>$ hyperflask babel compile
+</code></pre></div>
 
 
 
@@ -1574,13 +1701,13 @@
         
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: Building an API">
+          <a href="../push/" class="md-footer__link md-footer__link--next" aria-label="Next: Server push">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Building an API
+                Server push
               </div>
             </div>
             <div class="md-footer__button md-icon">

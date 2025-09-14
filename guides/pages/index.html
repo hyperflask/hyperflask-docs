@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../structure/">
+        <link rel="prev" href="../config/">
       
       
-        <link rel="next" href="../collections/">
+        <link rel="next" href="../components/">
       
       
       <link rel="icon" href="../../assets/favicon.png">
@@ -80,16 +80,6 @@
       
     </div>
     <div data-md-component="announce">
-      
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-            
-<div align="center">⚠️ This is a work in progress project which is not functionnal yet ⚠️</div>
-
-          </div>
-          
-        </aside>
       
     </div>
     
@@ -308,7 +298,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../components/buttons/" class="md-tabs__link">
+        <a href="../../components/" class="md-tabs__link">
           
   
     
@@ -328,7 +318,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../recipes/sending-emails/" class="md-tabs__link">
+        <a href="../../recipes/going-to-production/" class="md-tabs__link">
           
   
     
@@ -338,6 +328,23 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
   
 
       
@@ -606,6 +613,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -618,6 +646,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pages
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -628,27 +667,106 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
         
-  
-  <span class="md-ellipsis">
-    Collections
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-routing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How routing works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-page-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      The page template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layouts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-page-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      The page object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-different-http-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling different HTTP methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-request-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      The request object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-based-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function-based endpoints
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -712,6 +830,8 @@
   
     
     
+      
+        
       
         
       
@@ -799,11 +919,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+      <a href="../collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resources
+    Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files
   </span>
   
 
@@ -829,8 +970,6 @@
   
     
     
-      
-        
       
         
       
@@ -941,27 +1080,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Building an API
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../push/" class="md-nav__link">
         
   
@@ -1011,206 +1129,70 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
         
-      
+  
+  <span class="md-ellipsis">
+    User management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../for-flask-users/" class="md-nav__link">
         
+  
+  <span class="md-ellipsis">
+    For Flask users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
       
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Extensions
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
-            <span class="md-nav__icon md-icon"></span>
-            Extensions
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Authentication
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pwa/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Progressive Web Apps
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
+        
       
         
       
         
       
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    How does it work?
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_7">
-            <span class="md-nav__icon md-icon"></span>
-            How does it work?
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Architecture
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Application
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
         
       
     
@@ -1226,16 +1208,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../components/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Components
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
@@ -1245,17 +1235,19 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../components/buttons/" class="md-nav__link">
+      <a href="../../components/icons/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Buttons
+    Icons
   </span>
   
 
@@ -1277,6 +1269,48 @@
   
   <span class="md-ellipsis">
     Forms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/modals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/daisyui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaisyUI components
   </span>
   
 
@@ -1344,6 +1378,27 @@
             Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/going-to-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Going to production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1450,30 +1505,29 @@
 
               
             
-              
-                
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/spa/" class="md-nav__link">
+      <a href="../../roadmap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Single Page Apps
+    Roadmap
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1498,6 +1552,95 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-routing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How routing works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-page-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      The page template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layouts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-page-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      The page object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-different-http-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling different HTTP methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-request-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      The request object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-based-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function-based endpoints
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1520,8 +1663,125 @@
 
 
 <h1 id="pages">Pages</h1>
-<p>TODO</p>
-<p>In the meantime, see <a href="https://github.com/hyperflask/flask-file-routes">Flask-File-Routes</a></p>
+<p>Easily create static and dynamic pages with a layout.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This feature is provided by <a href="https://github.com/hyperflask/flask-file-routes">Flask-File-Routes</a></p>
+</div>
+<h2 id="dynamic-pages">Dynamic pages</h2>
+<p>Dynamic pages can use the following formats:</p>
+<ul>
+<li><strong>jpy</strong>: jinjapy hybrid format that let you execute code before rendering the template</li>
+<li><strong>py</strong>: python code only</li>
+</ul>
+<p>A jinjapy file contains 2 sections:</p>
+<ul>
+<li>Some Python code enclosed by lines containg 3 dashes "---"</li>
+<li>A body containing some Jinja template code</li>
+</ul>
+<p>Both are optional:</p>
+<ul>
+<li>If the python code is missing, the file only contains a Jinja template</li>
+<li>If the python code is left unclosed (the file starts with "---" on a single line followed by some python code), the file has no template</li>
+</ul>
+<p>The python code has a few global variables injected when executed: <code>page</code>, <code>request</code>, <code>abort</code>, <code>redirect</code>, <code>url_for</code>, <code>current_app</code>, <code>render_template</code>.</p>
+<h2 id="static-pages">Static pages</h2>
+<p>No python code will be executed on static pages.</p>
+<p>Static pages can use the following formats:</p>
+<ul>
+<li><strong>html</strong>: a standard jinja template</li>
+<li><strong>md</strong>: a standard jinja template that will be rendered using markdown</li>
+</ul>
+<p>All formats can have a YAML frontmatter defining variables that will be injected in the page object.</p>
+<h2 id="how-routing-works">How routing works</h2>
+<p>The URL rule is constructed using the following rules:</p>
+<ul>
+<li><code>index.ext</code> file are roots</li>
+<li>folder hierarchy are transformed to url paths:<ul>
+<li><code>posts/release-annoucement.ext</code> converts to <code>/posts/release-annoucement</code></li>
+<li><code>posts/index.ext</code> converts to <code>/posts</code></li>
+<li><code>folder/subfolder/page.ext</code> converts to <code>/folder/subfolder/page</code></li>
+</ul>
+</li>
+<li>placeholders are allowed in filenames:<ul>
+<li><code>posts/&lt;slug&gt;.ext</code> converts to <code>/posts/&lt;slug&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p>The placeholder value is available through the <a href="#the-page-object"><code>page</code> object</a> (eg: <code>page.slug</code>).</p>
+<h2 id="the-page-template">The page template</h2>
+<p>Templates are powered by <a href="https://jinja.palletsprojects.com/en/stable/">Jinja</a>.</p>
+<p>We recommend reading the <a href="https://flask.palletsprojects.com/en/stable/templating/">Flask templating guide</a>.</p>
+<p>Hyperflask includes built-ins UI components powered by <a href="https://daisyui.com/">DaisyUI</a>. Check out the <a href="/guides/components/#built-in-ui-components">Components</a> guide.</p>
+<h2 id="layouts">Layouts</h2>
+<p>Hyperflask makes managing layouts for your pages easier. Layouts are saved in the <em>app/layouts</em> folder. The default layout can be overriden at <em>app/layouts/default.html</em>.
+(Hyperflask provides a default layout when none is created)</p>
+<p>For a page to use a layout, include the <code>{% use_layout %}</code> at the top of the template. Layouts can provide multiple placeholders to fill in named "blocks". Content outside of blocks will be added to the default block named "content".</p>
+<p>Example template:</p>
+<div class="highlight"><pre><span></span><code>{% use_layout %}
+
+{% block page_title %}New title!{% endblock %}
+
+My page content
+</code></pre></div>
+<p><code>{% use_layout %}</code> can also be given a template filename as argument to extend from any other template.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When providing your own layout, you can extend from <a href="https://github.com/hyperflask/hyperflask/blob/main/hyperflask/layouts/web.html"><em>layouts/base.html</em></a>.</p>
+</div>
+<h2 id="the-page-object">The page object</h2>
+<p>The <code>page</code> object is accessible without import in any pages or can be imported from <code>hyperflask</code>.</p>
+<p>Any properties set onto the object will be available as a variable in the template.</p>
+<p>Some helper methods that immediatly stop the page execution and return a response:</p>
+<ul>
+<li>return an http error code using <code>page.abort(http_code)</code></li>
+<li>redirect to another page using <code>page.redirect(url)</code></li>
+<li>send any <a href="https://flask.palletsprojects.com/en/stable/api/#response-objects">response object</a> using <code>page.respond(response)</code></li>
+</ul>
+<p>URL placeholders are available as read-only properties of the page object.</p>
+<p>Additional helpers can be registered on the page object:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">page_helper</span>
+<span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="n">page</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span>
+
+<span class="n">page</span><span class="o">.</span><span class="n">method</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The page object is accessible under <code>hyperflask.page</code> or <code>g.page</code> in <strong>all</strong> routes of your app.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask</span> <span class="kn">import</span> <span class="n">page</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+    <span class="k">return</span> <span class="n">render_template_string</span><span class="p">(</span><span class="s2">&quot;{{message}}&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h2 id="handling-different-http-methods">Handling different HTTP methods</h2>
+<p>When using jpy or python files, you can create functions named after http methods in lower case (get, post, put, patch, delete). These functions will be executed after the main body of the python code depending on the request's http method.</p>
+<p>Allowed http methods for a route depends on:</p>
+<ul>
+<li>If no method function is present, the route will be available throught GET only</li>
+<li>As soon as a method function is present, the route is available through the defined http methods.</li>
+<li>Possible methods can be defined manually using a comment at the start of the python code listing allowed http methods in the following format: <code># methods=GET,POST</code></li>
+</ul>
+<h2 id="the-request-object">The request object</h2>
+<p>A <code>request</code> object is available in your pages' python code. It can be used to access the request's data and metadata.</p>
+<ul>
+<li>Use <code>request.args</code> to access query string parameters (<code>request.args['param-name']</code>)</li>
+<li>Use <code>request.form</code> to access form data (<code>request.form['input-name']</code>)</li>
+</ul>
+<p>See Flask <a href="https://flask.palletsprojects.com/en/stable/quickstart/#the-request-object">documentation about the request object</a> for more information.</p>
+<h2 id="function-based-endpoints">Function-based endpoints</h2>
+<p>Hyperflask also allows you to create endpoints using python functions like Flask does.</p>
+<p>In <code>app/routes.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask.factory</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/my-endpoint&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_endpoint</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;hello&quot;</span>
+</code></pre></div>
+<p>Templates can also be used. They should be located in the <code>app/templates</code> folder.</p>
 
 
 
@@ -1557,7 +1817,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../structure/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Project structure">
+          <a href="../config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1567,20 +1827,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Project structure
+                Configuration
               </div>
             </div>
           </a>
         
         
           
-          <a href="../collections/" class="md-footer__link md-footer__link--next" aria-label="Next: Collections">
+          <a href="../components/" class="md-footer__link md-footer__link--next" aria-label="Next: Components">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Collections
+                Components
               </div>
             </div>
             <div class="md-footer__button md-icon">

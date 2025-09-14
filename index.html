@@ -55,7 +55,7 @@
     
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/stylesheets/home.css">
 
   </head>
@@ -78,16 +78,6 @@
       
     </div>
     <div data-md-component="announce">
-      
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-            
-<div align="center">⚠️ This is a work in progress project which is not functionnal yet ⚠️</div>
-
-          </div>
-          
-        </aside>
       
     </div>
     
@@ -218,21 +208,7 @@
     
     <div class="md-container" data-md-component="container">
       
-    <div class="home-hero">
-        <!-- <svg xmlns="http://www.w3.org/2000/svg">
-            <filter id="filter">
-                <feTurbulence type="fractalNoise" baseFrequency=".05"/>
-                <feComponentTransfer>
-                    <feFuncA type="table" tableValues="0 0 0 1 1"/>
-                </feComponentTransfer>
-                <feComposite in="SourceGraphic" operator="in"/>
-                <feMorphology radius="1" operator="dilate"/>
-            </filter>
-            <circle r="150%"/>
-            <g fill="none" stroke="#444" stroke-width="99.5%" filter="url(#filter)">
-                <circle cx="50%" cy="50%" r="57%" stroke-dasharray="2 60 .5 60"/>
-            </g>
-        </svg> -->
+    <div id="home-hero">
         <canvas id="warpdrive"></canvas>
         <script src="assets/scripts/warpspeed.min.js"></script>
         <script>
@@ -334,7 +310,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="components/buttons/" class="md-tabs__link">
+        <a href="components/" class="md-tabs__link">
           
   
     
@@ -354,7 +330,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="recipes/sending-emails/" class="md-tabs__link">
+        <a href="recipes/going-to-production/" class="md-tabs__link">
           
   
     
@@ -367,17 +343,68 @@
   
 
       
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="roadmap/" class="md-tabs__link">
+        
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
         <div>
-            <h1>The Python web stack to build<br>sites and apps at light speed</h1>
+            <h1>The Python stack to build<br>web apps at light speed</h1>
             <p>
                 From dev environment to UI framework to deployment,
                 Hyperflask integrates everything seamlessly
                 to let you focus on what you are building.
             </p>
-            <a href="/getting-started">Get started</a>
+            <p>
+                v0.2 (BETA)
+                <a href="/getting-started">Get started</a>
+            </p>
+        </div>
+    </div>
+    <div id="home-beta-warning">
+        ⚠️ Hyperflask is still in BETA and being actively developed. Check out the <a href="/roadmap">roadmap</a> for a status update.
+    </div>
+    <div id="home-intro">
+        <div>
+            <div>
+                <h2>Truly full stack to let you focus on building</h2>
+                <p>
+                    Choosing technologies for every aspect of your stack is overwhelming. And it's often hard to make them work together seamlessly. Hyperflask is the first true full stack framework.
+                </p>
+                <p>
+                    <a href="/why">Checkout the project's goals and features &raquo;</a>
+                </p>
+            </div>
+            <div>
+                <h2>Amazing developer experience</h2>
+                <p>
+                    A lot of attention has been given to the developer experience. From installation, to development and deployment, all the steps have been minimized and made to work seamlessly.
+                </p>
+            </div>
+            <div>
+                <h2>Meticulously chosen technologies</h2>
+                <p>
+                    Each piece of technology integrated in the Hyperflask stack has been carefully selected for its quality, developer experience, ease of use, feature set and popularity.
+                </p>
+                <p>
+                    <a href="/why/#features-and-technologies">See the full list of technologies &raquo;</a>
+                </p>
+            </div>
         </div>
     </div>
 
@@ -647,11 +674,11 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/pages/" class="md-nav__link">
+      <a href="guides/config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pages
+    Configuration
   </span>
   
 
@@ -668,11 +695,11 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/collections/" class="md-nav__link">
+      <a href="guides/pages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Collections
+    Pages
   </span>
   
 
@@ -740,6 +767,8 @@
   
     
     
+      
+        
       
         
       
@@ -827,11 +856,32 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/resources/" class="md-nav__link">
+      <a href="guides/collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resources
+    Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="guides/files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files
   </span>
   
 
@@ -857,8 +907,6 @@
   
     
     
-      
-        
       
         
       
@@ -969,27 +1017,6 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/api/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Building an API
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="guides/push/" class="md-nav__link">
         
   
@@ -1039,206 +1066,70 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="guides/users/" class="md-nav__link">
         
-      
+  
+  <span class="md-ellipsis">
+    User management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="guides/for-flask-users/" class="md-nav__link">
         
+  
+  <span class="md-ellipsis">
+    For Flask users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
       
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Extensions
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
-            <span class="md-nav__icon md-icon"></span>
-            Extensions
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="guides/auth/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Authentication
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="guides/pwa/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Progressive Web Apps
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
+        
       
         
       
         
       
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    How does it work?
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_7">
-            <span class="md-nav__icon md-icon"></span>
-            How does it work?
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="guides/architecture/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Architecture
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="guides/app/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Application
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
         
       
     
@@ -1254,16 +1145,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="components/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Components
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
@@ -1273,17 +1172,19 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="components/buttons/" class="md-nav__link">
+      <a href="components/icons/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Buttons
+    Icons
   </span>
   
 
@@ -1305,6 +1206,48 @@
   
   <span class="md-ellipsis">
     Forms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="components/modals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="components/daisyui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DaisyUI components
   </span>
   
 
@@ -1372,6 +1315,27 @@
             Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/going-to-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Going to production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1478,30 +1442,29 @@
 
               
             
-              
-                
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
   
   
   
   
     <li class="md-nav__item">
-      <a href="recipes/spa/" class="md-nav__link">
+      <a href="roadmap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Single Page Apps
+    Roadmap
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1536,27 +1499,87 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-<div class="grid cards">
-<ul>
-<li>
-<p><img alt="❓" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/2753.svg" title=":question:" /> <a href="/why"><strong>Why Hyperflask ?</strong></a></p>
-<hr />
-<p>Discover the project goals and technologies used</p>
-<p><a href="/why">Read more</a></p>
-</li>
-<li>
-<p><img alt="🚀" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f680.svg" title=":rocket:" /> <a href="/getting-started"><strong>Get started</strong></a></p>
-<hr />
-<p>Tutorial to create &amp; deploy your first Hyperflask project</p>
-<p><a href="/getting-started">Start now</a></p>
-</li>
-<li>
-<p><img alt="📚" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f4da.svg" title=":books:" /> <a href="/guides"><strong>In-depth guides</strong></a></p>
-<hr />
-<p>Deep dive into Hyperflask and all its possibilities</p>
-<p><a href="/guides">Read more</a></p>
-</li>
-</ul>
+<div class="home-feature">
+    <div>
+        <img src="/assets/images/home-feature-pages.svg">
+    </div>
+    <div>
+        <h2>Flask with file-based routing</h2>
+        <p>
+            Hyperflask is built on top of Flask, a popular Python web framework. It extends it with many features, notably file-based routing using a new file format that combines python code and a jinja template (inspired by Astro pages).
+        </p>
+        <p>
+            <a href="/guides/pages/">Read more about pages &raquo;</a>
+        </p>
+    </div>
+</div>
+<div class="home-feature">
+    <div>
+        <h2>A powerful component system</h2>
+        <p>
+            Hyperflask introduces component-driven architecture to Flask apps. Seamlessly create frontend (web components, react, etc...) and backend components and use them in your jinja templates. Use HTMX to create server-backed interactive components.
+        </p>
+        <p>
+            <a href="/guides/components/">Read more about components &raquo;</a>
+        </p>
+    </div>
+    <div>
+        <img src="/assets/images/home-feature-components.svg">
+    </div>
+</div>
+<div class="home-feature">
+    <div>
+        <img src="/assets/images/home-feature-battery.svg">
+    </div>
+    <div>
+        <h2>Batteries included</h2>
+        <p>
+            Create interfaces with DaisyUI, send emails using MJML, run background jobs, send push events using SSE, translations, authentication, ...
+            Everything you need to build a product.
+        </p>
+    </div>
+</div>
+<div class="home-feature">
+    <div>
+        <h2>Content driven when needed</h2>
+        <p>
+            Hyperflask can be used to generate static web sites. It can also run in an hybrid mode where the server is accessed only for dynamic requests.
+        </p>
+    </div>
+    <div>
+        <img src="/assets/images/home-feature-content.svg">
+    </div>
+</div>
+<div class="home-feature">
+    <div>
+        <img src="/assets/images/home-feature-env.svg">
+    </div>
+    <div>
+        <h2>No messing around with your environment</h2>
+        <p>
+            Dev and prod environment are standardized on containers. With a tight integration with VS Code, everything is easy to setup and run.
+            Deploy to VPS and various cloud services in one command.
+        </p>
+        <p>
+            <a href="/getting-started/">Get started &raquo;</a>
+        </p>
+    </div>
+</div>
+<div class="home-feature">
+    <div>
+        <h2>Ensuring a thriving ecosystem</h2>
+        <p>
+            The Hyperflask framework itself is a small code base. It combines many Flask extensions in a seamless manner.
+            All extensions and related projects are developed independently of the framework under the Hyperflask organization.
+            Feel free to pick and choose the part you prefer from Hyperflask and use them in your own projects.
+        </p>
+        <p>
+            <a href="https://github.com/hyperflask">Visit the Hyperflask organization on Github &raquo;</a>
+        </p>
+    </div>
+    <div>
+        <img src="/assets/images/home-feature-ecosystem.svg">
+    </div>
 </div>
 
               </article>
