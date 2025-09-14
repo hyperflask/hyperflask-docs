@@ -12,37 +12,37 @@ nav:
     - guides/setup.md
     - Basics:
        - guides/structure.md
+       - guides/config.md
        - guides/pages.md
-       - guides/collections.md
        - guides/components.md
        - guides/assets.md
     - Handling data:
        - guides/forms.md
        - guides/models.md
-       - guides/resources.md
+       - guides/collections.md
+       - guides/files.md
     - Digging deeper:
        - guides/emails.md
        - guides/tasks.md
        - guides/i18n.md
-       - guides/api.md
        - guides/push.md
     - guides/deploy.md
-    - Extensions:
-       - guides/auth.md
-       - guides/pwa.md
-    - How does it work?:
-       - guides/architecture.md
-       - guides/app.md
+    - guides/users.md
+    - guides/for-flask-users.md
   - Components:
-    - components/buttons.md
+    - components/index.md
+    - components/icons.md
     - components/forms.md
+    - components/modals.md
+    - components/daisyui/index.md
   - Recipes:
+    - recipes/going-to-production.md
     - recipes/sending-emails.md
     - recipes/monitoring.md
     - recipes/analytics.md
     - recipes/stripe.md
     - recipes/using-cms.md
-    - recipes/spa.md
+  - roadmap.md
 
 theme:
   name: material
@@ -78,6 +78,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
   - search

@@ -3,26 +3,12 @@
 {% block extrahead %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{'assets/stylesheets/home.css'|url}}">
 {% endblock %}
 
 {% block hero %}
-    <div class="home-hero">
-        <!-- <svg xmlns="http://www.w3.org/2000/svg">
-            <filter id="filter">
-                <feTurbulence type="fractalNoise" baseFrequency=".05"/>
-                <feComponentTransfer>
-                    <feFuncA type="table" tableValues="0 0 0 1 1"/>
-                </feComponentTransfer>
-                <feComposite in="SourceGraphic" operator="in"/>
-                <feMorphology radius="1" operator="dilate"/>
-            </filter>
-            <circle r="150%"/>
-            <g fill="none" stroke="#444" stroke-width="99.5%" filter="url(#filter)">
-                <circle cx="50%" cy="50%" r="57%" stroke-dasharray="2 60 .5 60"/>
-            </g>
-        </svg> -->
+    <div id="home-hero">
         <canvas id="warpdrive"></canvas>
         <script src="{{'assets/scripts/warpspeed.min.js'|url}}"></script>
         <script>
@@ -41,13 +27,47 @@
         </script>
         {% include "partials/tabs.html" %}
         <div>
-            <h1>The Python web stack to build<br>sites and apps at light speed</h1>
+            <h1>The Python stack to build<br>web apps at light speed</h1>
             <p>
                 From dev environment to UI framework to deployment,
                 Hyperflask integrates everything seamlessly
                 to let you focus on what you are building.
             </p>
-            <a href="/getting-started">Get started</a>
+            <p>
+                v0.2 (BETA)
+                <a href="/getting-started">Get started</a>
+            </p>
+        </div>
+    </div>
+    <div id="home-beta-warning">
+        ⚠️ Hyperflask is still in BETA and being actively developed. Check out the <a href="/roadmap">roadmap</a> for a status update.
+    </div>
+    <div id="home-intro">
+        <div>
+            <div>
+                <h2>Truly full stack to let you focus on building</h2>
+                <p>
+                    Choosing technologies for every aspect of your stack is overwhelming. And it's often hard to make them work together seamlessly. Hyperflask is the first true full stack framework.
+                </p>
+                <p>
+                    <a href="/why">Checkout the project's goals and features &raquo;</a>
+                </p>
+            </div>
+            <div>
+                <h2>Amazing developer experience</h2>
+                <p>
+                    A lot of attention has been given to the developer experience. From installation, to development and deployment, all the steps have been minimized and made to work seamlessly.
+                </p>
+            </div>
+            <div>
+                <h2>Meticulously chosen technologies</h2>
+                <p>
+                    Each piece of technology integrated in the Hyperflask stack has been carefully selected for its quality, developer experience, ease of use, feature set and popularity.
+                </p>
+                <p>
+                    <a href="/why/#features-and-technologies">See the full list of technologies &raquo;</a>
+                </p>
+            </div>
         </div>
     </div>
 {% endblock %}

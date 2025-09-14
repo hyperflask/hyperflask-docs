@@ -19,7 +19,6 @@ It intends to provide solo devs and small teams a solution that allows them to b
  - Beginner friendly but well engineered for advanced use cases
  - Optimized for solo developers and small teams
  - Can run on cheap machines or VMs from any server/cloud providers
- - Respect privacy and limit data collection (GDPR compliant by default)
 
 ## Features and technologies
 
@@ -29,23 +28,21 @@ It intends to provide solo devs and small teams a solution that allows them to b
  - SQL focused ORM with [sqlorm](https://github.com/hyperflask/sqlorm), optimized for [sqlite](https://www.sqlite.org/)
  - Modern asset pipeline using [esbuild](https://esbuild.github.io/) and [tailwindcss](https://tailwindcss.com/)
  - Deep integration with [htmx](https://htmx.org/)
- - Easily create reusable backend and frontend components, compatible with [Storybook](https://storybook.js.org)
- - Build frontend components using Web Components, [Alpine.js](https://alpinejs.dev/), [Stimulus](https://stimulus.hotwired.dev/) and more. Mix technologies at will.
+ - Easily create reusable backend and frontend components
+ - Build frontend components using Web Components, [Alpine.js](https://alpinejs.dev/), [React](https://react.dev) and more. Mix technologies at will.
  - Component library based on [daisyUI](https://daisyui.com/) with icons from [Bootstrap Icons](https://icons.getbootstrap.com/)
- - Seamless reactivity between frontend and backend
  - Authentication and user management with social logins and MFA
  - Static content collections to easily create blogs and manage static content
  - File management with built-in image manipulation and S3 integration
  - Template based emails with [mjml](https://mjml.io) support
- - Background tasks using [dramatiq](https://dramatiq.io/)
+ - Background tasks using [dramatiq](https://dramatiq.io/) with sqlite as the default broker
  - Push support for realtime pages using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
  - I18n using [gettext](https://www.gnu.org/software/gettext/)
- - Easily create REST APIs and automatically generate documentation
  - Static, hybrid or dynamic modes for content serving
- - Observable with [OpenTelemetry](https://opentelemetry.io/)
  - Dev environment based on [Development Containers](https://containers.dev/)
  - Deep integration with VS Code with full support for interactive debugging
- - Deployments using [Ansible](https://www.ansible.com) and [Kamal](https://kamal-deploy.org/)
+ - Deploy to VPS or docker-based hosting in one command
+ - Easy setup analytics and observability
 
 ## The Hyperflask umbrella
 
@@ -56,11 +53,11 @@ Many of the features of the Hyperflask framework are provided through Flask exte
 ## Reasoning
 
 There are so many choices to make nowadays: what backend framework, what build tools, what frontend framework, how to deploy, how to easily develop locally, etc...  
-The development world, and especially the javascript world, moves at a very fast pace which feels overwhelming and hard to keep track. There is a lot of good stuff happening but at the same time it often feels overwhelming.
+The development world, and especially the javascript world, moves at a very fast pace. There is a lot of good stuff happening but at the same time it often feels overwhelming.
 
 I think the "SPA everything" trend has reach its apogee. I never understood why use frontend component frameworks to build blogs as SPA apps. This trend is shifting back, with the rise of SSR in the javascript world.
 
-I do not find the direction React Server Components are following appealing. Blurring the line between frontend and backend has been tried before and it often leads to spaghetti code bases that are hard to maintain. Furthermore, I feel the backend building experience in javascript has never been great, far from python, php or rails.
+I do not find the direction React Server Components are following appealing. Blurring the line between frontend and backend has been tried before and it often leads to spaghetti code bases that are hard to maintain. It may make sense in Backend For Fronted architectures but I feel it is too complicated for most projects. Furthermore, I feel the backend building experience in javascript has never been great, far from python, php or rails.
 
 At the same time, I feel the developer experience is lacking in many areas. There's so many moving parts to learn and manage, it's daunting. It's especially hard for beginners.
 

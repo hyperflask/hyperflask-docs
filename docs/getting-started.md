@@ -3,24 +3,43 @@ hide: [navigation]
 ---
 # Getting started
 
-Welcome to Hyperflask! In this getting started guide will create a simple chat app with authentication.
+Welcome to Hyperflask! In this getting started guide will cover the basics and create a simple chat app with authentication.
 
-We will use [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) to create our project and VS Code as editor (as the starter template deeply integrates with it).
+## Meet Hyperflask
+
+Hyperflask is an opiniated full stack rapid web development framework. It uses Python on the backend, powered by the Flask framework and javascript with htmx on the frontend.
+
+Hyperflask includes everything you need to develop an app from start to finish: 
+ 
+ - Easy backend development
+ - UI framework and components
+ - Sending emails
+ - Background tasks
+ - Deployment
+
+Check out the full list of technologies used in Hyperflask on the [Why Hyperflask page](/why)
+
+## What you will need to install and run Hyperflask
+
+Hyperflask simplifies development environments by standardizing everything around containers.
+
+VS Code is also the recommended editor (and currently the only one with syntax highlighting for Jinjapy files).
 
 What you will need:
 
+- A UNIX like system (Linux, MacOS or [WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install))
 - [Docker](https://www.docker.com/)
 - [VS Code](https://code.visualstudio.com/)
-
-If you are on Windows, use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 Python is not needed on your machine, everything will be executed inside containers.
 
 ## Installation
 
+We will use [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) to create our project.
+
 Launch the following command to create your project:
 
-    curl -L https://raw.githubusercontent.com/hyperflask/hyperflask-start/start.sh | bash
+    curl -L https://raw.githubusercontent.com/hyperflask/hyperflask-start/main/start.sh | bash
 
 This will prompt you for some options and create the project in a new folder.
 
@@ -28,11 +47,16 @@ Open your project folder in VS Code. It should prompt you to "re-open workspace 
 
 You are now developping from the container inside which you will find Python 3.11, Node & npm and hyperflask installed.
 
+!!! info
+    Although VS Code with development containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI.
+
 ## Running your app
 
 In VS Code, press F5 or "Start debugging" in the command palette.
 
 The browser will automatically open to your new site!
+
+Auto-reload is enabled.
 
 ## First look at the code base
 
@@ -40,57 +64,57 @@ In your project folder, you will find the following files and folders:
 
  - **app**: your app code
     - **assets**: scripts and stylesheets that will be bundled using [esbuild](https://esbuild.github.io/)
+        - **main.css**: tailwind entrypoint
     - **components**: components to compose your app
     - **pages**: your site pages
  - **public**: all files in this folder are publicly accessible
  - **tests**: tests using [pytest](https://pytest.org)
+ - **.env**: environment variables
+ - **config.yml**: your app configuration file
  - **Dockerfile**: Dockerfile to build your production image
  - **pyproject.toml**: list python dependencies and tool options
  - **package.json**: list javascript dependencies
- - **tailwind.config.js**: tailwind configuration
 
 ## Starting our chat app
 
-First, let's add a `ChatMessage` component to render one message. In `app/components/ChatMessage.jpy`:
-
-```
-<div class="message">
-    {{props.message|markdown}}
-</div>
-```
-
-The [component]() is made of a [jinja template](https://jinja.palletsprojects.com/). It receives a `props` variable that contains all the properties passed to the component.
-
-!!! info
-    Note the `jpy` file extension which references a new file format named [jinjapy](https://github.com/hyperflask/jinjapy)
-
-Let's use this component, to render a thread. Replace the content of `app/pages/index.jpy` with the following:
+First, let's create a basic chat window with some messages. Replace the content of `app/pages/index.jpy` with the following:
 
 ```
 {% use_layout %}
 <div id="messages">
-    <{ChatMessage message="First message!" }/>
-    <{ChatMessage message="Second message!" }/>
+    <{ChatBubble}>First message!</{ChatBubble}>
+    <{ChatBubble}>Second message!</{ChatBubble}>
 </div>
 ```
 
-Here you can see that we are using a [special syntax](https://github.com/hyperflask/flask-super-macros?tab=readme-ov-file#usage) to call our component and pass it some props.
+This page is made of a jinja template. We are using the `{% use_layout %}` directive to automatically extend from the default layout.
 
-Now we want to be able to send messages. We will add the ability to render messages through an HTTP call. Replace `app/components/ChatMessage.jpy` with the following:
+We are using the built-in `ChatBubble` component that is provided by [daisyUI](https://daisyui.com) and comes as part of Hyperflask UI toolkit.
+
+Components are included on the page using a [special jinja syntax](/guides/components).
+
+!!! info
+    Note the `jpy` file extension which references the [jinjapy](https://github.com/hyperflask/jinjapy) file format.
+
+## Creating a re-usable component
+
+Now that we have the basic layout of our app, let's extract the chat bubble as an independant component that will handle posting new messages.
+
+We are going to create a `ChatMessage` component to render one message. In `app/components/ChatMessage.jpy`:
 
 ```
 ---
-from hyperflask import request
-
 def post():
     return {"message": request.form["message"]}
 ---
-<div class="message">
+<{ChatBubble}>
     {{props.message|markdown}}
-</div>
+</{ChatBubble}>
 ```
 
-We have added some python code in the [frontmatter]() of the component. We define a `post` function that tells hyperflask that this component can receive POST requests.
+The [component](/guides/components) is made of a [jinja template](https://jinja.palletsprojects.com/). It receives a `props` variable that contains all the properties passed to the component.
+
+We have added some python code in the frontmatter of the component. We define a `post` function that tells hyperflask that this component can receive POST requests.
 
 The function then returns the properties that will be used to render the component.
 
@@ -101,15 +125,13 @@ Let's add a form to our chat interface. Replace `app/pages/index.jpy` with the f
 <div id="messages">
     {# messages will display here #}
 </div>
-<{HxForm hx_post=url_for("ChatMessage") hx_target="#messages" hx_swap="beforeend"}>
+<{HxForm action=url_for("ChatMessage") hx_target="#messages" hx_swap="beforeend"}>
     <{TextareaField name="message" placeholder="Chat" }/>
-    <{SubmitBtn}>Send</{}>
+    <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
 
-We are using [built-in hyperflask components]() to create our form and [htmx](https://htmx.org/) to submit our form using AJAX.
-
-Using `hx-target` and `hx-swap` we are telling htmx to put the returned content from our component call at the end of the messages div.
+We are using [htmx](https://htmx.org/) to submit our form using AJAX. Using `hx-target` and `hx-swap` we are telling htmx to put the returned content from our component call at the end of the messages div.
 
 Try it now and chat with yourself!
 
@@ -122,7 +144,7 @@ Hyperflask uses [sqlorm](https://hyperflask.github.io/sqlorm/) as its ORM.
 Create your first model. In `app/models.py`, add the following:
 
 ```py
-from hyperflask import db
+from hyperflask.factory import db
 import datetime
 
 class Message(db.Model):
@@ -134,7 +156,6 @@ Modify our component to save messages:
 
 ```
 ---
-from hyperflask import request
 from app.models import db, Message
 
 def post():
@@ -142,9 +163,9 @@ def post():
         msg = Message.create(message=request.form["message"])
     return {"message": msg}
 ---
-<div class="message">
+<{ChatBubble}>
     {{props.message.message|markdown}}
-</div>
+</{ChatBubble}>
 ```
 
 And finally the page:
@@ -161,78 +182,73 @@ page.messages = Message.find_all()
         <{ChatMessage message=msg }/>
     {% endfor %}
 </div>
-<{HxForm hx_post=url_for("ChatMessage") hx_target="#messages" hx_swap="beforeend"}>
+<{HxForm action=url_for("ChatMessage") hx_target="#messages" hx_swap="beforeend"}>
     <{TextareaField name="message" placeholder="Chat" }/>
-    <{SubmitBtn}>Send</{}>
+    <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
 
 ## Adding real-time chat
 
-Up until now, you could only chat with yourself. We will now refactor our app to become real-time.
+Up until now, you could only chat with yourself. We will now refactor our app to become real-time using Server-Sent-Events (SSE).
 
-First, we will create a "resource" mapped to our `Message` model. Create `app/resources.py` with the following:
+Rather than sending back a message partial when posting a new message, we will use a dedicated send endpoint that will publish an event containing the message partial.
 
-```py
-from hyperflask.resources import Resource
-from .models import Message
-
-class MessageResource(Resource):
-    model = Message
-    url_prefix = "/messages"
-    macro = "ChatMessage(message)"
-```
-
-Note that using the `macro` prop, we are telling hyperflask to render this resource using our `ChatMessage` component by passing the object as the `message` prop.
-
-!!! info
-    Why macro and not component ? Components are a layer above jinja macros. All defined components have a corresponding macro. But you can also [define pure jinja macros]().
-
-Modify the component back to its simpler state as message creation will now be handled via the resource:
+Modify the `ChatMessage` component back to its simpler state:
 
 ```
-<div class="message">
+<{ChatBubble}>
     {{props.message.message|markdown}}
-</div>
+</{ChatBubble}>
 ```
 
-Finally, use the resource in the page:
+Now let's create a new component `PostMessageForm` in `app/components/PostMessageForm.py` that will handle sending messages.
+
+We will also use the a [form](/guides/forms) in this component to easily validate data.
 
 ```
 ---
-from app.resources import MessageResource
+from app.models import db, Message
 
-page.messages = MessageResource.list()
+def post():
+    form = page.form()
+    if form.validate():
+        with db:
+            msg = Message.create(**form.data)
+        current_app.sse.publish("messages", current_app.components.ChatMessage(message=msg), private=True)
 ---
-{% use_layout %}
-<div id="messages">
-    {! messages !}
-</div>
-<{HxForm hx_post=messages.url() hx_swap="none"}>
-    <{TextareaField name="message" placeholder="Chat" }/>
-    <{SubmitBtn}>Send</{}>
+{% form %}
+<{HxForm form action=url_for("PostMessageForm") hx_swap="outerHTML"}>
+    <{FormField form.message.textarea(required=True, placeholder="Chat") }/>
+    <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
 
-We are now using a [reactive directive]() to render our messages. Reactive directives use the resource system to add real-time reactivity to your page.
-In this case, this list of messages will be automatically updated as soon as we insert or delete messages.
+Let's modify `app/pages/index.jpy` to use our new component and connect to the SSE stream:
 
-Notice also that we have changed the form action to post to the resource rather than the component. We are also ignoring the return of this call.
+```
+---
+from app.models import Message
 
-!!! note
-    Although it may feel like magic, reactive directives work in a well defined way:
+page.messages = Message.find_all()
+---
+{% use_layout %}
+<{MercureStream topic="messages" id="messages"}>
+    {% for msg in messages %}
+        <{ChatMessage message=msg }/>
+    {% endfor %}
+</{MercureStream}>
+<{PostMessageForm}/>
+```
 
-      - resources are exposed through a REST API (docs available at <http://localhost:5000/api/docs>)
-      - updates to resources are notified through an SSE stream
-      - on the frontend, it listens to the stream and updates the list accordingly
-    
-    Reactive directives work with any resource objects, whether list of them or their properties. However, using a non-resource object will print the value as usual.
+!!! info
+    The MercureStream component uses the [htmx SSE extension](https://htmx.org/extensions/sse/) to connect to the sse stream
 
-With a total of 27 lines of code, you now have a real-time and persisted chat room!
+With a total of 33 lines of code, you now have a real-time and persisted chat room!
 
 ## Adding authentication
 
-First, let's install the [hyperflask-auth]() extension. In a VS Code terminal (while connected to the dev container), execute `poetry add hyperflask-auth`.
+First, let's install the [hyperflask-auth](https://github.com/hyperflask/hyperflask-auth) extension. In a VS Code terminal (while connected to the dev container), execute `uv add hyperflask-auth`.
 
 As we will not deal with [database migrations]() during this tutorial, delete your existing database: `rm databases/app.db`.
 
@@ -243,7 +259,7 @@ Let's create a user model and change our existing model to be bound to users:
 
 
 ```py
-from hyperflask import db
+from hyperflask.factory import db
 from hyperflask_auth import UserMixin, UserRelatedMixin
 import datetime
 
@@ -255,21 +271,20 @@ class Message(UserRelatedMixin, db.Model):
     timestamp: datetime.datetime = db.Column(default=datetime.datetime.utcnow)
 ```
 
-Modify the component to display the author:
+Modify the component `ChatMessage` to display the author:
 
 ```
-<div class="message">
-    <strong class="me-1">{{props.message.user.username}}</strong>
+<{ChatBubble header=props.message.user.username}>
     {{props.message.message|markdown}}
-</div>
+</{ChatBubble}>
 ```
 
 Finally, add `page.login_required()` at the top of your page frontmatter to require authentication to access it.
 
 ## Deploying to production
 
-Signup for an account on [AWS]() or [Digital Ocean]() (recommended), create a virtual machine, then run the following command from a VS Code terminal (while connected to the dev container):
+Signup for an account on Fly.io or any VPS provider (eg: Digital Ocean) then run the following command from a VS Code terminal (while connected to the dev container):
 
     hyperflask deploy
 
-Your host information will be requested then the deployment will happen automatically. Connect to your domain and voilà!
+Some information will be requested then the deployment will happen automatically. Connect to your domain and voilà!
