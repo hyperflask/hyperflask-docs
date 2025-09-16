@@ -850,6 +850,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rendering-model-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rendering model objects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#going-further" class="md-nav__link">
     <span class="md-ellipsis">
       Going further
@@ -1541,6 +1550,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rendering-model-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rendering model objects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#going-further" class="md-nav__link">
     <span class="md-ellipsis">
       Going further
@@ -1650,6 +1668,32 @@ modified since the last DML statement. Setting an attribute will automatically f
 <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <p><a href="https://hyperflask.github.io/sqlorm/models/#querying-model-objects">Read more in sqlorm documentation</a></p>
+<h2 id="rendering-model-objects">Rendering model objects</h2>
+<p>Model objects can be rendered using any jinja macro (components being macros). Set the <code>__macro__</code> class property to the name of the macro.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Task</span><span class="p">:</span>
+    <span class="n">__macro__</span> <span class="o">=</span> <span class="s2">&quot;Task&quot;</span>
+</code></pre></div>
+<p>The macro will be provided an <code>obj</code> property. This can be overriden using the syntax <code>MacroName(property)</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Task</span><span class="p">:</span>
+    <span class="n">__macro__</span> <span class="o">=</span> <span class="s2">&quot;Task(task)&quot;</span>
+</code></pre></div>
+<p>In <code>app/components/Task.html</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span><span class="p">&gt;</span>
+    {{props.task.title}}
+<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Once defined, you can "print" your objects and result sets directly in your templates:</p>
+<div class="highlight"><pre><span></span><code>---
+page.tasks = Task.find_all()
+---
+{{tasks}}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>---
+page.task = Task.get(1)
+---
+{{task}}
+</code></pre></div>
 <h2 id="going-further">Going further</h2>
 <p><a href="https://hyperflask.github.io/sqlorm/">Read sqlorm documentation</a></p>
 

@@ -589,6 +589,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      Going further
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1672,6 +1681,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      Going further
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1697,6 +1715,7 @@
 
 <h1 id="getting-started">Getting started</h1>
 <p>Welcome to Hyperflask! In this getting started guide will cover the basics and create a simple chat app with authentication.</p>
+<p>The result of this tutorial is available as a git repository at <a href="https://github.com/hyperflask/getting-started">https://github.com/hyperflask/getting-started</a>.</p>
 <h2 id="meet-hyperflask">Meet Hyperflask</h2>
 <p>Hyperflask is an opiniated full stack rapid web development framework. It uses Python on the backend, powered by the Flask framework and javascript with htmx on the frontend.</p>
 <p>Hyperflask includes everything you need to develop an app from start to finish: </p>
@@ -1773,6 +1792,8 @@
 <p>Now that we have the basic layout of our app, let's extract the chat bubble as an independant component that will handle posting new messages.</p>
 <p>We are going to create a <code>ChatMessage</code> component to render one message. In <code>app/components/ChatMessage.jpy</code>:</p>
 <div class="highlight"><pre><span></span><code>---
+from hyperflask import request
+
 def post():
     return {&quot;message&quot;: request.form[&quot;message&quot;]}
 ---
@@ -1808,6 +1829,7 @@ def post():
 </code></pre></div>
 <p>Modify our component to save messages:</p>
 <div class="highlight"><pre><span></span><code>---
+from hyperflask import request
 from app.models import db, Message
 
 def post():
@@ -1844,9 +1866,10 @@ page.messages = Message.find_all()
     {{props.message.message|markdown}}
 &lt;/{ChatBubble}&gt;
 </code></pre></div>
-<p>Now let's create a new component <code>PostMessageForm</code> in <code>app/components/PostMessageForm.py</code> that will handle sending messages.</p>
+<p>Now let's create a new component <code>PostMessageForm</code> in <code>app/components/PostMessageForm.jpy</code> that will handle sending messages.</p>
 <p>We will also use the a <a href="/guides/forms">form</a> in this component to easily validate data.</p>
 <div class="highlight"><pre><span></span><code>---
+from hyperflask import page, current_app
 from app.models import db, Message
 
 def post():
@@ -1880,17 +1903,16 @@ page.messages = Message.find_all()
 <p class="admonition-title">Info</p>
 <p>The MercureStream component uses the <a href="https://htmx.org/extensions/sse/">htmx SSE extension</a> to connect to the sse stream</p>
 </div>
-<p>With a total of 33 lines of code, you now have a real-time and persisted chat room!</p>
 <h2 id="adding-authentication">Adding authentication</h2>
-<p>First, let's install the <a href="https://github.com/hyperflask/hyperflask-auth">hyperflask-auth</a> extension. In a VS Code terminal (while connected to the dev container), execute <code>uv add hyperflask-auth</code>.</p>
-<p>As we will not deal with <a href="">database migrations</a> during this tutorial, delete your existing database: <code>rm databases/app.db</code>.</p>
+<p>First, let's install the <a href="https://github.com/hyperflask/hyperflask-users">hyperflask-users</a> extension. In a VS Code terminal (while connected to the dev container), execute <code>uv add hyperflask-users</code>.</p>
+<p>As we will not deal with <a href="/guides/models">database migrations</a> during this tutorial, delete your existing database: <code>rm databases/app.db</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Hyperflask-Auth provices login and signup pages as well as everything you need for a professional authentication flow.</p>
+<p>Hyperflask-Users provices login and signup pages as well as everything you need for a professional authentication flow and user management.</p>
 </div>
 <p>Let's create a user model and change our existing model to be bound to users:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask.factory</span> <span class="kn">import</span> <span class="n">db</span>
-<span class="kn">from</span> <span class="nn">hyperflask_auth</span> <span class="kn">import</span> <span class="n">UserMixin</span><span class="p">,</span> <span class="n">UserRelatedMixin</span>
+<span class="kn">from</span> <span class="nn">hyperflask_users</span> <span class="kn">import</span> <span class="n">UserMixin</span><span class="p">,</span> <span class="n">UserRelatedMixin</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
 <span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
@@ -1901,16 +1923,18 @@ page.messages = Message.find_all()
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
 </code></pre></div>
 <p>Modify the component <code>ChatMessage</code> to display the author:</p>
-<div class="highlight"><pre><span></span><code>&lt;{ChatBubble header=props.message.user.username}&gt;
+<div class="highlight"><pre><span></span><code>&lt;{ChatBubble header=props.message.user.email}&gt;
     {{props.message.message|markdown}}
 &lt;/{ChatBubble}&gt;
 </code></pre></div>
 <p>Finally, add <code>page.login_required()</code> at the top of your page frontmatter to require authentication to access it.</p>
 <h2 id="deploying-to-production">Deploying to production</h2>
 <p>Signup for an account on Fly.io or any VPS provider (eg: Digital Ocean) then run the following command from a VS Code terminal (while connected to the dev container):</p>
-<div class="highlight"><pre><span></span><code>hyperflask deploy
+<div class="highlight"><pre><span></span><code>uv run hyperflask deploy
 </code></pre></div>
 <p>Some information will be requested then the deployment will happen automatically. Connect to your domain and voilà!</p>
+<h2 id="going-further">Going further</h2>
+<p>Checkout the <a href="https://github.com/hyperflask/getting-started">Github repository</a> with the result of this tutorial and more. It also includes a nice UI, chat rooms, etc...</p>
 
 
 

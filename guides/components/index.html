@@ -1751,7 +1751,7 @@
 </code></pre></div>
 <h2 id="backend-logic-and-interactions-with-htmx">Backend logic and interactions with HTMX</h2>
 <p>Components can define their own custom backend logic. Similar to pages, files should use the <em>jpy</em> extension and provide a frontmatter with the python code.</p>
-<p>Functions named after HTTP methods will be registered as routes. For example, if a <em>get</em> function exists, Hyperflask will make the component accessible through GET requetes.<br />
+<p>Functions named after HTTP methods will be registered as routes. For example, if a <em>get</em> function exists, Hyperflask will make the component accessible through GET requests.<br />
 These functions can return a dict with component props to render the component or any other valid Flask response value.</p>
 <p>Use HTMX to call your component logic and retrieve only the necessery HTML.</p>
 <p>Let's create a todo app:</p>
@@ -1784,32 +1784,43 @@ def delete():
 &lt;tr&gt;
     &lt;td&gt;{{props.todo.title}}&lt;/td&gt;
     &lt;td&gt;
+        &lt;button hx-get=&quot;{{url_for(&#39;TodoItemForm&#39;, id=props.todo.id)}}&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Delete&lt;/button&gt;
         &lt;button hx-delete=&quot;{{url_for(&#39;TodoItem&#39;, id=props.todo.id)}}&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;delete&quot;&gt;Delete&lt;/button&gt;
     &lt;/td&gt;
 &lt;/tr&gt;
 </code></pre></div>
 <p><em>app/components/TodoItemForm.jpy</em>:</p>
 <div class="highlight"><pre><span></span><code>---
+from hyperflask import request, current_app
 from app.models import db, Todo
 
 def get():
-    todo = Todo.get_or_404(request.args[&#39;id&#39;])
+    todo = Todo.get_or_404(request.args[&#39;id&#39;]) if &quot;id&quot; in request.args else None
     return {&quot;todo&quot;: todo}
 
 def post():
     with db:
-        todo = Todo.create(title=request.form[&#39;title&#39;])
-    return app.components.TodoItem(todo=todo) # return another component
+        if &quot;id&quot; in request.values:
+            todo = Todo.get_or_404(request.args[&#39;id&#39;])
+        else:
+            todo = Todo()
+        todo.title = request.form[&quot;title&quot;]
+        todo.save()
+    return current_app.components.TodoItem(todo=todo) # return another component
 ---
 &lt;tr&gt;
     &lt;td&gt;
-        &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;{{props.todo.title}}&quot; required&gt;
+        &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;{{props.todo.title if props.todo else &#39;&#39;}}&quot; required&gt;
     &lt;/td&gt;
     &lt;td&gt;
-        &lt;button hx-get=&quot;{{url_for(&#39;TodoItemForm&#39;, id=props.todo.id)}}&quot; hx-include=&quot;closest tr&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Save&lt;/button&gt;
+        &lt;button hx-get=&quot;{{url_for(&#39;TodoItemForm&#39;, id=props.todo.id if props.todo else None)}}&quot; hx-include=&quot;closest tr&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Save&lt;/button&gt;
     &lt;/td&gt;
 &lt;/tr&gt;
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Unlike pages, all python imports are mandatory in components</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The <code>request</code> object in Hyperflask uses <a href="https://github.com/sponsfreixes/htmx-flask">htmx-Flask</a> subclass that <a href="https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage">provides easy access to htmx headers</a>.</p>
@@ -1848,8 +1859,16 @@ You can also force which adapter to use for one or multiple files.</p>
 <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;custom-dropdown&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">CustomDropdown</span><span class="p">);</span>
 </code></pre></div>
 <p>In a template: <code>&lt;{custom_dropdown}/&gt;</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://lit.dev/">lit</a> is a great library to implement Web Components. To use with Hyperflask, simply install it and use it as described in their documentation.</p>
+</div>
 <h3 id="react-components">React components</h3>
 <p>Define react components as usual in a jsx file named after the component. Call them in your template like any other component. Each component call will create an independant react tree.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>React is not bundled with Hyperflask. You will need to install it using npm.</p>
+</div>
 <p>Properties provided to the component will be serialized to JSON. You cannot provide children.</p>
 <p>Example, <em>app/components/Dropdown.jsx</em>:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">Dropdown</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

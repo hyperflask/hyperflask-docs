@@ -1031,6 +1031,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-with-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using with models
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1531,6 +1540,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-with-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using with models
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1579,6 +1597,22 @@
 <h2 id="differences-between-dev-and-prod">Differences between dev and prod</h2>
 <p>While in development, a lightweight dev-only implementation of a Mercure hub is used. It is not meant to be used by more than a few users at once and is for testing only with minimum setup.</p>
 <p>When going into production, a proper <a href="https://mercure.rocks/docs/hub/install">Mercure Hub</a> should be used. The Mercure Hub is bundled inside the production image and will be run alongside your app.</p>
+<h2 id="using-with-models">Using with models</h2>
+<p>Model objects can be used as topic and/or data when publishing and subscribing. Combined with model's rendering capability, this makes it easy to publish rendered objects on a stream.</p>
+<p>When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TodoList</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">TodoItem</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__macro__</span> <span class="o">=</span> <span class="s2">&quot;TodoItem&quot;</span>
+
+<span class="n">todolist</span> <span class="o">=</span> <span class="n">TodoList</span><span class="p">()</span>
+<span class="n">item1</span> <span class="o">=</span> <span class="n">TodoItem</span><span class="p">()</span>
+
+<span class="c1"># publish the rendered item using the &lt;{TodoItem}/&gt; component</span>
+<span class="c1"># on the todolist stream named &quot;TodoList/{id}&quot; (where id will be replaced by the list id)</span>
+<span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">todolist</span><span class="p">,</span> <span class="n">item1</span><span class="p">)</span>
+</code></pre></div>
 
 
 
