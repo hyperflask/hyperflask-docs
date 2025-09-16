@@ -5,6 +5,8 @@ hide: [navigation]
 
 Welcome to Hyperflask! In this getting started guide will cover the basics and create a simple chat app with authentication.
 
+The result of this tutorial is available as a git repository at <https://github.com/hyperflask/getting-started>.
+
 ## Meet Hyperflask
 
 Hyperflask is an opiniated full stack rapid web development framework. It uses Python on the backend, powered by the Flask framework and javascript with htmx on the frontend.
@@ -104,6 +106,8 @@ We are going to create a `ChatMessage` component to render one message. In `app/
 
 ```
 ---
+from hyperflask import request
+
 def post():
     return {"message": request.form["message"]}
 ---
@@ -156,6 +160,7 @@ Modify our component to save messages:
 
 ```
 ---
+from hyperflask import request
 from app.models import db, Message
 
 def post():
@@ -202,12 +207,13 @@ Modify the `ChatMessage` component back to its simpler state:
 </{ChatBubble}>
 ```
 
-Now let's create a new component `PostMessageForm` in `app/components/PostMessageForm.py` that will handle sending messages.
+Now let's create a new component `PostMessageForm` in `app/components/PostMessageForm.jpy` that will handle sending messages.
 
 We will also use the a [form](/guides/forms) in this component to easily validate data.
 
 ```
 ---
+from hyperflask import page, current_app
 from app.models import db, Message
 
 def post():
@@ -244,23 +250,21 @@ page.messages = Message.find_all()
 !!! info
     The MercureStream component uses the [htmx SSE extension](https://htmx.org/extensions/sse/) to connect to the sse stream
 
-With a total of 33 lines of code, you now have a real-time and persisted chat room!
-
 ## Adding authentication
 
-First, let's install the [hyperflask-auth](https://github.com/hyperflask/hyperflask-auth) extension. In a VS Code terminal (while connected to the dev container), execute `uv add hyperflask-auth`.
+First, let's install the [hyperflask-users](https://github.com/hyperflask/hyperflask-users) extension. In a VS Code terminal (while connected to the dev container), execute `uv add hyperflask-users`.
 
-As we will not deal with [database migrations]() during this tutorial, delete your existing database: `rm databases/app.db`.
+As we will not deal with [database migrations](/guides/models) during this tutorial, delete your existing database: `rm databases/app.db`.
 
 !!! info
-    Hyperflask-Auth provices login and signup pages as well as everything you need for a professional authentication flow.
+    Hyperflask-Users provices login and signup pages as well as everything you need for a professional authentication flow and user management.
 
 Let's create a user model and change our existing model to be bound to users:
 
 
 ```py
 from hyperflask.factory import db
-from hyperflask_auth import UserMixin, UserRelatedMixin
+from hyperflask_users import UserMixin, UserRelatedMixin
 import datetime
 
 class User(UserMixin, db.Model):
@@ -274,7 +278,7 @@ class Message(UserRelatedMixin, db.Model):
 Modify the component `ChatMessage` to display the author:
 
 ```
-<{ChatBubble header=props.message.user.username}>
+<{ChatBubble header=props.message.user.email}>
     {{props.message.message|markdown}}
 </{ChatBubble}>
 ```
@@ -285,6 +289,10 @@ Finally, add `page.login_required()` at the top of your page frontmatter to requ
 
 Signup for an account on Fly.io or any VPS provider (eg: Digital Ocean) then run the following command from a VS Code terminal (while connected to the dev container):
 
-    hyperflask deploy
+    uv run hyperflask deploy
 
 Some information will be requested then the deployment will happen automatically. Connect to your domain and voilà!
+
+## Going further
+
+Checkout the [Github repository](https://github.com/hyperflask/getting-started) with the result of this tutorial and more. It also includes a nice UI, chat rooms, etc...

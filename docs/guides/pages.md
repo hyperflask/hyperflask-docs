@@ -24,11 +24,11 @@ Both are optional:
 
 The python code has a few global variables injected when executed: `page`, `request`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
 
-## Static pages
+## Content pages
 
-No python code will be executed on static pages.
+No python code will be executed on content pages.
 
-Static pages can use the following formats:
+Content pages can use the following formats:
 
 - **html**: a standard jinja template
 - **md**: a standard jinja template that will be rendered using markdown

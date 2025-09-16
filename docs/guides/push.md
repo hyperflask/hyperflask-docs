@@ -40,3 +40,24 @@ Hyperflask also provides a component that encapsulates the previous html:
 While in development, a lightweight dev-only implementation of a Mercure hub is used. It is not meant to be used by more than a few users at once and is for testing only with minimum setup.
 
 When going into production, a proper [Mercure Hub](https://mercure.rocks/docs/hub/install) should be used. The Mercure Hub is bundled inside the production image and will be run alongside your app.
+
+## Using with models
+
+Model objects can be used as topic and/or data when publishing and subscribing. Combined with model's rendering capability, this makes it easy to publish rendered objects on a stream.
+
+When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.
+
+```py
+class TodoList(db.Model):
+    pass
+
+class TodoItem(db.Model):
+    __macro__ = "TodoItem"
+
+todolist = TodoList()
+item1 = TodoItem()
+
+# publish the rendered item using the <{TodoItem}/> component
+# on the todolist stream named "TodoList/{id}" (where id will be replaced by the list id)
+current_app.sse.publish(todolist, item1)
+```

@@ -90,7 +90,7 @@ Example using the previous *app/components/Dropdown.html*:
 
 Components can define their own custom backend logic. Similar to pages, files should use the *jpy* extension and provide a frontmatter with the python code.
 
-Functions named after HTTP methods will be registered as routes. For example, if a *get* function exists, Hyperflask will make the component accessible through GET requetes.  
+Functions named after HTTP methods will be registered as routes. For example, if a *get* function exists, Hyperflask will make the component accessible through GET requests.  
 These functions can return a dict with component props to render the component or any other valid Flask response value.
 
 Use HTMX to call your component logic and retrieve only the necessery HTML.
@@ -131,6 +131,7 @@ def delete():
 <tr>
     <td>{{props.todo.title}}</td>
     <td>
+        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id)}}" hx-target="closest tr" hx-swap="outerHTML">Delete</button>
         <button hx-delete="{{url_for('TodoItem', id=props.todo.id)}}" hx-target="closest tr" hx-swap="delete">Delete</button>
     </td>
 </tr>
@@ -140,26 +141,35 @@ def delete():
 
 ```
 ---
+from hyperflask import request, current_app
 from app.models import db, Todo
 
 def get():
-    todo = Todo.get_or_404(request.args['id'])
+    todo = Todo.get_or_404(request.args['id']) if "id" in request.args else None
     return {"todo": todo}
 
 def post():
     with db:
-        todo = Todo.create(title=request.form['title'])
-    return app.components.TodoItem(todo=todo) # return another component
+        if "id" in request.values:
+            todo = Todo.get_or_404(request.args['id'])
+        else:
+            todo = Todo()
+        todo.title = request.form["title"]
+        todo.save()
+    return current_app.components.TodoItem(todo=todo) # return another component
 ---
 <tr>
     <td>
-        <input type="text" name="title" value="{{props.todo.title}}" required>
+        <input type="text" name="title" value="{{props.todo.title if props.todo else ''}}" required>
     </td>
     <td>
-        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id)}}" hx-include="closest tr" hx-target="closest tr" hx-swap="outerHTML">Save</button>
+        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id if props.todo else None)}}" hx-include="closest tr" hx-target="closest tr" hx-swap="outerHTML">Save</button>
     </td>
 </tr>
 ```
+
+!!! warning
+    Unlike pages, all python imports are mandatory in components
 
 !!! tip
     The `request` object in Hyperflask uses [htmx-Flask](https://github.com/sponsfreixes/htmx-flask) subclass that [provides easy access to htmx headers](https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage).
@@ -216,9 +226,15 @@ customElements.define('custom-dropdown', CustomDropdown);
 
 In a template: `<{custom_dropdown}/>`
 
+!!! tip
+    [lit](https://lit.dev/) is a great library to implement Web Components. To use with Hyperflask, simply install it and use it as described in their documentation.
+
 ### React components
 
 Define react components as usual in a jsx file named after the component. Call them in your template like any other component. Each component call will create an independant react tree.
+
+!!! important
+    React is not bundled with Hyperflask. You will need to install it using npm.
 
 Properties provided to the component will be serialized to JSON. You cannot provide children.
 

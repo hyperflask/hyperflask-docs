@@ -98,6 +98,47 @@ task = Task.get(1)
 
 [Read more in sqlorm documentation](https://hyperflask.github.io/sqlorm/models/#querying-model-objects)
 
+## Rendering model objects
+
+Model objects can be rendered using any jinja macro (components being macros). Set the `__macro__` class property to the name of the macro.
+
+```py
+class Task:
+    __macro__ = "Task"
+```
+
+The macro will be provided an `obj` property. This can be overriden using the syntax `MacroName(property)`.
+
+```py
+class Task:
+    __macro__ = "Task(task)"
+```
+
+In `app/components/Task.html`:
+
+```html
+<label>
+    <input type="checkbox">
+    {{props.task.title}}
+</label>
+```
+
+Once defined, you can "print" your objects and result sets directly in your templates:
+
+```
+---
+page.tasks = Task.find_all()
+---
+{{tasks}}
+```
+
+```
+---
+page.task = Task.get(1)
+---
+{{task}}
+```
+
 ## Going further
 
 [Read sqlorm documentation](https://hyperflask.github.io/sqlorm/)
