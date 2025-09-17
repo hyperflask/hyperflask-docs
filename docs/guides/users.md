@@ -43,25 +43,25 @@ The default connection mode is using an email with a verification code sent at t
 !!! warning
     This means a properly configured email server is needed.
 
-To redirect to the connection page use `url_for('auth.connect')`.
+To redirect to the connection page use `url_for('users.connect')`.
 
 ## Connection using email and password
 
 Add the following configuration in your app config.yml:
 
 ```yaml
-auth_allowed_flows: ['password']
+users_allowed_flows: ['password']
 ```
 
 This will disable code based login and require to signup the traditionnal way (keep "connect" in the list of allowed_flows to allow both methods)
 
-## Connection using OAuth
+## Connection using third party services
 
 Add the following configuration in your app config.yml:
 
 ```yaml
-auth_allowed_flows: ['oauth']
-auth_sso_providers: ['google', 'facebook']
+users_allowed_flows: ['sso']
+users_sso_providers: ['google', 'facebook']
 google_client_id: "..."
 google_client_secret: "..."
 facebook_client_id: "..."

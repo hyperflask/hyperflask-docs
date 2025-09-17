@@ -55,15 +55,15 @@ Many of the features of the Hyperflask framework are provided through Flask exte
 There are so many choices to make nowadays: what backend framework, what build tools, what frontend framework, how to deploy, how to easily develop locally, etc...  
 The development world, and especially the javascript world, moves at a very fast pace. There is a lot of good stuff happening but at the same time it often feels overwhelming.
 
-I think the "SPA everything" trend has reach its apogee. I never understood why use frontend component frameworks to build blogs as SPA apps. This trend is shifting back, with the rise of SSR in the javascript world.
+On top of the difficulty of selecting technologies, it seems we favor complexity over simplicity. Frameworks and libraries should aim to improve the life of developers with better DX not the opposite. I like the idea of [conceptual compression championned by DHH](https://www.youtube.com/watch?v=zKyv-IGvgGE&t=1037s). It is of course harder to make complicated things simple. We should keep innovating and finding better ways to program, [not just let React win because LLMs are well trained on it](https://www.youtube.com/watch?v=P1FLEnKZTAE)!
+
+Backend driven architectures and javascript-light approaches simplifiy web development greatly. HTMX is a key piece of this renaissance of pre-heavy-frontend development. I'm hopeful as it seems SPA-everything as reached its apogee and the trend is shifting back, with the rise of SSR in the javascript world.
 
 I do not find the direction React Server Components are following appealing. Blurring the line between frontend and backend has been tried before and it often leads to spaghetti code bases that are hard to maintain. It may make sense in Backend For Fronted architectures but I feel it is too complicated for most projects. Furthermore, I feel the backend building experience in javascript has never been great, far from python, php or rails.
 
 At the same time, I feel the developer experience is lacking in many areas. There's so many moving parts to learn and manage, it's daunting. It's especially hard for beginners.
 
 In the end, I love Python and Flask and want to continue building modern websites with them. Unfortunately, I felt a lot of extensions have become outdated and Flask being minimalist, no large scale frameworks around it. Hyperflask is my attempt to a super-powered Flask-based stack.
-
-Hyperflask aims to be the Laravel of the Python world.
 
 ## Acknowledgments
 

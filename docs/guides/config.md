@@ -26,6 +26,21 @@ An environment specific *.env* file can also be created following the format *.e
 
 ## Common configuration values
 
-| Key | Description | Default location | Default value |
+See [Flask documentation](https://flask.palletsprojects.com/en/stable/config/#builtin-configuration-values) for the full list of Flask options.
+
+Each Flask extension may have their own configuration.
+
+| Key | Type | Description | Default value |
 | --- | --- | --- | --- |
-| SECRET_KEY | The encryption key for all secret values (including the session) | .env | random
+| SECRET_KEY | str | The encryption key for all secret values (including the session) (set by default in .env) | random
+| SITE_TITLE | str |  |
+| SITE_LANG | str |  |
+| ASSETS_INCLUDE_HTMX | bool |  |
+| HTMX_EXT | list[str] |  |
+| HTMX_BOOST_SITE | bool |  |
+| EMAIL_BACKGROUND_COLOR | str |  |
+| EMAIL_BACKGROUND_ACCENT_COLOR | str |  |
+| STATIC_MODE | str |  |
+| MARKDOWN_OPTIONS | dict |  |
+| FLASH_TOAST_OOB | bool | Whether to add flash messages to htmx request as oob swaps |
+| FLASH_TOAST_REMOVE_AFTER | str | Use the remove-me htmx extension to auto remove the toast alerts after some time |

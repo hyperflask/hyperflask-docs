@@ -86,114 +86,6 @@ Example using the previous *app/components/Dropdown.html*:
 </div>
 ```
 
-## Backend logic and interactions with HTMX
-
-Components can define their own custom backend logic. Similar to pages, files should use the *jpy* extension and provide a frontmatter with the python code.
-
-Functions named after HTTP methods will be registered as routes. For example, if a *get* function exists, Hyperflask will make the component accessible through GET requests.  
-These functions can return a dict with component props to render the component or any other valid Flask response value.
-
-Use HTMX to call your component logic and retrieve only the necessery HTML.
-
-Let's create a todo app:
-
-*app/pages/index.jpy*:
-
-```
----
-from app.models import Todo
-page.todos = Todo.find_all()
----
-<table>
-    {% for todo in todos %}
-        <{TodoItem todo=todo }/>
-    {% endfor %}
-</table>
-<button hx-get="{{url_for('TodoItemForm')}}" hx-target="previous" hx-swap="beforeend">Add todo</button>
-```
-
-*app/components/TodoItem.jpy*:
-
-```
----
-from app.models import db, Todo
-
-def get():
-    todo = Todo.get_or_404(request.args['id'])
-    return {"todo": todo}
-
-def delete():
-    with db:
-        todo = Todo.get_or_404(request.args['id'])
-        todo.delete()
-    return ""
----
-<tr>
-    <td>{{props.todo.title}}</td>
-    <td>
-        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id)}}" hx-target="closest tr" hx-swap="outerHTML">Delete</button>
-        <button hx-delete="{{url_for('TodoItem', id=props.todo.id)}}" hx-target="closest tr" hx-swap="delete">Delete</button>
-    </td>
-</tr>
-```
-
-*app/components/TodoItemForm.jpy*:
-
-```
----
-from hyperflask import request, current_app
-from app.models import db, Todo
-
-def get():
-    todo = Todo.get_or_404(request.args['id']) if "id" in request.args else None
-    return {"todo": todo}
-
-def post():
-    with db:
-        if "id" in request.values:
-            todo = Todo.get_or_404(request.args['id'])
-        else:
-            todo = Todo()
-        todo.title = request.form["title"]
-        todo.save()
-    return current_app.components.TodoItem(todo=todo) # return another component
----
-<tr>
-    <td>
-        <input type="text" name="title" value="{{props.todo.title if props.todo else ''}}" required>
-    </td>
-    <td>
-        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id if props.todo else None)}}" hx-include="closest tr" hx-target="closest tr" hx-swap="outerHTML">Save</button>
-    </td>
-</tr>
-```
-
-!!! warning
-    Unlike pages, all python imports are mandatory in components
-
-!!! tip
-    The `request` object in Hyperflask uses [htmx-Flask](https://github.com/sponsfreixes/htmx-flask) subclass that [provides easy access to htmx headers](https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage).
-
-### HTMX utilities
-
-Perform an htmx redirection using `htmx_redirect()`:
-
-```py
-from hyperflask import htmx_redirect
-def post():
-    # ...
-    return htmx_redirect("/")
-```
-
-Perform an Out-Of-Band (oob) swap using `htmx_oob()`:
-
-```py
-from hyperflask import htmx_oob
-def post():
-    # ...
-    return htmx_oob(current_app.components.Sidebar()) # replaces the sidebar element with a new version of itself
-```
-
 ## Styling and scripting
 
 Scripts and styles can be embedded in components and bundled automatically.
@@ -231,7 +123,7 @@ In a template: `<{custom_dropdown}/>`
 
 ### React components
 
-Define react components as usual in a jsx file named after the component. Call them in your template like any other component. Each component call will create an independant react tree.
+Define react components as usual in a jsx file named after the component. You must export your component as default. Call them in your template like any other component. Each component call will create an independant react tree.
 
 !!! important
     React is not bundled with Hyperflask. You will need to install it using npm.
@@ -241,7 +133,7 @@ Properties provided to the component will be serialized to JSON. You cannot prov
 Example, *app/components/Dropdown.jsx*:
 
 ```js
-function Dropdown(props) {
+export default function Dropdown(props) {
     return <div></div>;
 }
 ```
@@ -253,3 +145,20 @@ In a template: `<{Dropdown}/>`
 Hyperflask includes a rich library of UI components powered by [DaisyUI](https://daisyui.com).
 
 Check out the [Components library](/components)
+
+## Components with custom logic
+
+For backend components, you can execute business logic before rendering the template.
+Use a jinjapy file instead of html file (.jpy extension) and implement the render function.
+
+The render function will be provided the props as arguments.
+
+```
+---
+def render(prop1, prop2):
+    # custom logic
+    return {"var": "value"} # template variables
+---
+{{var}}
+---
+```

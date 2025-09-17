@@ -15,6 +15,7 @@ nav:
        - guides/config.md
        - guides/pages.md
        - guides/components.md
+       - guides/interactive-apps.md
        - guides/assets.md
     - Handling data:
        - guides/forms.md
@@ -22,6 +23,7 @@ nav:
        - guides/collections.md
        - guides/files.md
     - Digging deeper:
+       - guides/flash.md
        - guides/emails.md
        - guides/tasks.md
        - guides/i18n.md
@@ -34,6 +36,7 @@ nav:
     - components/icons.md
     - components/forms.md
     - components/modals.md
+    - components/layout.md
     - components/daisyui/index.md
   - Recipes:
     - recipes/going-to-production.md

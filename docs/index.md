@@ -18,6 +18,9 @@ template: home.html
 </div>
 <div class="home-feature">
     <div>
+        <img src="/assets/images/home-feature-components.svg">
+    </div>
+    <div>
         <h2>A powerful component system</h2>
         <p>
             Hyperflask introduces component-driven architecture to Flask apps. Seamlessly create frontend (web components, react, etc...) and backend components and use them in your jinja templates. Use HTMX to create server-backed interactive components.
@@ -25,9 +28,6 @@ template: home.html
         <p>
             <a href="/guides/components/">Read more about components &raquo;</a>
         </p>
-    </div>
-    <div>
-        <img src="/assets/images/home-feature-components.svg">
     </div>
 </div>
 <div class="home-feature">
@@ -44,13 +44,13 @@ template: home.html
 </div>
 <div class="home-feature">
     <div>
+        <img src="/assets/images/home-feature-content.svg">
+    </div>
+    <div>
         <h2>Content driven when needed</h2>
         <p>
             Hyperflask can be used to generate static web sites. It can also run in an hybrid mode where the server is accessed only for dynamic requests.
         </p>
-    </div>
-    <div>
-        <img src="/assets/images/home-feature-content.svg">
     </div>
 </div>
 <div class="home-feature">
@@ -70,6 +70,9 @@ template: home.html
 </div>
 <div class="home-feature">
     <div>
+        <img src="/assets/images/home-feature-ecosystem.svg">
+    </div>
+    <div>
         <h2>Ensuring a thriving ecosystem</h2>
         <p>
             The Hyperflask framework itself is a small code base. It combines many Flask extensions in a seamless manner.
@@ -79,8 +82,5 @@ template: home.html
         <p>
             <a href="https://github.com/hyperflask">Visit the Hyperflask organization on Github &raquo;</a>
         </p>
-    </div>
-    <div>
-        <img src="/assets/images/home-feature-ecosystem.svg">
     </div>
 </div>

@@ -15,7 +15,7 @@ Planned v1 experience:
 | ORM | ✅ | | [sqlorm](https://github.com/hyperflask/sqlorm), [flask-sqlorm](https://github.com/hyperflask/flask-sqlorm)
 | Assets pipeline | ✅ | | [flask-assets-pipeline](https://github.com/hyperflask/flask-assets-pipeline)
 | Component system + component library | ✅ | | [hyperflask](https://github.com/hyperflask/hyperflask), [jinja-super-macros](https://github.com/hyperflask/jinja-super-macros), [flask-super-macros](https://github.com/hyperflask/flask-super-macros), [uilib-spec](https://github.com/hyperflask/uilib-spec), [uilib-spec-daisyui](https://github.com/hyperflask/uilib-spec-daisyui)
-| User management and auth | 🚧 | missing social logins | [hyperflask-auth](https://github.com/hyperflask/hyperflask-auth)
+| User management and auth | 🚧 | missing sso logins | [hyperflask-auth](https://github.com/hyperflask/hyperflask-auth)
 | Collections | ✅ |  | [flask-collections](https://github.com/hyperflask/flask-collections)
 | Upload files | ✅ | | [flask-files](https://github.com/hyperflask/flask-files)
 | Emails | ✅ | | [flask-mailman-templates](https://github.com/hyperflask/flask-mailman-templates)
@@ -26,6 +26,14 @@ Planned v1 experience:
 | Deployments | ❌ | | [docker-web-deploy](https://github.com/hyperflask/docker-web-deploy)
 | VS Code integration | ✅ |  | 
 | Documentation | 🚧 |  | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
+
+Key stuff that is still missing:
+
+- Syntax highlighting for jinjapy files
+- Better error reporting for jinjapy files
+- SQLite broker for Dramatiq and background task tests
+- Static content mode
+- Deployments
 
 ## Upcoming features
 

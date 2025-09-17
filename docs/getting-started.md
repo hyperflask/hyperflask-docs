@@ -224,7 +224,7 @@ def post():
         current_app.sse.publish("messages", current_app.components.ChatMessage(message=msg), private=True)
 ---
 {% form %}
-<{HxForm form action=url_for("PostMessageForm") hx_swap="outerHTML"}>
+<{HxForm form action=url_for("PostMessageForm") hx_swap="none"}>
     <{FormField form.message.textarea(required=True, placeholder="Chat") }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
@@ -239,7 +239,7 @@ from app.models import Message
 page.messages = Message.find_all()
 ---
 {% use_layout %}
-<{MercureStream topic="messages" id="messages"}>
+<{MercureStream topic="messages"}>
     {% for msg in messages %}
         <{ChatMessage message=msg }/>
     {% endfor %}
@@ -284,6 +284,8 @@ Modify the component `ChatMessage` to display the author:
 ```
 
 Finally, add `page.login_required()` at the top of your page frontmatter to require authentication to access it.
+
+Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <http://localhost:8025> to access [Mailpit](https://github.com/axllent/mailpit) and read the emails.
 
 ## Deploying to production
 
