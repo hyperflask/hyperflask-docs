@@ -12,7 +12,7 @@
         <link rel="prev" href="../pages/">
       
       
-        <link rel="next" href="../assets/">
+        <link rel="next" href="../interactive-apps/">
       
       
       <link rel="icon" href="../../assets/favicon.png">
@@ -557,6 +557,8 @@
       
         
       
+        
+      
     
     
       
@@ -722,30 +724,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backend-logic-and-interactions-with-htmx" class="md-nav__link">
-    <span class="md-ellipsis">
-      Backend logic and interactions with HTMX
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Backend logic and interactions with HTMX">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#htmx-utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTMX utilities
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#styling-and-scripting" class="md-nav__link">
     <span class="md-ellipsis">
       Styling and scripting
@@ -796,10 +774,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#components-with-custom-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components with custom logic
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interactive-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interactive apps
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -991,6 +999,8 @@
       
         
       
+        
+      
     
     
       
@@ -1021,6 +1031,27 @@
             Digging deeper
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flash messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1204,6 +1235,8 @@
         
       
         
+      
+        
           
         
       
@@ -1302,6 +1335,27 @@
   
   <span class="md-ellipsis">
     Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
   </span>
   
 
@@ -1589,30 +1643,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backend-logic-and-interactions-with-htmx" class="md-nav__link">
-    <span class="md-ellipsis">
-      Backend logic and interactions with HTMX
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Backend logic and interactions with HTMX">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#htmx-utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTMX utilities
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#styling-and-scripting" class="md-nav__link">
     <span class="md-ellipsis">
       Styling and scripting
@@ -1658,6 +1688,15 @@
   <a href="#built-in-ui-components" class="md-nav__link">
     <span class="md-ellipsis">
       Built-in UI components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-with-custom-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components with custom logic
     </span>
   </a>
   
@@ -1749,95 +1788,6 @@
     <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
-<h2 id="backend-logic-and-interactions-with-htmx">Backend logic and interactions with HTMX</h2>
-<p>Components can define their own custom backend logic. Similar to pages, files should use the <em>jpy</em> extension and provide a frontmatter with the python code.</p>
-<p>Functions named after HTTP methods will be registered as routes. For example, if a <em>get</em> function exists, Hyperflask will make the component accessible through GET requests.<br />
-These functions can return a dict with component props to render the component or any other valid Flask response value.</p>
-<p>Use HTMX to call your component logic and retrieve only the necessery HTML.</p>
-<p>Let's create a todo app:</p>
-<p><em>app/pages/index.jpy</em>:</p>
-<div class="highlight"><pre><span></span><code>---
-from app.models import Todo
-page.todos = Todo.find_all()
----
-&lt;table&gt;
-    {% for todo in todos %}
-        &lt;{TodoItem todo=todo }/&gt;
-    {% endfor %}
-&lt;/table&gt;
-&lt;button hx-get=&quot;{{url_for(&#39;TodoItemForm&#39;)}}&quot; hx-target=&quot;previous&quot; hx-swap=&quot;beforeend&quot;&gt;Add todo&lt;/button&gt;
-</code></pre></div>
-<p><em>app/components/TodoItem.jpy</em>:</p>
-<div class="highlight"><pre><span></span><code>---
-from app.models import db, Todo
-
-def get():
-    todo = Todo.get_or_404(request.args[&#39;id&#39;])
-    return {&quot;todo&quot;: todo}
-
-def delete():
-    with db:
-        todo = Todo.get_or_404(request.args[&#39;id&#39;])
-        todo.delete()
-    return &quot;&quot;
----
-&lt;tr&gt;
-    &lt;td&gt;{{props.todo.title}}&lt;/td&gt;
-    &lt;td&gt;
-        &lt;button hx-get=&quot;{{url_for(&#39;TodoItemForm&#39;, id=props.todo.id)}}&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Delete&lt;/button&gt;
-        &lt;button hx-delete=&quot;{{url_for(&#39;TodoItem&#39;, id=props.todo.id)}}&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;delete&quot;&gt;Delete&lt;/button&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
-</code></pre></div>
-<p><em>app/components/TodoItemForm.jpy</em>:</p>
-<div class="highlight"><pre><span></span><code>---
-from hyperflask import request, current_app
-from app.models import db, Todo
-
-def get():
-    todo = Todo.get_or_404(request.args[&#39;id&#39;]) if &quot;id&quot; in request.args else None
-    return {&quot;todo&quot;: todo}
-
-def post():
-    with db:
-        if &quot;id&quot; in request.values:
-            todo = Todo.get_or_404(request.args[&#39;id&#39;])
-        else:
-            todo = Todo()
-        todo.title = request.form[&quot;title&quot;]
-        todo.save()
-    return current_app.components.TodoItem(todo=todo) # return another component
----
-&lt;tr&gt;
-    &lt;td&gt;
-        &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;{{props.todo.title if props.todo else &#39;&#39;}}&quot; required&gt;
-    &lt;/td&gt;
-    &lt;td&gt;
-        &lt;button hx-get=&quot;{{url_for(&#39;TodoItemForm&#39;, id=props.todo.id if props.todo else None)}}&quot; hx-include=&quot;closest tr&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Save&lt;/button&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Unlike pages, all python imports are mandatory in components</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The <code>request</code> object in Hyperflask uses <a href="https://github.com/sponsfreixes/htmx-flask">htmx-Flask</a> subclass that <a href="https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage">provides easy access to htmx headers</a>.</p>
-</div>
-<h3 id="htmx-utilities">HTMX utilities</h3>
-<p>Perform an htmx redirection using <code>htmx_redirect()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask</span> <span class="kn">import</span> <span class="n">htmx_redirect</span>
-<span class="k">def</span> <span class="nf">post</span><span class="p">():</span>
-    <span class="c1"># ...</span>
-    <span class="k">return</span> <span class="n">htmx_redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p>Perform an Out-Of-Band (oob) swap using <code>htmx_oob()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask</span> <span class="kn">import</span> <span class="n">htmx_oob</span>
-<span class="k">def</span> <span class="nf">post</span><span class="p">():</span>
-    <span class="c1"># ...</span>
-    <span class="k">return</span> <span class="n">htmx_oob</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">Sidebar</span><span class="p">())</span> <span class="c1"># replaces the sidebar element with a new version of itself</span>
-</code></pre></div>
 <h2 id="styling-and-scripting">Styling and scripting</h2>
 <p>Scripts and styles can be embedded in components and bundled automatically.</p>
 <p>See <a href="/guides/assets/#embedded-scripts-and-styles">Embedded scripts and styles in the Assets guide</a></p>
@@ -1864,14 +1814,14 @@ You can also force which adapter to use for one or multiple files.</p>
 <p><a href="https://lit.dev/">lit</a> is a great library to implement Web Components. To use with Hyperflask, simply install it and use it as described in their documentation.</p>
 </div>
 <h3 id="react-components">React components</h3>
-<p>Define react components as usual in a jsx file named after the component. Call them in your template like any other component. Each component call will create an independant react tree.</p>
+<p>Define react components as usual in a jsx file named after the component. You must export your component as default. Call them in your template like any other component. Each component call will create an independant react tree.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>React is not bundled with Hyperflask. You will need to install it using npm.</p>
 </div>
 <p>Properties provided to the component will be serialized to JSON. You cannot provide children.</p>
 <p>Example, <em>app/components/Dropdown.jsx</em>:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">Dropdown</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">Dropdown</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1879,6 +1829,18 @@ You can also force which adapter to use for one or multiple files.</p>
 <h2 id="built-in-ui-components">Built-in UI components</h2>
 <p>Hyperflask includes a rich library of UI components powered by <a href="https://daisyui.com">DaisyUI</a>.</p>
 <p>Check out the <a href="/components">Components library</a></p>
+<h2 id="components-with-custom-logic">Components with custom logic</h2>
+<p>For backend components, you can execute business logic before rendering the template.
+Use a jinjapy file instead of html file (.jpy extension) and implement the render function.</p>
+<p>The render function will be provided the props as arguments.</p>
+<div class="highlight"><pre><span></span><code>---
+def render(prop1, prop2):
+    # custom logic
+    return {&quot;var&quot;: &quot;value&quot;} # template variables
+---
+{{var}}
+---
+</code></pre></div>
 
 
 
@@ -1931,13 +1893,13 @@ You can also force which adapter to use for one or multiple files.</p>
         
         
           
-          <a href="../assets/" class="md-footer__link md-footer__link--next" aria-label="Next: Assets">
+          <a href="../interactive-apps/" class="md-footer__link md-footer__link--next" aria-label="Next: Interactive apps">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Assets
+                Interactive apps
               </div>
             </div>
             <div class="md-footer__button md-icon">

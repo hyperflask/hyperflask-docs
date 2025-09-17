@@ -555,6 +555,8 @@
       
         
       
+        
+      
     
     
       
@@ -661,6 +663,27 @@
   
   <span class="md-ellipsis">
     Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interactive-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interactive apps
   </span>
   
 
@@ -858,6 +881,8 @@
       
         
       
+        
+      
     
     
       
@@ -888,6 +913,27 @@
             Digging deeper
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flash messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1040,6 +1086,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#multiplexing-a-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplexing a stream
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1147,6 +1202,8 @@
         
       
         
+      
+        
           
         
       
@@ -1245,6 +1302,27 @@
   
   <span class="md-ellipsis">
     Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
   </span>
   
 
@@ -1549,6 +1627,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#multiplexing-a-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplexing a stream
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1580,25 +1667,73 @@
 </div>
 <h2 id="publishing-events">Publishing events</h2>
 <p>Use <code>app.sse.publish(event_name, data)</code> for publishing a new event. By default, anybody listening on the SSE endpoint will see these events. Add <code>private=True</code> to only send to authentified clients.</p>
-<div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Data sent with the event can be a string or a json serializable object. You can send rendered component by calling components programmatically:</p>
-<div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">ChatMessage</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">ChatMessage</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">))</span>
 </code></pre></div>
 <h2 id="listening-for-events">Listening for events</h2>
 <p>Use htmx <a href="https://htmx.org/extensions/sse/">sse extension</a> to connect to the SSE stream. Retrieve the stream URL for an event using <code>mercure_hub_url(event_names)</code>. Use <code>mercure_authentified_hub_url(event_names)</code> to create authentified URLs that can receive private events.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;messages&quot;</span> <span class="na">hx-ext</span><span class="o">=</span><span class="s">&quot;sse&quot;</span> <span class="na">sse-connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url(&#39;messages&#39;)}}&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-ext</span><span class="o">=</span><span class="s">&quot;sse&quot;</span> <span class="na">sse-connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url(&#39;messages&#39;)}}&quot;</span> <span class="na">sse-swap</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Hyperflask also provides a component that encapsulates the previous html:</p>
-<div class="highlight"><pre><span></span><code>&lt;{MercureStream topic=&quot;messages&quot; id=&quot;messages&quot;}&gt;
+<div class="highlight"><pre><span></span><code>&lt;{MercureStream topic=&quot;messages&quot;}&gt;
 &lt;/{MercureStream}&gt;
 </code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td>Yes</td>
+<td>string</td>
+<td>The topic name</td>
+</tr>
+<tr>
+<td>private</td>
+<td>No</td>
+<td>bool</td>
+<td>Whether to use an authentified url</td>
+</tr>
+<tr>
+<td>hx_swap</td>
+<td>string</td>
+<td>The swap strategy (default: beforeend)</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The type of event to listen to (default: message)</td>
+<td></td>
+</tr>
+<tr>
+<td>auto_scroll</td>
+<td>bool</td>
+<td>Whether to keep the div scrolled at the bottom when receiving new items</td>
+<td></td>
+</tr>
+<tr>
+<td>Any additional properties</td>
+<td>No</td>
+<td>any</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="differences-between-dev-and-prod">Differences between dev and prod</h2>
 <p>While in development, a lightweight dev-only implementation of a Mercure hub is used. It is not meant to be used by more than a few users at once and is for testing only with minimum setup.</p>
 <p>When going into production, a proper <a href="https://mercure.rocks/docs/hub/install">Mercure Hub</a> should be used. The Mercure Hub is bundled inside the production image and will be run alongside your app.</p>
 <h2 id="using-with-models">Using with models</h2>
-<p>Model objects can be used as topic and/or data when publishing and subscribing. Combined with model's rendering capability, this makes it easy to publish rendered objects on a stream.</p>
+<p>Model objects can be used as topic and/or data when publishing and subscribing. Combined with models rendering capability, this makes it easy to publish rendered objects on a stream.</p>
 <p>When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TodoList</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="k">pass</span>
@@ -1612,6 +1747,25 @@
 <span class="c1"># publish the rendered item using the &lt;{TodoItem}/&gt; component</span>
 <span class="c1"># on the todolist stream named &quot;TodoList/{id}&quot; (where id will be replaced by the list id)</span>
 <span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">todolist</span><span class="p">,</span> <span class="n">item1</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="multiplexing-a-stream">Multiplexing a stream</h2>
+<p>Publish messages on multiple topics and set a type:</p>
+<div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;topic1&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;topic1&quot;</span><span class="p">)</span>
+<span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;topic2&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># same effect without repeating topic in type</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add <code>mercure_type_is_topic: true</code> to your config file to make it the default behavior.</p>
+</div>
+<p>Connect to multiple topics at once and distinguish messages using their type:</p>
+<div class="highlight"><pre><span></span><code>&lt;{MercureStreamContext topics=[&quot;topic1&quot;, &quot;topic2&quot;]}&gt;
+    &lt;{MercureStream type=&quot;topic1&quot;}&gt;
+
+    &lt;/{MercureStream}&gt;
+    &lt;{MercureStream type=&quot;topic2&quot;}&gt;
+
+    &lt;/{MercureStream}&gt;
+&lt;/{MercureStreamContext}&gt;
 </code></pre></div>
 
 

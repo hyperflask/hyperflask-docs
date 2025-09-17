@@ -700,6 +700,8 @@
       
         
       
+        
+      
     
     
       
@@ -806,6 +808,27 @@
   
   <span class="md-ellipsis">
     Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/interactive-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interactive apps
   </span>
   
 
@@ -1001,6 +1024,8 @@
       
         
       
+        
+      
     
     
       
@@ -1031,6 +1056,27 @@
             Digging deeper
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/flash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flash messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1214,6 +1260,8 @@
         
       
         
+      
+        
           
         
       
@@ -1312,6 +1360,27 @@
   
   <span class="md-ellipsis">
     Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
   </span>
   
 
@@ -1880,7 +1949,7 @@ def post():
         current_app.sse.publish(&quot;messages&quot;, current_app.components.ChatMessage(message=msg), private=True)
 ---
 {% form %}
-&lt;{HxForm form action=url_for(&quot;PostMessageForm&quot;) hx_swap=&quot;outerHTML&quot;}&gt;
+&lt;{HxForm form action=url_for(&quot;PostMessageForm&quot;) hx_swap=&quot;none&quot;}&gt;
     &lt;{FormField form.message.textarea(required=True, placeholder=&quot;Chat&quot;) }/&gt;
     &lt;{SubmitButton}&gt;Send&lt;/{}&gt;
 &lt;/{HxForm}&gt;
@@ -1892,7 +1961,7 @@ from app.models import Message
 page.messages = Message.find_all()
 ---
 {% use_layout %}
-&lt;{MercureStream topic=&quot;messages&quot; id=&quot;messages&quot;}&gt;
+&lt;{MercureStream topic=&quot;messages&quot;}&gt;
     {% for msg in messages %}
         &lt;{ChatMessage message=msg }/&gt;
     {% endfor %}
@@ -1928,6 +1997,7 @@ page.messages = Message.find_all()
 &lt;/{ChatBubble}&gt;
 </code></pre></div>
 <p>Finally, add <code>page.login_required()</code> at the top of your page frontmatter to require authentication to access it.</p>
+<p>Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <a href="http://localhost:8025">http://localhost:8025</a> to access <a href="https://github.com/axllent/mailpit">Mailpit</a> and read the emails.</p>
 <h2 id="deploying-to-production">Deploying to production</h2>
 <p>Signup for an account on Fly.io or any VPS provider (eg: Digital Ocean) then run the following command from a VS Code terminal (while connected to the dev container):</p>
 <div class="highlight"><pre><span></span><code>uv run hyperflask deploy

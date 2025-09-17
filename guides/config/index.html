@@ -557,6 +557,8 @@
       
         
       
+        
+      
     
     
       
@@ -721,6 +723,27 @@
   
   <span class="md-ellipsis">
     Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interactive-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interactive apps
   </span>
   
 
@@ -916,6 +939,8 @@
       
         
       
+        
+      
     
     
       
@@ -946,6 +971,27 @@
             Digging deeper
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flash messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1129,6 +1175,8 @@
         
       
         
+      
+        
           
         
       
@@ -1227,6 +1275,27 @@
   
   <span class="md-ellipsis">
     Modals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
   </span>
   
 
@@ -1554,21 +1623,89 @@ The environment can be overriden using the <code>ENV</code> configuration (or <c
 The format should be <em>config.env_name.yml</em>, so <em>config.production.yml</em> or <em>config.development.yml</em> for the default environments.</p>
 <p>An environment specific <em>.env</em> file can also be created following the format <em>.env.env_name</em>, so <em>.env.production</em> or <em>.env.development</em>.</p>
 <h2 id="common-configuration-values">Common configuration values</h2>
+<p>See <a href="https://flask.palletsprojects.com/en/stable/config/#builtin-configuration-values">Flask documentation</a> for the full list of Flask options.</p>
+<p>Each Flask extension may have their own configuration.</p>
 <table>
 <thead>
 <tr>
 <th>Key</th>
+<th>Type</th>
 <th>Description</th>
-<th>Default location</th>
 <th>Default value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SECRET_KEY</td>
-<td>The encryption key for all secret values (including the session)</td>
-<td>.env</td>
+<td>str</td>
+<td>The encryption key for all secret values (including the session) (set by default in .env)</td>
 <td>random</td>
+</tr>
+<tr>
+<td>SITE_TITLE</td>
+<td>str</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SITE_LANG</td>
+<td>str</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ASSETS_INCLUDE_HTMX</td>
+<td>bool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HTMX_EXT</td>
+<td>list[str]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HTMX_BOOST_SITE</td>
+<td>bool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EMAIL_BACKGROUND_COLOR</td>
+<td>str</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EMAIL_BACKGROUND_ACCENT_COLOR</td>
+<td>str</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>STATIC_MODE</td>
+<td>str</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MARKDOWN_OPTIONS</td>
+<td>dict</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FLASH_TOAST_OOB</td>
+<td>bool</td>
+<td>Whether to add flash messages to htmx request as oob swaps</td>
+<td></td>
+</tr>
+<tr>
+<td>FLASH_TOAST_REMOVE_AFTER</td>
+<td>str</td>
+<td>Use the remove-me htmx extension to auto remove the toast alerts after some time</td>
+<td></td>
 </tr>
 </tbody>
 </table>
