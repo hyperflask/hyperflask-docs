@@ -12,7 +12,7 @@
         <link rel="prev" href="../forms/">
       
       
-        <link rel="next" href="../collections/">
+        <link rel="next" href="../static/">
       
       
       <link rel="icon" href="../../assets/favicon.png">
@@ -65,7 +65,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -114,9 +114,19 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
       </label>
     
@@ -124,7 +134,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
@@ -341,7 +351,7 @@
   
     
   
-  Roadmap
+  Status & Roadmap
 
       </a>
     </li>
@@ -741,6 +751,8 @@
       
         
       
+        
+      
     
     
       
@@ -882,6 +894,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managing-the-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing the schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing a database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#going-further" class="md-nav__link">
     <span class="md-ellipsis">
       Going further
@@ -906,11 +936,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
+      <a href="../static/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Collections
+    Static content
   </span>
   
 
@@ -941,6 +971,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suspense/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -957,6 +1008,12 @@
   
     
     
+      
+        
+      
+        
+      
+        
       
         
       
@@ -1011,6 +1068,27 @@
   
   <span class="md-ellipsis">
     Flash messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata
   </span>
   
 
@@ -1104,6 +1182,48 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1118,16 +1238,89 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../deploy/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Deploy to production
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Deploy to production
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploying
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1556,7 +1749,7 @@
         
   
   <span class="md-ellipsis">
-    Roadmap
+    Status & Roadmap
   </span>
   
 
@@ -1628,6 +1821,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managing-the-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing the schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing a database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#going-further" class="md-nav__link">
     <span class="md-ellipsis">
       Going further
@@ -1660,14 +1871,14 @@
 
 
 <h1 id="models">Models</h1>
-<p>Models are the way to persist data in a database. Hyperflask uses <a href="https://github.com/hyperflask/sqlorm">SQLORM</a>, an easy to use ORM that does not abstract away SQL. By default, Hyperflask apps are configured to use SQLite which has been tuned for great web app performance.</p>
+<p>Models are the way to persist data in a database. Hyperflask uses <a href="https://hyperflask.github.io/sqlorm">SQLORM</a>, an easy to use ORM that does not abstract away SQL. By default, Hyperflask apps are configured to use SQLite which has been tuned for great web app performance.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>This feature is provided by <a href="https://github.com/hyperflask/flask-sqlorm">Flask-SQLORM</a></p>
 </div>
 <h2 id="defining-models">Defining models</h2>
 <p>Models are classes inheriting from <code>Model</code>. To define which table they represent, use the <code>table</code> class property.</p>
-<p>To define column mapping, define properties via annotations. The type used will be <a href="https://hyperflask.github.io/sqlorm/sql-utilities/#column-types">converted to an sql type</a>.
+<p>To define column mapping, define properties via annotations. The type used will be <a href="https://hyperflask.github.io/sqlorm/models/#column-types">converted to an sql type</a>.
 For more control over the mapping, you can use instantiate <code>Column()</code> objects.</p>
 <p>Example <em>app/models.py</em>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask.factory</span> <span class="kn">import</span> <span class="n">db</span>
@@ -1687,7 +1898,7 @@ For more control over the mapping, you can use instantiate <code>Column()</code>
 <li><code>save()</code> executes <code>insert()</code> or <code>update()</code> depending on the fact that the object has a primary key or not</li>
 <li><code>insert()</code> executes an insert statement</li>
 <li><code>update()</code> executes an update statement</li>
-<li><code>delete()</code> deletes a delete statement</li>
+<li><code>delete()</code> executes a delete statement</li>
 <li><code>refresh()</code> executes a select statement (same as <code>get()</code>) and updates the object attribute values</li>
 <li><code>create()</code> a class method to create and insert an object in one line</li>
 </ul>
@@ -1763,6 +1974,16 @@ page.task = Task.get(1)
 ---
 {{task}}
 </code></pre></div>
+<h2 id="managing-the-schema">Managing the schema</h2>
+<p>Hyperflask will automatically create missing tables on start. It will not however alter existing tables.</p>
+<p>To manage your schema, you can use migrations as <a href="https://hyperflask.github.io/sqlorm/schema/#migrations">described in the sqlorm documentation</a>.</p>
+<p>Initialize migrations using the following command: <code>uv run hyperflask db init-migrations --set-version</code>.
+This will create a migration file at <em>data/migrations/000_initial.sql</em>.</p>
+<p>Once migrations are activated, they will be auto applied on application start. This can be disabled using <code>init_database: false</code> in the config, in which case run your migrations using <code>uv run hyperflask db migrate</code>.</p>
+<p>To create a new migration version for a new model use: <code>uv run hyperflask db init-migrations MyModel</code></p>
+<h2 id="choosing-a-database">Choosing a database</h2>
+<p>By default, Hyperflask uses <a href="https://sqlite.org">SQLite</a> with <a href="https://fractaledmind.com/2023/09/07/enhancing-rails-sqlite-fine-tuning/">optimizations</a> for usage in web applications.</p>
+<p>If SQLite is not a good fit for your app, we recommend <a href="https://www.postgresql.org/">PostgreSQL</a>. In this case install the postgresql dbapi adapter using <code>uv add psycopg[binary]</code> then set the <code>sqlorm_uri</code> configuration parameter to the postgresql connection string.</p>
 <h2 id="going-further">Going further</h2>
 <p><a href="https://hyperflask.github.io/sqlorm/">Read sqlorm documentation</a></p>
 
@@ -1817,13 +2038,13 @@ page.task = Task.get(1)
         
         
           
-          <a href="../collections/" class="md-footer__link md-footer__link--next" aria-label="Next: Collections">
+          <a href="../static/" class="md-footer__link md-footer__link--next" aria-label="Next: Static content">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Collections
+                Static content
               </div>
             </div>
             <div class="md-footer__button md-icon">

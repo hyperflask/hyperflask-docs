@@ -65,7 +65,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -114,9 +114,19 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
       </label>
     
@@ -124,7 +134,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
@@ -341,7 +351,7 @@
   
     
   
-  Roadmap
+  Status & Roadmap
 
       </a>
     </li>
@@ -806,6 +816,8 @@
       
         
       
+        
+      
     
     
       
@@ -886,11 +898,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
+      <a href="../static/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Collections
+    Static content
   </span>
   
 
@@ -921,6 +933,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suspense/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -937,6 +970,12 @@
   
     
     
+      
+        
+      
+        
+      
+        
       
         
       
@@ -991,6 +1030,27 @@
   
   <span class="md-ellipsis">
     Flash messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata
   </span>
   
 
@@ -1084,6 +1144,48 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1098,16 +1200,89 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../deploy/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Deploy to production
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Deploy to production
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploying
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1536,7 +1711,7 @@
         
   
   <span class="md-ellipsis">
-    Roadmap
+    Status & Roadmap
   </span>
   
 
@@ -1629,7 +1804,7 @@
 <ul>
 <li>A UNIX like system (Linux, MacOS or <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL on Windows</a>)</li>
 <li><a href="https://www.docker.com/">Docker</a></li>
-<li><a href="https://code.visualstudio.com/">VS Code</a></li>
+<li><a href="https://code.visualstudio.com/">VS Code</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers extension</a></li>
 </ul>
 <p>Python is not needed on your machine, everything will be executed inside containers.</p>
 <h2 id="installation-using-hyperflask-start">Installation using Hyperflask-Start</h2>
@@ -1649,27 +1824,9 @@
 <li>Create your project directory: <code>mkdir example-project &amp;&amp; cd example-project</code></li>
 <li>Create and activate a virtualenv: <code>python -m venv .venv &amp;&amp; source .venv/bin/activate</code></li>
 <li><code>pip install hyperflask</code></li>
-<li>Create <code>package.json</code> with required packages (see after)</li>
-<li>Create a pages directory: <code>mkdir pages</code></li>
-<li>Create your index page: <code>echo "hello world" &gt; pages/index.html</code></li>
+<li>Run <code>hyperflask init .</code></li>
 <li>Start a development server using <code>hyperflask dev</code></li>
 </ol>
-<p>Required npm packages:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;alpinejs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^3.14.9&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;bootstrap-icons&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^1.13.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;htmx-ext-sse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^2.2.3&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;htmx.org&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^2.0.4&quot;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;@tailwindcss/cli&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.1.6&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;daisyui&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^5.0.35&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;esbuild&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^0.25.4&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;tailwindcss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.1.6&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
 
 
 
