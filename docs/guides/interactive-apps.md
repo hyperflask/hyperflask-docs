@@ -2,6 +2,11 @@
 
 Hyperflask can be used to create interactive apps thanks to HTMX.
 
+## HTMX introduction
+
+HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
+
+
 ## Interactive components
 
 Components can define their own custom backend logic. Similar to pages, files should use the *jpy* extension and provide a frontmatter with the python code.
@@ -93,6 +98,12 @@ def post():
 
 !!! tip
     The `request` object in Hyperflask uses [htmx-Flask](https://github.com/sponsfreixes/htmx-flask) subclass that [provides easy access to htmx headers](https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage).
+
+## Pure frontend interactions
+
+For simple frontend interactions, we recommend using [Alpine.js](https://alpinejs.dev/) with html components.
+
+Sometines, you need a truly interactive component. In this case you can use Web Components, React or any other frontend framework. [Creating frontend components](/guides/components/#pure-frontend-components) is fully integrated in Hyperflask component system.
 
 ## Highligting active URLs
 

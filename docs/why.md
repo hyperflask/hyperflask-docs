@@ -10,12 +10,13 @@ It intends to provide solo devs and small teams a solution that allows them to b
 ## Key goals
 
  - Full stack experience, from dev environment to UI framework to deployment
+ - Backend driven with static content generation when needed
+ - Great developer experience and high productivity
  - All the tech choices have been made so you don't need to ask yourself tech stack questions
  - Fully Open-Source stack that is 100% self-hostable if desired (no dependencies on cloud services)
  - Use proven technologies and rely on standards as much as possible
- - Backend driven with static content generation when needed
  - Built for pragmatical but professional production apps
- - Great developer experience and high productivity
+ - Limit "magic", things should be understandable, evolvable and maintanable
  - Beginner friendly but well engineered for advanced use cases
  - Optimized for solo developers and small teams
  - Can run on cheap machines or VMs from any server/cloud providers
@@ -64,6 +65,8 @@ I do not find the direction React Server Components are following appealing. Blu
 At the same time, I feel the developer experience is lacking in many areas. There's so many moving parts to learn and manage, it's daunting. It's especially hard for beginners.
 
 In the end, I love Python and Flask and want to continue building modern websites with them. Unfortunately, I felt a lot of extensions have become outdated and Flask being minimalist, no large scale frameworks around it. Hyperflask is my attempt to a super-powered Flask-based stack.
+
+Finally, in the age of AI driven development, we shouldn't (yet) let AI generate tech architecture and core technologies. At the moment, AI is the perfect companion for product building, generating individual components and pages. Hyperflask is built with this in mind: to allow AI generation to operate at a very high level, limiting impact on core architectural choices and security implications.
 
 ## Acknowledgments
 

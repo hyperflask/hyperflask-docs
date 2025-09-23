@@ -1,4 +1,10 @@
-# Collections
+# Static content
+
+## Content strategies
+
+TODO
+
+## Collections
 
 Collections are a way to manage a collection of static pages generated from a content source.
 
@@ -13,7 +19,7 @@ When the `is_markdown` property is set to true (which is automatic if a file-bas
 
 When using a filename, it can contain a date prefix in the form of YYYY-MM-DD. The date will be available as the `date` property.
 
-## File-backed collections
+### File-backed collections
 
 In a directory named after the collection located in *app/collections*, use one file per entry.
 
@@ -35,7 +41,7 @@ title: "Happy new year!"
 Hello world
 ```
 
-## Data-backed collections
+### Data-backed collections
 
 These are collections where entries are all stored in a single structed file like CSV, JSON or YAML.
 
@@ -48,7 +54,7 @@ new-year,2025-01-01,"Happy new year!","Hello world"
 
 An sqlite database can also be used using the *.db* extension. A table or query must be provided a config.
 
-## Configuring collections
+### Configuring collections
 
 Collections can be configured under the `COLLECTIONS` key. Create a subkey named after the collection that contains a dict of options.
 
@@ -67,7 +73,7 @@ collections:
 
 To prevent a collection from being exposed via a URL, set url to false.
 
-## Accessing collections programmatically
+### Accessing collections programmatically
 
 Collections are accessible under `app.collections`.
 

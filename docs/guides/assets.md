@@ -12,6 +12,18 @@ Static assets can be located in 2 different folders:
  - *app/assets*: files located here will be copied to the *public* folder when the app is built. A hash will be appended to the filename for cache busting. URLs for these files should be created using `asset_url(filename)`
  - *public*: files located here are left untouched and are directly accessible from the web. URLs for these files should be created using `static_url(filename)`
 
+## Styling
+
+Hyperflask uses [Tailwind](https://tailwindcss.com/) for styling. It is fully integrated and you can use tailwind utility classes across pages and components.
+
+## Optimized images
+
+TODO
+
+## Using fonts
+
+TODO
+
 ## Embedded scripts and styles
 
 You can define scripts and styles directly in your templates. Their content will be extracted and bundled automatically.
@@ -50,10 +62,6 @@ You can import any javascript package from node_modules in the script tag as it 
 > [!NOTE]
 > Extracted assets will be stored in your assets folder.  
 > You can customize the name of the extracted files using a value for the bundle attribute: `<script bundle="filename.js">`
-
-## Styling
-
-Hyperflask uses [Tailwind](https://tailwindcss.com/) for styling. It is fully integrated and you can use tailwind utility classes across pages and components.
 
 ## Bundles
 

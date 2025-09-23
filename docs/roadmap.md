@@ -7,6 +7,14 @@ Hyperflask is being actively developed and is not yet ready for production.
 
 Checkout the list of all the projects developed as part of the Hyperflask Stack and their current development status on the [Hyperflask Github organization homepage](https://github.com/hyperflask).
 
+Key stuff that is still missing:
+
+- SQLite broker for Dramatiq and background task tests
+- Dockerfile & Deployments
+- Static content mode
+- Better error reporting for jinjapy files
+- Syntax highlighting for the macro tags syntax in jinja templates
+
 Planned v1 experience:
 
 | Feature | Status | Notes | Related Hyperflask project |
@@ -26,21 +34,6 @@ Planned v1 experience:
 | Deployments | ❌ | | [docker-web-deploy](https://github.com/hyperflask/docker-web-deploy)
 | VS Code integration | ✅ |  | 
 | Documentation | 🚧 |  | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
-
-Key stuff that is still missing:
-
-- Syntax highlighting for jinjapy files
-- Better error reporting for jinjapy files
-- SQLite broker for Dramatiq and background task tests
-- Static content mode
-- Deployments
-
-## Upcoming features
-
-| Feature | Status | Notes | Related Hyperflask project |
-| --- | --- | --- | --- |
-| REST APIs | 🚧 | | [Flask-Resourceful](https://github.com/hyperflask/flask-resourceful)
-| Seamless reactivity between frontend and backend| 🚧 | | [hyperflask](https://github.com/hyperflask/hyperflask)
 
 ## Extras
 

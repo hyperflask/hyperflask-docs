@@ -4,15 +4,12 @@ template: home.html
 ---
 <div class="home-feature">
     <div>
-        <img src="/assets/images/home-feature-pages.svg">
+        <img src="/assets/images/home-feature-flask.svg">
     </div>
     <div>
-        <h2>Flask with file-based routing</h2>
+        <h2>Backend-driven interactive apps</h2>
         <p>
-            Hyperflask is built on top of Flask, a popular Python web framework. It extends it with many features, notably file-based routing using a new file format that combines python code and a jinja template (inspired by Astro pages).
-        </p>
-        <p>
-            <a href="/guides/pages/">Read more about pages &raquo;</a>
+            Hyperflask is built on top of <a href="https://flask.palletsprojects.com/en/stable/">Flask</a>, a popular Python web framework. It is easy to use and master. Backend-driven apps ensure straighforward state management and limit a lot of footguns from frontend-heavy apps. Combined with <a href="https://htmx.org/">HTMX</a> and a component system, creating interactive apps is easier than ever.
         </p>
     </div>
 </div>
@@ -32,13 +29,27 @@ template: home.html
 </div>
 <div class="home-feature">
     <div>
+        <img src="/assets/images/home-feature-pages.svg">
+    </div>
+    <div>
+        <h2>File-based routing</h2>
+        <p>
+            Hyperflask extends Flask with many powerful features, notably file-based routing using a new file format that combines python code and a jinja template (inspired by Astro pages).
+        </p>
+        <p>
+            <a href="/guides/pages/">Read more about pages &raquo;</a>
+        </p>
+    </div>
+</div>
+<div class="home-feature">
+    <div>
         <img src="/assets/images/home-feature-battery.svg">
     </div>
     <div>
         <h2>Batteries included</h2>
         <p>
-            Create interfaces with DaisyUI, send emails using MJML, run background jobs, send push events using SSE, translations, authentication, ...
-            Everything you need to build a product.
+            Create interfaces with DaisyUI, send emails using MJML, run background jobs, send push events using SSE, translations, authentication, content streaming, optimized images, ...
+            <br>Everything you need to build a product !
         </p>
     </div>
 </div>

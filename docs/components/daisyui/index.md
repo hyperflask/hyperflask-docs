@@ -5,6 +5,8 @@ hide: [footer]
 
 List of available components from DaisyUI
 
+This components are generated using [uilib-spec-daisyui](https://github.com/hyperflask/uilib-spec-daisyui).
+
 ## Actions
 
 | Component | Description |

@@ -25,11 +25,11 @@
         "type": 3
       },
       "seed": 955788865,
-      "version": 165,
-      "versionNonce": 795836431,
+      "version": 167,
+      "versionNonce": 387860644,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1745846422504,
+      "updated": 1758532413588,
       "link": null,
       "locked": false
     },
@@ -53,8 +53,8 @@
       "index": "a6",
       "roundness": null,
       "seed": 2133710447,
-      "version": 344,
-      "versionNonce": 615401921,
+      "version": 346,
+      "versionNonce": 658703260,
       "isDeleted": false,
       "boundElements": [
         {
@@ -62,7 +62,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1745846425654,
+      "updated": 1758532413588,
       "link": null,
       "locked": false,
       "text": "---\npage.message = \"hello\"\n---\n<h1>{{message}}</h1>",
@@ -80,10 +80,10 @@
       "type": "text",
       "x": 850,
       "y": 419,
-      "width": 167.20034790039062,
+      "width": 151.2162628173828,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#ffffff",
+      "strokeColor": "#868e96",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -95,16 +95,16 @@
       "index": "a7",
       "roundness": null,
       "seed": 536589519,
-      "version": 98,
-      "versionNonce": 497269071,
+      "version": 112,
+      "versionNonce": 2083480228,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1745846499292,
+      "updated": 1758532577385,
       "link": null,
       "locked": false,
       "text": "pages/say_hello.jpy",
       "fontSize": 16,
-      "fontFamily": 8,
+      "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
@@ -134,11 +134,11 @@
         "type": 2
       },
       "seed": 892034895,
-      "version": 441,
-      "versionNonce": 1483355727,
+      "version": 443,
+      "versionNonce": 265826332,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1745846481245,
+      "updated": 1758532413589,
       "link": null,
       "locked": false,
       "points": [
@@ -192,8 +192,8 @@
         "type": 3
       },
       "seed": 306392687,
-      "version": 89,
-      "versionNonce": 1658578863,
+      "version": 91,
+      "versionNonce": 488075172,
       "isDeleted": false,
       "boundElements": [
         {
@@ -201,7 +201,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1745846517502,
+      "updated": 1758532413589,
       "link": null,
       "locked": false
     },
@@ -225,8 +225,8 @@
       "index": "aA",
       "roundness": null,
       "seed": 1458653505,
-      "version": 60,
-      "versionNonce": 438977199,
+      "version": 62,
+      "versionNonce": 1981009052,
       "isDeleted": false,
       "boundElements": [
         {
@@ -234,7 +234,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1745846477781,
+      "updated": 1758532413589,
       "link": null,
       "locked": false,
       "text": "yoursite.com/say-hello",
@@ -252,7 +252,8 @@
     "gridSize": 20,
     "gridStep": 5,
     "gridModeEnabled": false,
-    "viewBackgroundColor": "#ffffff"
+    "viewBackgroundColor": "#ffffff",
+    "lockedMultiSelections": {}
   },
   "files": {}
 }

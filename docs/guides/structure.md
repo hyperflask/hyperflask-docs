@@ -22,8 +22,8 @@ When using the `hyperflask` command, an Hyperflask app instance will be automati
 
 !!! info
     If you are coming from Flask, this means you do not create the `app` object yourself.
-
-The actuall application object is available at `hyperflask.factory:app` (or `hyperflask:current_app` when in [app context](https://flask.palletsprojects.com/en/stable/appcontext/)).
+    
+    The actuall application object is available at `hyperflask.factory:app` (or `hyperflask:current_app` when in [app context](https://flask.palletsprojects.com/en/stable/appcontext/)).
 
 The *app* folder is available as a python module and the following packages will be automatically imported from it if they exist:
 

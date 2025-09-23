@@ -31,7 +31,7 @@ What you will need:
 
 - A UNIX like system (Linux, MacOS or [WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install))
 - [Docker](https://www.docker.com/)
-- [VS Code](https://code.visualstudio.com/)
+- [VS Code](https://code.visualstudio.com/) with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 Python is not needed on your machine, everything will be executed inside containers.
 
@@ -195,7 +195,7 @@ page.messages = Message.find_all()
 
 ## Adding real-time chat
 
-Up until now, you could only chat with yourself. We will now refactor our app to become real-time using Server-Sent-Events (SSE).
+Up until now, you could only chat with yourself. We will now refactor our app to become real-time using Server-Sent-Events (SSE) and the [Mercure protocol](https://mercure.rocks).
 
 Rather than sending back a message partial when posting a new message, we will use a dedicated send endpoint that will publish an event containing the message partial.
 
@@ -254,7 +254,7 @@ page.messages = Message.find_all()
 
 First, let's install the [hyperflask-users](https://github.com/hyperflask/hyperflask-users) extension. In a VS Code terminal (while connected to the dev container), execute `uv add hyperflask-users`.
 
-As we will not deal with [database migrations](/guides/models) during this tutorial, delete your existing database: `rm databases/app.db`.
+As we will not deal with [database migrations](/guides/models) during this tutorial, delete your existing database: `rm database/app.db`.
 
 !!! info
     Hyperflask-Users provices login and signup pages as well as everything you need for a professional authentication flow and user management.
@@ -285,7 +285,7 @@ Modify the component `ChatMessage` to display the author:
 
 Finally, add `page.login_required()` at the top of your page frontmatter to require authentication to access it.
 
-Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <http://localhost:8025> to access [Mailpit](https://github.com/axllent/mailpit) and read the emails.
+Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <http://localhost:8025> to access [Mailpit](https://github.com/axllent/mailpit) and read the emails (the code is also printed in the server logs).
 
 ## Deploying to production
 

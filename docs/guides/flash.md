@@ -4,4 +4,12 @@ Flask [provides a mechanism](https://flask.palletsprojects.com/en/stable/pattern
 
 Use `flash()` or `page.flash()` as described by Flask documentation.
 
+```
+---
+page.flash("Welcome to my page!", "success")
+---
+{% use_layout %}
+Hello
+```
+
 Hyperflask will automatically print the messages as [alert messages in a toast](https://daisyui.com/components/toast/). This will also work when flashing messages during ajax requests.

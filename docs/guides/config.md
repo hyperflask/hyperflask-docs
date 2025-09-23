@@ -35,7 +35,6 @@ Each Flask extension may have their own configuration.
 | SECRET_KEY | str | The encryption key for all secret values (including the session) (set by default in .env) | random
 | SITE_TITLE | str |  |
 | SITE_LANG | str |  |
-| ASSETS_INCLUDE_HTMX | bool |  |
 | HTMX_EXT | list[str] |  |
 | HTMX_BOOST_SITE | bool |  |
 | EMAIL_BACKGROUND_COLOR | str |  |
@@ -44,3 +43,4 @@ Each Flask extension may have their own configuration.
 | MARKDOWN_OPTIONS | dict |  |
 | FLASH_TOAST_OOB | bool | Whether to add flash messages to htmx request as oob swaps |
 | FLASH_TOAST_REMOVE_AFTER | str | Use the remove-me htmx extension to auto remove the toast alerts after some time |
+| INIT_DATABASE | bool | Whether to automatically init the db on start |

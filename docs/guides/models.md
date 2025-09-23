@@ -1,6 +1,6 @@
 # Models
 
-Models are the way to persist data in a database. Hyperflask uses [SQLORM](https://github.com/hyperflask/sqlorm), an easy to use ORM that does not abstract away SQL. By default, Hyperflask apps are configured to use SQLite which has been tuned for great web app performance.
+Models are the way to persist data in a database. Hyperflask uses [SQLORM](https://hyperflask.github.io/sqlorm), an easy to use ORM that does not abstract away SQL. By default, Hyperflask apps are configured to use SQLite which has been tuned for great web app performance.
 
 !!! info
     This feature is provided by [Flask-SQLORM](https://github.com/hyperflask/flask-sqlorm)
@@ -9,7 +9,7 @@ Models are the way to persist data in a database. Hyperflask uses [SQLORM](https
 
 Models are classes inheriting from `Model`. To define which table they represent, use the `table` class property.
 
-To define column mapping, define properties via annotations. The type used will be [converted to an sql type](https://hyperflask.github.io/sqlorm/sql-utilities/#column-types).
+To define column mapping, define properties via annotations. The type used will be [converted to an sql type](https://hyperflask.github.io/sqlorm/models/#column-types).
 For more control over the mapping, you can use instantiate `Column()` objects.
 
 Example *app/models.py*:
@@ -36,7 +36,7 @@ Manipulate model objects as you would with any python objects. The following met
 - `save()` executes `insert()` or `update()` depending on the fact that the object has a primary key or not
 - `insert()` executes an insert statement
 - `update()` executes an update statement
-- `delete()` deletes a delete statement
+- `delete()` executes a delete statement
 - `refresh()` executes a select statement (same as `get()`) and updates the object attribute values
 - `create()` a class method to create and insert an object in one line
 
@@ -138,6 +138,25 @@ page.task = Task.get(1)
 ---
 {{task}}
 ```
+
+## Managing the schema
+
+Hyperflask will automatically create missing tables on start. It will not however alter existing tables.
+
+To manage your schema, you can use migrations as [described in the sqlorm documentation](https://hyperflask.github.io/sqlorm/schema/#migrations).
+
+Initialize migrations using the following command: `uv run hyperflask db init-migrations --set-version`.
+This will create a migration file at *data/migrations/000_initial.sql*.
+
+Once migrations are activated, they will be auto applied on application start. This can be disabled using `init_database: false` in the config, in which case run your migrations using `uv run hyperflask db migrate`.
+
+To create a new migration version for a new model use: `uv run hyperflask db init-migrations MyModel`
+
+## Choosing a database
+
+By default, Hyperflask uses [SQLite](https://sqlite.org) with [optimizations](https://fractaledmind.com/2023/09/07/enhancing-rails-sqlite-fine-tuning/) for usage in web applications.
+
+If SQLite is not a good fit for your app, we recommend [PostgreSQL](https://www.postgresql.org/). In this case install the postgresql dbapi adapter using `uv add psycopg[binary]` then set the `sqlorm_uri` configuration parameter to the postgresql connection string.
 
 ## Going further
 

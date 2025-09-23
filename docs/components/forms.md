@@ -24,6 +24,8 @@ Use `FormField` components to style fields properly:
 </{Form}>
 ```
 
+Use the `form-w-full` call on the form tag for full width forms.
+
 ## Styling forms without the Form component
 
 Follow the DaisyUI pattern:

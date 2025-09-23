@@ -44,12 +44,6 @@ Hyperflask also provides a component that encapsulates the previous html:
 |auto_scroll|bool|Whether to keep the div scrolled at the bottom when receiving new items|
 |Any additional properties|No|any||
 
-## Differences between dev and prod
-
-While in development, a lightweight dev-only implementation of a Mercure hub is used. It is not meant to be used by more than a few users at once and is for testing only with minimum setup.
-
-When going into production, a proper [Mercure Hub](https://mercure.rocks/docs/hub/install) should be used. The Mercure Hub is bundled inside the production image and will be run alongside your app.
-
 ## Using with models
 
 Model objects can be used as topic and/or data when publishing and subscribing. Combined with models rendering capability, this makes it easy to publish rendered objects on a stream.

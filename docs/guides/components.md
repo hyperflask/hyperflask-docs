@@ -1,6 +1,6 @@
 # Components
 
-Components are essentials pieces of Hyperflask apps. They can be interactive, are isolated and can apply to the frontend of backend.
+Components are essentials pieces of Hyperflask apps. They can be interactive, are isolated and can apply to the frontend or backend.
 
 !!! info
     This feature is in part provided by [Flask-Super-Macros](https://github.com/hyperflask/flask-super-macros)
@@ -70,6 +70,8 @@ And finally, let's create a dropdown:
 !!! info
     Components are in fact jinja macros. Any jinja macro can be called using the new macro tag syntax.  
     [Read more about Flask Super Macros](https://github.com/hyperflask/flask-super-macros)
+
+HTML components can have their own custom backend logic. Read on to the [next guide about interactive apps](/guides/interactive-apps).
 
 ## Frontend interactions using Alpine.js
 
