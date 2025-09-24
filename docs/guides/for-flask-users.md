@@ -8,6 +8,9 @@ The `flask` module can be replaced by `hyperflask` for all your Flask related im
 
 The `hyperflask` command should be used instead of `flask` to run and manage your app.
 
+!!! warning
+    Hyperflask loads its configuration from files. Configuration happens as part of the Hyperflask constructor. This means once you have created your app, it is already configured and extensions are already initialized. To provide configuration at app creation time, use `app = Hyperflask(__name__, config={"key": "value"})`
+
 ```py
 # app.py
 from hyperflask import Hyperflask, request

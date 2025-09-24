@@ -35,6 +35,9 @@ What you will need:
 
 Python is not needed on your machine, everything will be executed inside containers.
 
+!!! info
+    Although VS Code with dev containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI. See the [setup guide for more information on how to run without VS Code or dev containers](/guides/setup/#advanced)
+
 ## Installation
 
 We will use [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) to create our project.
@@ -47,10 +50,7 @@ This will prompt you for some options and create the project in a new folder.
 
 Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.
 
-You are now developping from the container inside which you will find Python 3.11, Node & npm and hyperflask installed.
-
-!!! info
-    Although VS Code with development containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI.
+You are now developping from the container inside which you will find Python 3.13, NodeJS 24, uv and hyperflask installed.
 
 ## Running your app
 

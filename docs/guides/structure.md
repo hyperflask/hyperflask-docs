@@ -25,7 +25,7 @@ When using the `hyperflask` command, an Hyperflask app instance will be automati
     
     The actuall application object is available at `hyperflask.factory:app` (or `hyperflask:current_app` when in [app context](https://flask.palletsprojects.com/en/stable/appcontext/)).
 
-The *app* folder is available as a python module and the following packages will be automatically imported from it if they exist:
+The *app* folder is available as a python package and the following will be automatically imported from it if they exist:
 
  - *models* : to define your database models
  - *routes* : to define app routed endpoints
@@ -33,7 +33,9 @@ The *app* folder is available as a python module and the following packages will
  - *cron*: to define scheduled tasks using dramatiq
  - *cli*: to define command line tasks
 
-To import things from these modules from the rest of your app:
+Define them as modules (eg. `app/models.py`) or packages (eg. `app/models/__init__.py`)?
+
+To import things from the rest of your app:
 
 ```py
 # app/models.py
@@ -47,17 +49,3 @@ class MyModel(db.Model):
 # anywhere else
 from app.models import MyModel
 ```
-
-## Manually creating the app
-
-An app will be automatically created only if no application can be automatically discovered following the [Flask mechanism](https://flask.palletsprojects.com/en/stable/cli/#application-discovery).
-
-To manually create an app, create an `__init__.py` file in the *app* folder with the following code:
-
-```py
-from hyperflask import Hyperflask
-
-app = Hyperflask(__name__)
-```
-
-When doing so, no automatic configuration or imports are performed.

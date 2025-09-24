@@ -21,28 +21,34 @@ current_app.sse.publish("messages", current_app.components.ChatMessage(msg="hell
 
 ## Listening for events
 
-Use htmx [sse extension](https://htmx.org/extensions/sse/) to connect to the SSE stream. Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
-
-```html
-<div hx-ext="sse" sse-connect="{{mercure_authentified_hub_url('messages')}}" sse-swap="message" hx-swap="beforeend">
-</div>
-```
-
-Hyperflask also provides a component that encapsulates the previous html:
+Hyperflask provides some components to leverage the htmx [sse extension](https://htmx.org/extensions/sse/). 
 
 ```
 <{MercureStream topic="messages"}>
+    {# default content #}
 </{MercureStream}>
 ```
 
-| Property | Required | Type | Description |
-|----------|----------|------|-------------|
+| Property | Required | Type | Description | Default |
+|----------|----------|------|-------------|---------|
 |topic|Yes|string|The topic name|
-|private|No|bool|Whether to use an authentified url|
-|hx_swap|string|The swap strategy (default: beforeend)|
-|type|string|The type of event to listen to (default: message)|
-|auto_scroll|bool|Whether to keep the div scrolled at the bottom when receiving new items|
-|Any additional properties|No|any||
+|private|No|bool|Whether to use an authentified url|False
+|hx_swap|No|string|The swap strategy|beforeend
+|type|No|string|The type of event to listen to|message
+|auto_scroll|No|bool|Whether to keep the div scrolled at the bottom when receiving new items|False
+|Any additional properties|||Will be used as attributes of the div|
+
+To create a div which content will be replaced on each new message, use `hx_swap="innerHTML"`.
+
+!!! info
+    Using Hyperflask components is optional and htmx sse extension or any EventSource can be used directly.
+    
+    Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
+
+    ```html
+    <div hx-ext="sse" sse-connect="{{mercure_authentified_hub_url('messages')}}" sse-swap="message" hx-swap="beforeend">
+    </div>
+    ```
 
 ## Using with models
 

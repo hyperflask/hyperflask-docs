@@ -8,6 +8,7 @@ Components are essentials pieces of Hyperflask apps. They can be interactive, ar
 ## HTML components
 
 HTML components are re-usable pieces of HTML. Define them in the *app/components* folder. The filename is the component name.
+They are rendered on the backend.
 
 Components can recieve parameters named *props*.
 
@@ -26,7 +27,7 @@ For example, to create a dropdown component, let's create the file *app/componen
 
 Here, the component must be provided 2 parameters: label and items.
 
-To call this component, we use a special syntax in our templates:
+To call this component, we use a [special syntax](https://github.com/hyperflask/jinja-super-macros?tab=readme-ov-file#new-macro-tags-syntax) in our templates:
 
  - `<{ComponentName prop1=value prop2=value }/>` : to call a component without providing children
  - `<{ComponentName prop1=value }>...</{ComponentName}>` : to provide children

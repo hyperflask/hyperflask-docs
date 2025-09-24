@@ -1,6 +1,6 @@
 # Scaling
 
-Hyperflask is a standard Flask app. It is made of 4 different processes:
+Hyperflask is made of different processes. It uses [honcho](https://honcho.readthedocs.io/en/latest/) as process manager.
 
 | Process | Description | Defaut port | Can be multiplied
 | --- | --- | --- | --- |

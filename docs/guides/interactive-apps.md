@@ -6,6 +6,7 @@ Hyperflask can be used to create interactive apps thanks to HTMX.
 
 HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
 
+TODO
 
 ## Interactive components
 
@@ -151,3 +152,7 @@ You can also add out of band elements in your template using the `<{HtmxOob}>` c
 ```
 <{HtmxOob}><{Sidebar}/></{HtmxOob}>
 ```
+
+## Realtime apps
+
+Add realtime updates to your app using [push messages](/guides/push).

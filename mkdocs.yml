@@ -52,6 +52,8 @@ nav:
     - recipes/stripe.md
     - recipes/using-cms.md
   - "Status & Roadmap": roadmap.md
+  # - Blog:
+  #   - blog/index.md
 
 theme:
   name: material
@@ -99,6 +101,8 @@ markdown_extensions:
 plugins:
   - search
   - callouts
+  - blog:
+      archive: false
   - redirects:
       redirect_maps:
         'guides/index.md': 'guides/setup.md'

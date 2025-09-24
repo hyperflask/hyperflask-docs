@@ -1,7 +1,7 @@
 ---
-hide: [navigation, footer]
+hide: [navigation, footer, toc]
 ---
-# Roadmap
+# Status & Roadmap
 
 Hyperflask is being actively developed and is not yet ready for production.
 
@@ -10,9 +10,10 @@ Checkout the list of all the projects developed as part of the Hyperflask Stack 
 Key stuff that is still missing:
 
 - SQLite broker for Dramatiq and background task tests
-- Dockerfile & Deployments
-- Static content mode
-- Better error reporting for jinjapy files
+- [Dockerfile & Deployments](http://localhost:8000/guides/deploy/)
+- [Static content mode](http://localhost:8000/guides/static/)
+- [Image optimizations](http://localhost:8000/guides/assets/#optimized-images)
+- [Metadata](http://localhost:8000/guides/metadata/)
 - Syntax highlighting for the macro tags syntax in jinja templates
 
 Planned v1 experience:
@@ -32,8 +33,8 @@ Planned v1 experience:
 | I18n | 🚧 | finalizing | [flask-babel-hyper](https://github.com/hyperflask/flask-babel-hyper)
 | Static site generation | ❌ | | [hyperflask](https://github.com/hyperflask/hyperflask)
 | Deployments | ❌ | | [docker-web-deploy](https://github.com/hyperflask/docker-web-deploy)
-| VS Code integration | ✅ |  | 
-| Documentation | 🚧 |  | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
+| VS Code integration | 🚧 | missing syntax highlighting for macro tags | 
+| Documentation | 🚧 | continuous improvements, more beginner docs | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
 
 ## Extras
 

@@ -1,6 +1,6 @@
 # Stripe Checkout
 
-The Hypeflask organization maintains the [Flask-Stripe-Checkout](https://github.com/hyperflask/flask-stripe-checkout) project. Using it, you can quickly start charging people using [Stripe Checkout](https://stripe.com/payments/checkout), Stripe's hosted payment pages.
+Using [Flask-Stripe-Checkout](https://github.com/hyperflask/flask-stripe-checkout), you can quickly start charging people using [Stripe Checkout](https://stripe.com/payments/checkout), Stripe's hosted payment pages.
 
 ## Installation & setup
 
@@ -18,7 +18,7 @@ To use webhooks locally:
 
 Now, install the extension:
 
-    poetry add flask-stripe-checkout
+    uv add flask-stripe-checkout
 
 Configure your environment variables in *.env*:
 
