@@ -1797,7 +1797,7 @@
 
 
 <h1 id="stripe-checkout">Stripe Checkout</h1>
-<p>The Hypeflask organization maintains the <a href="https://github.com/hyperflask/flask-stripe-checkout">Flask-Stripe-Checkout</a> project. Using it, you can quickly start charging people using <a href="https://stripe.com/payments/checkout">Stripe Checkout</a>, Stripe's hosted payment pages.</p>
+<p>Using <a href="https://github.com/hyperflask/flask-stripe-checkout">Flask-Stripe-Checkout</a>, you can quickly start charging people using <a href="https://stripe.com/payments/checkout">Stripe Checkout</a>, Stripe's hosted payment pages.</p>
 <h2 id="installation-setup">Installation &amp; setup</h2>
 <p>First, create a Stripe account:</p>
 <ol>
@@ -1812,7 +1812,7 @@
 <li>Run <code>stripe listen --forward-to localhost:5000/stripe-webhook</code></li>
 </ol>
 <p>Now, install the extension:</p>
-<div class="highlight"><pre><span></span><code>poetry add flask-stripe-checkout
+<div class="highlight"><pre><span></span><code>uv add flask-stripe-checkout
 </code></pre></div>
 <p>Configure your environment variables in <em>.env</em>:</p>
 <div class="highlight"><pre><span></span><code>FLASK_STRIPE_API_KEY=sk_...

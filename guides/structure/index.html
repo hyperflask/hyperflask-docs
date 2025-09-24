@@ -616,17 +616,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Project structure
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -636,34 +625,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#manually-creating-the-app" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manually creating the app
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1724,23 +1685,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#manually-creating-the-app" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manually creating the app
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1792,7 +1736,7 @@
 <p>If you are coming from Flask, this means you do not create the <code>app</code> object yourself.</p>
 <p>The actuall application object is available at <code>hyperflask.factory:app</code> (or <code>hyperflask:current_app</code> when in <a href="https://flask.palletsprojects.com/en/stable/appcontext/">app context</a>).</p>
 </div>
-<p>The <em>app</em> folder is available as a python module and the following packages will be automatically imported from it if they exist:</p>
+<p>The <em>app</em> folder is available as a python package and the following will be automatically imported from it if they exist:</p>
 <ul>
 <li><em>models</em> : to define your database models</li>
 <li><em>routes</em> : to define app routed endpoints</li>
@@ -1800,7 +1744,8 @@
 <li><em>cron</em>: to define scheduled tasks using dramatiq</li>
 <li><em>cli</em>: to define command line tasks</li>
 </ul>
-<p>To import things from these modules from the rest of your app:</p>
+<p>Define them as modules (eg. <code>app/models.py</code>) or packages (eg. <code>app/models/__init__.py</code>)?</p>
+<p>To import things from the rest of your app:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># app/models.py</span>
 <span class="kn">from</span> <span class="nn">hyperflask.factory</span> <span class="kn">import</span> <span class="n">db</span>
 
@@ -1810,14 +1755,6 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># anywhere else</span>
 <span class="kn">from</span> <span class="nn">app.models</span> <span class="kn">import</span> <span class="n">MyModel</span>
 </code></pre></div>
-<h2 id="manually-creating-the-app">Manually creating the app</h2>
-<p>An app will be automatically created only if no application can be automatically discovered following the <a href="https://flask.palletsprojects.com/en/stable/cli/#application-discovery">Flask mechanism</a>.</p>
-<p>To manually create an app, create an <code>__init__.py</code> file in the <em>app</em> folder with the following code:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hyperflask</span> <span class="kn">import</span> <span class="n">Hyperflask</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Hyperflask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-</code></pre></div>
-<p>When doing so, no automatic configuration or imports are performed.</p>
 
 
 

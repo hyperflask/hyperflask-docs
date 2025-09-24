@@ -1830,12 +1830,9 @@
 <div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">ChatMessage</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">))</span>
 </code></pre></div>
 <h2 id="listening-for-events">Listening for events</h2>
-<p>Use htmx <a href="https://htmx.org/extensions/sse/">sse extension</a> to connect to the SSE stream. Retrieve the stream URL for an event using <code>mercure_hub_url(event_names)</code>. Use <code>mercure_authentified_hub_url(event_names)</code> to create authentified URLs that can receive private events.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-ext</span><span class="o">=</span><span class="s">&quot;sse&quot;</span> <span class="na">sse-connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url(&#39;messages&#39;)}}&quot;</span> <span class="na">sse-swap</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>Hyperflask also provides a component that encapsulates the previous html:</p>
+<p>Hyperflask provides some components to leverage the htmx <a href="https://htmx.org/extensions/sse/">sse extension</a>. </p>
 <div class="highlight"><pre><span></span><code>&lt;{MercureStream topic=&quot;messages&quot;}&gt;
+    {# default content #}
 &lt;/{MercureStream}&gt;
 </code></pre></div>
 <table>
@@ -1845,6 +1842,7 @@
 <th>Required</th>
 <th>Type</th>
 <th>Description</th>
+<th>Default</th>
 </tr>
 </thead>
 <tbody>
@@ -1853,39 +1851,54 @@
 <td>Yes</td>
 <td>string</td>
 <td>The topic name</td>
+<td></td>
 </tr>
 <tr>
 <td>private</td>
 <td>No</td>
 <td>bool</td>
 <td>Whether to use an authentified url</td>
+<td>False</td>
 </tr>
 <tr>
 <td>hx_swap</td>
+<td>No</td>
 <td>string</td>
-<td>The swap strategy (default: beforeend)</td>
-<td></td>
+<td>The swap strategy</td>
+<td>beforeend</td>
 </tr>
 <tr>
 <td>type</td>
+<td>No</td>
 <td>string</td>
-<td>The type of event to listen to (default: message)</td>
-<td></td>
+<td>The type of event to listen to</td>
+<td>message</td>
 </tr>
 <tr>
 <td>auto_scroll</td>
+<td>No</td>
 <td>bool</td>
 <td>Whether to keep the div scrolled at the bottom when receiving new items</td>
-<td></td>
+<td>False</td>
 </tr>
 <tr>
 <td>Any additional properties</td>
-<td>No</td>
-<td>any</td>
+<td></td>
+<td></td>
+<td>Will be used as attributes of the div</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<p>To create a div which content will be replaced on each new message, use <code>hx_swap="innerHTML"</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Using Hyperflask components is optional and htmx sse extension or any EventSource can be used directly.</p>
+<p>Retrieve the stream URL for an event using <code>mercure_hub_url(event_names)</code>. Use <code>mercure_authentified_hub_url(event_names)</code> to create authentified URLs that can receive private events.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-ext</span><span class="o">=</span><span class="s">&quot;sse&quot;</span> <span class="na">sse-connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url(&#39;messages&#39;)}}&quot;</span> <span class="na">sse-swap</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
 <h2 id="using-with-models">Using with models</h2>
 <p>Model objects can be used as topic and/or data when publishing and subscribing. Combined with models rendering capability, this makes it easy to publish rendered objects on a stream.</p>
 <p>When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.</p>

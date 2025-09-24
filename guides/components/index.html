@@ -1907,7 +1907,8 @@
 <p>This feature is in part provided by <a href="https://github.com/hyperflask/flask-super-macros">Flask-Super-Macros</a></p>
 </div>
 <h2 id="html-components">HTML components</h2>
-<p>HTML components are re-usable pieces of HTML. Define them in the <em>app/components</em> folder. The filename is the component name.</p>
+<p>HTML components are re-usable pieces of HTML. Define them in the <em>app/components</em> folder. The filename is the component name.
+They are rendered on the backend.</p>
 <p>Components can recieve parameters named <em>props</em>.</p>
 <p>For example, to create a dropdown component, let's create the file <em>app/components/Dropdown.html</em>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span><span class="p">&gt;</span>
@@ -1920,7 +1921,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Here, the component must be provided 2 parameters: label and items.</p>
-<p>To call this component, we use a special syntax in our templates:</p>
+<p>To call this component, we use a <a href="https://github.com/hyperflask/jinja-super-macros?tab=readme-ov-file#new-macro-tags-syntax">special syntax</a> in our templates:</p>
 <ul>
 <li><code>&lt;{ComponentName prop1=value prop2=value }/&gt;</code> : to call a component without providing children</li>
 <li><code>&lt;{ComponentName prop1=value }&gt;...&lt;/{ComponentName}&gt;</code> : to provide children</li>

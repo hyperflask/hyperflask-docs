@@ -1981,6 +1981,10 @@
 <li><a href="https://code.visualstudio.com/">VS Code</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers extension</a></li>
 </ul>
 <p>Python is not needed on your machine, everything will be executed inside containers.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Although VS Code with dev containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI. See the <a href="/guides/setup/#advanced">setup guide for more information on how to run without VS Code or dev containers</a></p>
+</div>
 <h2 id="installation">Installation</h2>
 <p>We will use <a href="https://github.com/hyperflask/hyperflask-start">Hyperflask-Start</a> to create our project.</p>
 <p>Launch the following command to create your project:</p>
@@ -1988,11 +1992,7 @@
 </code></pre></div>
 <p>This will prompt you for some options and create the project in a new folder.</p>
 <p>Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.</p>
-<p>You are now developping from the container inside which you will find Python 3.11, Node &amp; npm and hyperflask installed.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Although VS Code with development containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI.</p>
-</div>
+<p>You are now developping from the container inside which you will find Python 3.13, NodeJS 24, uv and hyperflask installed.</p>
 <h2 id="running-your-app">Running your app</h2>
 <p>In VS Code, press F5 or "Start debugging" in the command palette.</p>
 <p>The browser will automatically open to your new site!</p>

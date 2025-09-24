@@ -781,6 +781,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#realtime-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Realtime apps
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1811,6 +1820,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#realtime-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Realtime apps
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1838,6 +1856,7 @@
 <p>Hyperflask can be used to create interactive apps thanks to HTMX.</p>
 <h2 id="htmx-introduction">HTMX introduction</h2>
 <p>HTMX has <a href="https://htmx.org/docs/">comprehensive documentation</a> but this section will cover the essential.</p>
+<p>TODO</p>
 <h2 id="interactive-components">Interactive components</h2>
 <p>Components can define their own custom backend logic. Similar to pages, files should use the <em>jpy</em> extension and provide a frontmatter with the python code.</p>
 <p>Functions named after HTTP methods will be registered as routes. For example, if a <em>get</em> function exists, Hyperflask will make the component accessible through GET requests.<br />
@@ -1951,6 +1970,8 @@ To ensure it is included, use <code>current_app.assets.include('@hyperflask/alpi
 <p>You can also add out of band elements in your template using the <code>&lt;{HtmxOob}&gt;</code> component:</p>
 <div class="highlight"><pre><span></span><code>&lt;{HtmxOob}&gt;&lt;{Sidebar}/&gt;&lt;/{HtmxOob}&gt;
 </code></pre></div>
+<h2 id="realtime-apps">Realtime apps</h2>
+<p>Add realtime updates to your app using <a href="/guides/push">push messages</a>.</p>
 
 
 
