@@ -7,9 +7,9 @@ Easily create static and dynamic pages with a layout.
 
 ## Dynamic pages
 
-Pages use the [jinjapy](https://github.com/hyperflask/jinjapy) file format. It combines python code and a [jinja template](#the-page-template). The python code will be executed first on every request, then the template will be rendered.
+Pages use the [jinjapy](https://github.com/hyperflask/jinjapy) file format. It combines python code and a [jinja template](#the-page-template). The python code will be executed first on every request, then the template will be rendered. The python code is enclosed inside 2 lines containing 3 dashes "---".
 
-The python code is enclosed inside 2 lines containing 3 dashes "---"
+Create new pages in the `app/pages` folder using the `.jpy` extension.
 
 A special [page object](#the-page-object) is available in the python code. Assign values to this object so that they become available in the template.
 
@@ -53,13 +53,13 @@ All formats can have a YAML frontmatter defining variables that will be injected
 
 The URL rule is constructed using the following rules:
 
-- `index.ext` file are roots
+- `index.jpy` file are roots
 - folder hierarchy are transformed to url paths:
-    - `posts/release-annoucement.ext` converts to `/posts/release-annoucement`
-    - `posts/index.ext` converts to `/posts`
-    - `folder/subfolder/page.ext` converts to `/folder/subfolder/page`
+    - `posts/release-annoucement.jpy` converts to `/posts/release-annoucement`
+    - `posts/index.jpy` converts to `/posts`
+    - `folder/subfolder/page.jpy` converts to `/folder/subfolder/page`
 - placeholders are allowed in filenames:
-    - `posts/<slug>.ext` converts to `/posts/<slug>`
+    - `posts/<slug>.jpy` converts to `/posts/<slug>`
 
 The placeholder value is available through the [`page` object](#the-page-object) (eg: `page.slug`).
 
