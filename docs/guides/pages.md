@@ -7,22 +7,36 @@ Easily create static and dynamic pages with a layout.
 
 ## Dynamic pages
 
-Dynamic pages can use the following formats:
+Pages use the [jinjapy](https://github.com/hyperflask/jinjapy) file format. It combines python code and a [jinja template](#the-page-template). The python code will be executed first on every request, then the template will be rendered.
 
-- **jpy**: jinjapy hybrid format that let you execute code before rendering the template
-- **py**: python code only
+The python code is enclosed inside 2 lines containing 3 dashes "---"
 
-A jinjapy file contains 2 sections:
+A special [page object](#the-page-object) is available in the python code. Assign values to this object so that they become available in the template.
 
-- Some Python code enclosed by lines containg 3 dashes "---"
-- A body containing some Jinja template code
+```jpy
+---
+page.message = "Hello world"
+---
+{{ message }}
+```
 
-Both are optional:
+Both the python code or the templates are optional:
 
 - If the python code is missing, the file only contains a Jinja template
 - If the python code is left unclosed (the file starts with "---" on a single line followed by some python code), the file has no template
 
 The python code has a few global variables injected when executed: `page`, `request`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
+
+!!! tip
+    Pages can also be declared using .py files. In this case they will be pure python modules. Use `page.respond()` to send a response.
+
+## The page template
+
+Templates are powered by [Jinja](https://jinja.palletsprojects.com/en/stable/).
+
+We recommend reading the [Flask templating guide](https://flask.palletsprojects.com/en/stable/templating/).
+
+Hyperflask includes built-ins UI components powered by [DaisyUI](https://daisyui.com/). Check out the [Components](/guides/components/#built-in-ui-components) guide.
 
 ## Content pages
 
@@ -48,14 +62,6 @@ The URL rule is constructed using the following rules:
     - `posts/<slug>.ext` converts to `/posts/<slug>`
 
 The placeholder value is available through the [`page` object](#the-page-object) (eg: `page.slug`).
-
-## The page template
-
-Templates are powered by [Jinja](https://jinja.palletsprojects.com/en/stable/).
-
-We recommend reading the [Flask templating guide](https://flask.palletsprojects.com/en/stable/templating/).
-
-Hyperflask includes built-ins UI components powered by [DaisyUI](https://daisyui.com/). Check out the [Components](/guides/components/#built-in-ui-components) guide.
 
 ## Layouts
 
