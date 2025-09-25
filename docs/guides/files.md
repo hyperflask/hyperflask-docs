@@ -18,7 +18,7 @@ class MyModel(db.Model):
 
 In a page using a form:
 
-```
+```jpy
 ---
 form = page.form()
 def post():
@@ -42,7 +42,7 @@ When accessing the model property, the value is a [file object](https://github.c
 
 To generate a url for the file:
 
-```
+```jpy
 ---
 page.obj = MyModel.get(1)
 ---
@@ -72,7 +72,7 @@ files_base_path: bucket_name
 
 Use `save_file()` to store a file and get a [file object](https://github.com/hyperflask/flask-files#file-object). File objects are serializable as string or JSON.
 
-```
+```jpy
 ---
 from hyperflask import save_file
 

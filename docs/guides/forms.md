@@ -9,7 +9,7 @@ Easily define forms that can be validated on the frontend and the backend.
 
 Create forms in templates by calling fields on a `form` object as if they would be already declared. The syntax for calling fields is slightly different compared to raw wtforms as it also includes the field type.
 
-```
+```jinja
 {# signup.html #}
 <{Form form}>
     <{FormField form.firstname.text("First name") }/>
@@ -37,7 +37,7 @@ To make things easier, when using pages, forms declared inside pages are availab
 
 Example page:
 
-```
+```jpy
 ---
 form = page.form()
 def post():

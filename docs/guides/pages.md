@@ -66,7 +66,7 @@ For a page to use a layout, include the `{% use_layout %}` at the top of the tem
 
 Example template:
 
-```html
+```jinja
 {% use_layout %}
 
 {% block page_title %}New title!{% endblock %}

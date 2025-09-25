@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
 Use `page.login_required()` at the start of any page code block to prevent access for unauthentified users.
 You can also decorate endpoints and method functions using the `hyperflask_users.login_required` decorator.
 
-```
+```jpy
 ---
 page.login_required()
 ---

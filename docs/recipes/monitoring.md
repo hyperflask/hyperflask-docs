@@ -26,7 +26,7 @@ flask_extensions:
 
 To track frontend errors, override the default layout in *app/layouts/default.html*:
 
-```html
+```jinja
 {% extends "layouts/base.html %}
 
 {% block head_assets %}

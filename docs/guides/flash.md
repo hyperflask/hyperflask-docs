@@ -4,7 +4,7 @@ Flask [provides a mechanism](https://flask.palletsprojects.com/en/stable/pattern
 
 Use `flash()` or `page.flash()` as described by Flask documentation.
 
-```
+```jpy
 ---
 page.flash("Welcome to my page!", "success")
 ---

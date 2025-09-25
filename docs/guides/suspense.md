@@ -11,7 +11,7 @@ Suspense uses response streaming to delay the rendering of parts of the template
 
 Let's create a component to render a big data table, in `components/DataTable.jpy`:
 
-```
+```jpy
 ---
 def render():
     return {"data": MyModel.find_all()}
@@ -54,7 +54,7 @@ Using component endpoints, you can fetch a component on page load.
 
 Let's make the component from the previous section accessible via GET:
 
-```
+```jpy
 ---
 def get():
     pass

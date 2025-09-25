@@ -23,7 +23,7 @@ current_app.sse.publish("messages", current_app.components.ChatMessage(msg="hell
 
 Hyperflask provides some components to leverage the htmx [sse extension](https://htmx.org/extensions/sse/). 
 
-```
+```jinja
 <{MercureStream topic="messages"}>
     {# default content #}
 </{MercureStream}>
@@ -85,7 +85,7 @@ current_app.sse.publish("topic2", "data", type=True) # same effect without repea
 
 Connect to multiple topics at once and distinguish messages using their type:
 
-```
+```jinja
 <{MercureStreamContext topics=["topic1", "topic2"]}>
     <{MercureStream type="topic1"}>
 

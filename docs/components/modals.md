@@ -2,7 +2,7 @@
 
 Use the `Modal` component to create an [HTML dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog).
 
-```
+```jinja
 <{Button onclick="modal1.showModal()" }>Say hello</{Button}>
 <{Modal id="modal1"}>
     <{ModalTitle}>Hello!</{ModalTitle}>
@@ -21,7 +21,7 @@ Create a backend-driven modal that auto opens when called. Uses the built-in hf-
 
 Example *components/SignupModal.jpy*:
 
-```
+```jpy
 ---
 from hyperflask import htmx_redirect
 
@@ -52,6 +52,6 @@ Using `<{ModalForm}>` ensures that the modal closes on successfull submit. When 
 
 In a page:
 
-```
+```jinja
 <{Button hf_modal=url_for('SignupModal')}>Signup</{}>
 ```

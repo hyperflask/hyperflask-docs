@@ -6,7 +6,7 @@ Hyperflask includes a few utilties to help you design your app quickly.
 
 Use the following snippet to kick start a very common application UI with a sidebar:
 
-```
+```jinja
 <{AppUI}>
     <{Viewport}>
 

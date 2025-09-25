@@ -81,7 +81,7 @@ In your project folder, you will find the following files and folders:
 
 First, let's create a basic chat window with some messages. Replace the content of `app/pages/index.jpy` with the following:
 
-```
+```jinja
 {% use_layout %}
 <div id="messages">
     <{ChatBubble}>First message!</{ChatBubble}>
@@ -104,7 +104,7 @@ Now that we have the basic layout of our app, let's extract the chat bubble as a
 
 We are going to create a `ChatMessage` component to render one message. In `app/components/ChatMessage.jpy`:
 
-```
+```jpy
 ---
 from hyperflask import request
 
@@ -124,7 +124,7 @@ The function then returns the properties that will be used to render the compone
 
 Let's add a form to our chat interface. Replace `app/pages/index.jpy` with the following:
 
-```
+```jinja
 {% use_layout %}
 <div id="messages">
     {# messages will display here #}
@@ -158,7 +158,7 @@ class Message(db.Model):
 
 Modify our component to save messages:
 
-```
+```jpy
 ---
 from hyperflask import request
 from app.models import db, Message
@@ -175,7 +175,7 @@ def post():
 
 And finally the page:
 
-```
+```jpy
 ---
 from app.models import Message
 
@@ -201,7 +201,7 @@ Rather than sending back a message partial when posting a new message, we will u
 
 Modify the `ChatMessage` component back to its simpler state:
 
-```
+```jinja
 <{ChatBubble}>
     {{props.message.message|markdown}}
 </{ChatBubble}>
@@ -211,7 +211,7 @@ Now let's create a new component `PostMessageForm` in `app/components/PostMessag
 
 We will also use the a [form](/guides/forms) in this component to easily validate data.
 
-```
+```jpy
 ---
 from hyperflask import page, current_app
 from app.models import db, Message
@@ -232,7 +232,7 @@ def post():
 
 Let's modify `app/pages/index.jpy` to use our new component and connect to the SSE stream:
 
-```
+```jpy
 ---
 from app.models import Message
 
@@ -277,7 +277,7 @@ class Message(UserRelatedMixin, db.Model):
 
 Modify the component `ChatMessage` to display the author:
 
-```
+```jinja
 <{ChatBubble header=props.message.user.email}>
     {{props.message.message|markdown}}
 </{ChatBubble}>

@@ -2,7 +2,7 @@
 
 Use the `Form` component with a form object to write the form tag. Use `HxForm` instead of `Form` for an HTMX powered form instead.
 
-```
+```jinja
 <{Form form action="..."}>
     
 </{Form}>
@@ -13,7 +13,7 @@ Use the `Form` component with a form object to write the form tag. Use `HxForm` 
 
 Use `FormField` components to style fields properly:
 
-```
+```jinja
 <{Form form}>
     <{FieldsetLegend}>Login</{}>
 
@@ -30,7 +30,7 @@ Use the `form-w-full` call on the form tag for full width forms.
 
 Follow the DaisyUI pattern:
 
-```
+```jinja
 <{Fieldset}>
     <{FieldsetLegend}>Login</{}>
 

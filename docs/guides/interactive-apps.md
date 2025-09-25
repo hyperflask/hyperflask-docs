@@ -21,7 +21,7 @@ Let's create a todo app:
 
 *app/pages/index.jpy*:
 
-```
+```jpy
 ---
 from app.models import Todo
 page.todos = Todo.find_all()
@@ -36,7 +36,7 @@ page.todos = Todo.find_all()
 
 *app/components/TodoItem.jpy*:
 
-```
+```jpy
 ---
 from app.models import db, Todo
 
@@ -61,7 +61,7 @@ def delete():
 
 *app/components/TodoItemForm.jpy*:
 
-```
+```jpy
 ---
 from hyperflask import request, current_app
 from app.models import db, Todo

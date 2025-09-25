@@ -14,7 +14,7 @@ Components can recieve parameters named *props*.
 
 For example, to create a dropdown component, let's create the file *app/components/Dropdown.html*:
 
-```html
+```jinja
 <div class="dropdown">
     <button>{{props.label}}</button>
     <ul class="dropmenu">
@@ -42,7 +42,7 @@ Back to our example:
 
 Now, let's rework our component to use another component for the dropdown items.
 
-```html
+```jinja
 <div class="dropdown">
     <button>{{props.label}}</button>
     <ul class="dropmenu">
@@ -53,7 +53,7 @@ Now, let's rework our component to use another component for the dropdown items.
 
 Now create *app/components/DropdownItem.html*:
 
-```html
+```jinja
 <li>
     <a href="{{prop.url}}">{{children()}}</a>
 </li>
@@ -61,7 +61,7 @@ Now create *app/components/DropdownItem.html*:
 
 And finally, let's create a dropdown:
 
-```
+```jinja
 <{Dropdown label="Countries"}>
     <{DropdownItem url=url_for('countries', code="fr")}>France</{DropdownItem}>
     <{DropdownItem url=url_for('countries', code="hk")}>Hong Kong</{DropdownItem}>
@@ -80,7 +80,7 @@ HTML components can have their own custom backend logic. Read on to the [next gu
 
 Example using the previous *app/components/Dropdown.html*:
 
-```html
+```jinja
 <div class="dropdown" x-data="{ open: false }">
     <button @click="open = true">{{props.label}}</button>
     <ul class="dropmenu" x-show="open">
@@ -156,7 +156,7 @@ Use a jinjapy file instead of html file (.jpy extension) and implement the rende
 
 The render function will be provided the props as arguments.
 
-```
+```jpy
 ---
 def render(prop1, prop2):
     # custom logic

@@ -125,14 +125,14 @@ In `app/components/Task.html`:
 
 Once defined, you can "print" your objects and result sets directly in your templates:
 
-```
+```jpy
 ---
 page.tasks = Task.find_all()
 ---
 {{tasks}}
 ```
 
-```
+```jpy
 ---
 page.task = Task.get(1)
 ---

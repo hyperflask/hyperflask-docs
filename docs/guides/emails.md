@@ -11,7 +11,7 @@ Email templates are located in the *app/emails* folder. The recommended format i
 
 Template files can contain a YAML frontmatter with extra metadata like subject. The frontmatter values are templated as well.
 
-```
+```jinja
 ---
 subject: "Welcome {{name}} to example.com!"
 ---
