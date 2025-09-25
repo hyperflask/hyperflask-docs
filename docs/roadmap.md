@@ -10,10 +10,10 @@ Checkout the list of all the projects developed as part of the Hyperflask Stack 
 Key stuff that is still missing:
 
 - SQLite broker for Dramatiq and background task tests
-- [Dockerfile & Deployments](http://localhost:8000/guides/deploy/)
-- [Static content mode](http://localhost:8000/guides/static/)
-- [Image optimizations](http://localhost:8000/guides/assets/#optimized-images)
-- [Metadata](http://localhost:8000/guides/metadata/)
+- [Dockerfile & Deployments](/guides/deploy/)
+- [Static content mode](/guides/static/)
+- [Image optimizations](/guides/assets/#optimized-images)
+- [Metadata](/guides/metadata/)
 - Syntax highlighting for the macro tags syntax in jinja templates
 
 Planned v1 experience:
