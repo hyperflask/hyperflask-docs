@@ -11,8 +11,8 @@
       "width": 241.99999999999997,
       "height": 147,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#1e1e1e",
+      "strokeColor": "transparent",
+      "backgroundColor": "#0c8599",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -25,11 +25,11 @@
         "type": 3
       },
       "seed": 955788865,
-      "version": 167,
-      "versionNonce": 387860644,
+      "version": 174,
+      "versionNonce": 226079511,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1758532413588,
+      "updated": 1758796815902,
       "link": null,
       "locked": false
     },
@@ -53,8 +53,8 @@
       "index": "a6",
       "roundness": null,
       "seed": 2133710447,
-      "version": 346,
-      "versionNonce": 658703260,
+      "version": 348,
+      "versionNonce": 804751671,
       "isDeleted": false,
       "boundElements": [
         {
@@ -62,7 +62,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1758532413588,
+      "updated": 1758796769233,
       "link": null,
       "locked": false,
       "text": "---\npage.message = \"hello\"\n---\n<h1>{{message}}</h1>",
@@ -95,11 +95,11 @@
       "index": "a7",
       "roundness": null,
       "seed": 536589519,
-      "version": 112,
-      "versionNonce": 2083480228,
+      "version": 116,
+      "versionNonce": 336202169,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1758532577385,
+      "updated": 1758796769234,
       "link": null,
       "locked": false,
       "text": "pages/say_hello.jpy",
@@ -115,10 +115,10 @@
     {
       "id": "zHzu0xY9nzqmd1zakMXVg",
       "type": "arrow",
-      "x": 746.7405355977362,
-      "y": 249.70299472114812,
-      "width": 68.55345915780481,
-      "height": 61.297005278851884,
+      "x": 729.5158374349244,
+      "y": 243.13658847114814,
+      "width": 85.77815732061663,
+      "height": 67.86341152885186,
       "angle": 0,
       "strokeColor": "#e03131",
       "backgroundColor": "transparent",
@@ -134,11 +134,11 @@
         "type": 2
       },
       "seed": 892034895,
-      "version": 443,
-      "versionNonce": 265826332,
+      "version": 487,
+      "versionNonce": 1884321945,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1758532413589,
+      "updated": 1758796875652,
       "link": null,
       "locked": false,
       "points": [
@@ -147,12 +147,12 @@
           0
         ],
         [
-          16.259464402263802,
-          34.297005278851884
+          33.48416256507562,
+          40.863411528851856
         ],
         [
-          68.55345915780481,
-          61.297005278851884
+          85.77815732061663,
+          67.86341152885186
         ]
       ],
       "lastCommittedPoint": null,
@@ -173,15 +173,15 @@
     {
       "id": "pf2o3R8Hs7dLhMtKArNPi",
       "type": "rectangle",
-      "x": 686.5,
-      "y": 212.5,
-      "width": 368,
+      "x": 666.7109375,
+      "y": 209.96484375,
+      "width": 243.6171875,
       "height": 32,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#e9ecef",
+      "strokeColor": "#ced4da",
+      "backgroundColor": "#ced4da",
       "fillStyle": "solid",
-      "strokeWidth": 2,
+      "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 1,
       "opacity": 100,
@@ -192,8 +192,8 @@
         "type": 3
       },
       "seed": 306392687,
-      "version": 91,
-      "versionNonce": 488075172,
+      "version": 168,
+      "versionNonce": 16583991,
       "isDeleted": false,
       "boundElements": [
         {
@@ -201,17 +201,17 @@
           "type": "arrow"
         }
       ],
-      "updated": 1758532413589,
+      "updated": 1758796893521,
       "link": null,
       "locked": false
     },
     {
       "id": "iVN1H_X_j_D-wxGZHe-E8",
       "type": "text",
-      "x": 713.5,
-      "y": 217.5,
-      "width": 241.99966430664062,
-      "height": 25,
+      "x": 698.94140625,
+      "y": 215.93359375,
+      "width": 193.60040283203125,
+      "height": 20,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -225,8 +225,8 @@
       "index": "aA",
       "roundness": null,
       "seed": 1458653505,
-      "version": 62,
-      "versionNonce": 1981009052,
+      "version": 106,
+      "versionNonce": 1158797241,
       "isDeleted": false,
       "boundElements": [
         {
@@ -234,11 +234,11 @@
           "type": "arrow"
         }
       ],
-      "updated": 1758532413589,
+      "updated": 1758796875626,
       "link": null,
       "locked": false,
       "text": "yoursite.com/say-hello",
-      "fontSize": 20,
+      "fontSize": 16,
       "fontFamily": 8,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -246,6 +246,41 @@
       "originalText": "yoursite.com/say-hello",
       "autoResize": true,
       "lineHeight": 1.25
+    },
+    {
+      "id": "KOeEEGqXNBp65EEHm3Gpo",
+      "type": "image",
+      "x": 675.65234375,
+      "y": 218.5078125,
+      "width": 16,
+      "height": 16,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "#0c8599",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 50,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aB",
+      "roundness": null,
+      "seed": 524721783,
+      "version": 96,
+      "versionNonce": 1157014455,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1758796864458,
+      "link": null,
+      "locked": false,
+      "status": "saved",
+      "fileId": "826333c552717c9c180df74de1478d6ad0adda2b",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
     }
   ],
   "appState": {
@@ -255,5 +290,13 @@
     "viewBackgroundColor": "#ffffff",
     "lockedMultiSelections": {}
   },
-  "files": {}
+  "files": {
+    "826333c552717c9c180df74de1478d6ad0adda2b": {
+      "mimeType": "image/svg+xml",
+      "id": "826333c552717c9c180df74de1478d6ad0adda2b",
+      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktZ2xvYmUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTAgOGE4IDggMCAxIDEgMTYgMEE4IDggMCAwIDEgMCA4bTcuNS02LjkyM2MtLjY3LjIwNC0xLjMzNS44Mi0xLjg4NyAxLjg1NUE4IDggMCAwIDAgNS4xNDUgNEg3LjV6TTQuMDkgNGE5LjMgOS4zIDAgMCAxIC42NC0xLjUzOSA3IDcgMCAwIDEgLjU5Ny0uOTMzQTcuMDMgNy4wMyAwIDAgMCAyLjI1NSA0em0tLjU4MiAzLjVjLjAzLS44NzcuMTM4LTEuNzE4LjMxMi0yLjVIMS42NzRhNyA3IDAgMCAwLS42NTYgMi41ek00Ljg0NyA1YTEyLjUgMTIuNSAwIDAgMC0uMzM4IDIuNUg3LjVWNXpNOC41IDV2Mi41aDIuOTlhMTIuNSAxMi41IDAgMCAwLS4zMzctMi41ek00LjUxIDguNWExMi41IDEyLjUgMCAwIDAgLjMzNyAyLjVINy41VjguNXptMy45OSAwVjExaDIuNjUzYy4xODctLjc2NS4zMDYtMS42MDguMzM4LTIuNXpNNS4xNDUgMTJxLjIwOC41OC40NjggMS4wNjhjLjU1MiAxLjAzNSAxLjIxOCAxLjY1IDEuODg3IDEuODU1VjEyem0uMTgyIDIuNDcyYTcgNyAwIDAgMS0uNTk3LS45MzNBOS4zIDkuMyAwIDAgMSA0LjA5IDEySDIuMjU1YTcgNyAwIDAgMCAzLjA3MiAyLjQ3Mk0zLjgyIDExYTEzLjcgMTMuNyAwIDAgMS0uMzEyLTIuNWgtMi40OWMuMDYyLjg5LjI5MSAxLjczMy42NTYgMi41em02Ljg1MyAzLjQ3MkE3IDcgMCAwIDAgMTMuNzQ1IDEySDExLjkxYTkuMyA5LjMgMCAwIDEtLjY0IDEuNTM5IDcgNyAwIDAgMS0uNTk3LjkzM004LjUgMTJ2Mi45MjNjLjY3LS4yMDQgMS4zMzUtLjgyIDEuODg3LTEuODU1cS4yNi0uNDg3LjQ2OC0xLjA2OHptMy42OC0xaDIuMTQ2Yy4zNjUtLjc2Ny41OTQtMS42MS42NTYtMi41aC0yLjQ5YTEzLjcgMTMuNyAwIDAgMS0uMzEyIDIuNW0yLjgwMi0zLjVhNyA3IDAgMCAwLS42NTYtMi41SDEyLjE4Yy4xNzQuNzgyLjI4MiAxLjYyMy4zMTIgMi41ek0xMS4yNyAyLjQ2MWMuMjQ3LjQ2NC40NjIuOTguNjQgMS41MzloMS44MzVhNyA3IDAgMCAwLTMuMDcyLTIuNDcyYy4yMTguMjg0LjQxOC41OTguNTk3LjkzM00xMC44NTUgNGE4IDggMCAwIDAtLjQ2OC0xLjA2OEM5LjgzNSAxLjg5NyA5LjE3IDEuMjgyIDguNSAxLjA3N1Y0eiIvPgo8L3N2Zz4=",
+      "created": 1758796854144,
+      "lastRetrieved": 1758796854144
+    }
+  }
 }
