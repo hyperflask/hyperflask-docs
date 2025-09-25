@@ -2026,8 +2026,8 @@
 <p>This feature is provided by <a href="https://github.com/hyperflask/flask-file-routes">Flask-File-Routes</a></p>
 </div>
 <h2 id="dynamic-pages">Dynamic pages</h2>
-<p>Pages use the <a href="https://github.com/hyperflask/jinjapy">jinjapy</a> file format. It combines python code and a <a href="#the-page-template">jinja template</a>. The python code will be executed first on every request, then the template will be rendered.</p>
-<p>The python code is enclosed inside 2 lines containing 3 dashes "---"</p>
+<p>Pages use the <a href="https://github.com/hyperflask/jinjapy">jinjapy</a> file format. It combines python code and a <a href="#the-page-template">jinja template</a>. The python code will be executed first on every request, then the template will be rendered. The python code is enclosed inside 2 lines containing 3 dashes "---".</p>
+<p>Create new pages in the <code>app/pages</code> folder using the <code>.jpy</code> extension.</p>
 <p>A special <a href="#the-page-object">page object</a> is available in the python code. Assign values to this object so that they become available in the template.</p>
 <div class="highlight"><pre><span></span><code><span class="c">---</span>
 <span class="n">page</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
@@ -2059,15 +2059,15 @@
 <h2 id="how-routing-works">How routing works</h2>
 <p>The URL rule is constructed using the following rules:</p>
 <ul>
-<li><code>index.ext</code> file are roots</li>
+<li><code>index.jpy</code> file are roots</li>
 <li>folder hierarchy are transformed to url paths:<ul>
-<li><code>posts/release-annoucement.ext</code> converts to <code>/posts/release-annoucement</code></li>
-<li><code>posts/index.ext</code> converts to <code>/posts</code></li>
-<li><code>folder/subfolder/page.ext</code> converts to <code>/folder/subfolder/page</code></li>
+<li><code>posts/release-annoucement.jpy</code> converts to <code>/posts/release-annoucement</code></li>
+<li><code>posts/index.jpy</code> converts to <code>/posts</code></li>
+<li><code>folder/subfolder/page.jpy</code> converts to <code>/folder/subfolder/page</code></li>
 </ul>
 </li>
 <li>placeholders are allowed in filenames:<ul>
-<li><code>posts/&lt;slug&gt;.ext</code> converts to <code>/posts/&lt;slug&gt;</code></li>
+<li><code>posts/&lt;slug&gt;.jpy</code> converts to <code>/posts/&lt;slug&gt;</code></li>
 </ul>
 </li>
 </ul>
