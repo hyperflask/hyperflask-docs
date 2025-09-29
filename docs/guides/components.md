@@ -163,5 +163,4 @@ def render(prop1, prop2):
     return {"var": "value"} # template variables
 ---
 {{var}}
----
 ```

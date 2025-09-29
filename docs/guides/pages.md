@@ -60,6 +60,8 @@ The URL rule is constructed using the following rules:
     - `folder/subfolder/page.jpy` converts to `/folder/subfolder/page`
 - placeholders are allowed in filenames:
     - `posts/<slug>.jpy` converts to `/posts/<slug>`
+- surround a folder name with parentheses so that it does not appear in the url
+    - `folder/(subfolder)/page.jpy` converts to `/folder/page`
 
 The placeholder value is available through the [`page` object](#the-page-object) (eg: `page.slug`).
 
