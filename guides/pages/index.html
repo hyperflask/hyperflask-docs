@@ -2070,6 +2070,10 @@
 <li><code>posts/&lt;slug&gt;.jpy</code> converts to <code>/posts/&lt;slug&gt;</code></li>
 </ul>
 </li>
+<li>surround a folder name with parentheses so that it does not appear in the url<ul>
+<li><code>folder/(subfolder)/page.jpy</code> converts to <code>/folder/page</code></li>
+</ul>
+</li>
 </ul>
 <p>The placeholder value is available through the <a href="#the-page-object"><code>page</code> object</a> (eg: <code>page.slug</code>).</p>
 <h2 id="layouts">Layouts</h2>
