@@ -3,7 +3,7 @@
 Perform long-running or blocking tasks in the background.
 
 !!! info
-    This feature is provided by [Flask-Dramatiq](https://flask-dramatiq.readthedocs.io)
+    This feature uses [Dramatiq](https://dramatiq.io) and [Periodiq](https://gitlab.com/bersace/periodiq)
 
 
 ## Creating tasks
@@ -27,6 +27,17 @@ Tasks can be queued for execution from anywhere:
 ```py
 from app.tasks import fetch_url
 fetch_url.send("http://...")
+```
+
+## Scheduled tasks (cron jobs)
+
+```py
+from hyperflask.factory import app
+from hyperflask import cron
+
+@app.actor(periodiq=cron("1 * * * *"))
+def do_something_every_day(url):
+    # ...
 ```
 
 ## Brokers

@@ -31,7 +31,7 @@ page.todos = Todo.find_all()
         <{TodoItem todo=todo }/>
     {% endfor %}
 </table>
-<button hx-get="{{url_for('TodoItemForm')}}" hx-target="previous" hx-swap="beforeend">Add todo</button>
+<{button hx-get=url_for('TodoItemForm') hx-target="previous" hx-swap="beforeend"}>Add todo</{button}>
 ```
 
 *app/components/TodoItem.jpy*:
@@ -53,8 +53,8 @@ def delete():
 <tr>
     <td>{{props.todo.title}}</td>
     <td>
-        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id)}}" hx-target="closest tr" hx-swap="outerHTML">Edit</button>
-        <button hx-delete="{{url_for('TodoItem', id=props.todo.id)}}" hx-target="closest tr" hx-swap="delete">Delete</button>
+        <{button hx-get=url_for('TodoItemForm', id=props.todo.id) hx-target="closest tr" hx-swap="outerHTML"}>Edit</{button}>
+        <{button hx-delete=url_for('TodoItem', id=props.todo.id) hx-target="closest tr" hx-swap="delete"}>Delete</{button}>
     </td>
 </tr>
 ```
@@ -85,7 +85,7 @@ def post():
         <input type="text" name="title" value="{{props.todo.title if props.todo else ''}}" required>
     </td>
     <td>
-        <button hx-get="{{url_for('TodoItemForm', id=props.todo.id if props.todo else None)}}" hx-include="closest tr" hx-target="closest tr" hx-swap="outerHTML">Save</button>
+        <{button hx-get=url_for('TodoItemForm', id=props.todo.id if props.todo else None) hx-include="closest tr" hx-target="closest tr" hx-swap="outerHTML"}>Save</{button}>
     </td>
 </tr>
 ```

@@ -70,11 +70,14 @@ Finally, in the age of AI driven development, we shouldn't (yet) let AI generate
 
 ## Acknowledgments
 
-Hyperflask is inspired by many:
+Special acknowlegment to the work of []() (Flask, Jinja, ...). Great libraries, very well designed, extensible. Really excellent work.
+
+Hyperflask is also inspired by many:
 
  - [Ruby on Rails](https://rubyonrails.org/) because of their backend-first, one man framework philosophy
  - [Astro](https://astro.build) for their page format, component islands and static content-first approach
  - [Jekyll](https://jekyllrb.com) for their content collections
  - [htmx](https://htmx.org/) for allowing to build web sites with minimal custom js
  - [Laravel](https://laravel.com/) for the everything included approach
+ - [Next.js](https://nextjs.org/) for some features
  - and many other open source projects

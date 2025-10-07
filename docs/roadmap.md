@@ -9,11 +9,9 @@ Checkout the list of all the projects developed as part of the Hyperflask Stack 
 
 Key stuff that is still missing:
 
-- SQLite broker for Dramatiq and background task tests
 - [Dockerfile & Deployments](/guides/deploy/)
 - [Static content mode](/guides/static/)
 - [Image optimizations](/guides/assets/#optimized-images)
-- [Metadata](/guides/metadata/)
 - Syntax highlighting for the macro tags syntax in jinja templates
 
 Planned v1 experience:
@@ -28,7 +26,7 @@ Planned v1 experience:
 | Collections | ✅ |  | [flask-collections](https://github.com/hyperflask/flask-collections)
 | Upload files | ✅ | | [flask-files](https://github.com/hyperflask/flask-files)
 | Emails | ✅ | | [flask-mailman-templates](https://github.com/hyperflask/flask-mailman-templates)
-| Background tasks | 🚧 | missing sqlite broker | [dramatiq-sqlite](https://github.com/hyperflask/dramatiq-sqlite)
+| Background tasks | ✅ | | [dramatiq-sqlite](https://github.com/hyperflask/dramatiq-sqlite)
 | SSE push | ✅ | | [flask-mercure-sse](https://github.com/hyperflask/flask-mercure-sse)
 | I18n | 🚧 | finalizing | [flask-babel-hyper](https://github.com/hyperflask/flask-babel-hyper)
 | Static site generation | ❌ | | [hyperflask](https://github.com/hyperflask/hyperflask)

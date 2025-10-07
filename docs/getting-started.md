@@ -27,13 +27,19 @@ Hyperflask simplifies development environments by standardizing everything aroun
 
 VS Code is also the recommended editor (and currently the only one with syntax highlighting for Jinjapy files).
 
-What you will need:
+**What you will need:**
 
 - A UNIX like system (Linux, MacOS or [WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install))
 - [Docker](https://www.docker.com/)
 - [VS Code](https://code.visualstudio.com/) with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 Python is not needed on your machine, everything will be executed inside containers.
+
+Additional VS Code extensions will be suggested when you open a project:
+
+ - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+ - [SQLORM Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=hyperflask.sqlorm-language-support)
+ - [Jinjapy Language Support](https://marketplace.visualstudio.com/items?itemName=hyperflask.jinjapy-language-support)
 
 !!! info
     Although VS Code with dev containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI. See the [setup guide for more information on how to run without VS Code or dev containers](/guides/setup/#advanced)
@@ -129,7 +135,7 @@ Let's add a form to our chat interface. Replace `app/pages/index.jpy` with the f
 <div id="messages">
     {# messages will display here #}
 </div>
-<{HxForm action=url_for("ChatMessage") hx_target="#messages" hx_swap="beforeend"}>
+<{HxForm action=url_for("ChatMessage") hx-target="#messages" hx-swap="beforeend"}>
     <{TextareaField name="message" placeholder="Chat" }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
@@ -187,7 +193,7 @@ page.messages = Message.find_all()
         <{ChatMessage message=msg }/>
     {% endfor %}
 </div>
-<{HxForm action=url_for("ChatMessage") hx_target="#messages" hx_swap="beforeend"}>
+<{HxForm action=url_for("ChatMessage") hx-target="#messages" hx-swap="beforeend"}>
     <{TextareaField name="message" placeholder="Chat" }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
@@ -224,7 +230,7 @@ def post():
         current_app.sse.publish("messages", current_app.components.ChatMessage(message=msg), private=True)
 ---
 {% form %}
-<{HxForm form action=url_for("PostMessageForm") hx_swap="none"}>
+<{HxForm form action=url_for("PostMessageForm") hx-swap="none"}>
     <{FormField form.message.textarea(required=True, placeholder="Chat") }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>

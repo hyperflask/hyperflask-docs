@@ -11,7 +11,7 @@ Hyperflask is made of different processes. It uses [honcho](https://honcho.readt
 
 Each of these processes can be started independently.
 
- - app processes can be served by a load balancer proxy (like nginx)
+ - web processes can be served by a load balancer proxy (like nginx)
  - worker processes can be hosted on different machines and multipled to handle more tasks
 
 You won't be able to use SQLite as a database once you reach scaling issues. We recommend switching to PostgreSQL.

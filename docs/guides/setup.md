@@ -6,13 +6,19 @@ Hyperflask simplifies development environments by standardizing everything aroun
 
 VS Code is also the recommended editor (and currently the only one with syntax highlighting for Jinjapy files).
 
-What you will need:
+**What you will need:**
 
 - A UNIX like system (Linux, MacOS or [WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install))
 - [Docker](https://www.docker.com/)
 - [VS Code](https://code.visualstudio.com/) with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 Python is not needed on your machine, everything will be executed inside containers.
+
+Additional VS Code extensions will be suggested when you open a project:
+
+ - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+ - [SQLORM Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=hyperflask.sqlorm-language-support)
+ - [Jinjapy Language Support](https://marketplace.visualstudio.com/items?itemName=hyperflask.jinjapy-language-support)
 
 ## Installation using Hyperflask-Start
 
