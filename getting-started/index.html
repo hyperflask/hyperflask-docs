@@ -2089,13 +2089,19 @@
 <h2 id="what-you-will-need-to-install-and-run-hyperflask">What you will need to install and run Hyperflask</h2>
 <p>Hyperflask simplifies development environments by standardizing everything around containers.</p>
 <p>VS Code is also the recommended editor (and currently the only one with syntax highlighting for Jinjapy files).</p>
-<p>What you will need:</p>
+<p><strong>What you will need:</strong></p>
 <ul>
 <li>A UNIX like system (Linux, MacOS or <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL on Windows</a>)</li>
 <li><a href="https://www.docker.com/">Docker</a></li>
 <li><a href="https://code.visualstudio.com/">VS Code</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers extension</a></li>
 </ul>
 <p>Python is not needed on your machine, everything will be executed inside containers.</p>
+<p>Additional VS Code extensions will be suggested when you open a project:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=hyperflask.sqlorm-language-support">SQLORM Syntax Highlighting</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=hyperflask.jinjapy-language-support">Jinjapy Language Support</a></li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Although VS Code with dev containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI. See the <a href="/guides/setup/#advanced">setup guide for more information on how to run without VS Code or dev containers</a></p>
@@ -2168,7 +2174,7 @@
 <span class="x">&lt;div id=&quot;messages&quot;&gt;</span>
 <span class="x">    </span><span class="c">{# messages will display here #}</span>
 <span class="x">&lt;/div&gt;</span>
-<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx_target=&quot;#messages&quot; hx_swap=&quot;beforeend&quot;}&gt;</span>
+<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx-target=&quot;#messages&quot; hx-swap=&quot;beforeend&quot;}&gt;</span>
 <span class="x">    &lt;{TextareaField name=&quot;message&quot; placeholder=&quot;Chat&quot; }/&gt;</span>
 <span class="x">    &lt;{SubmitButton}&gt;Send&lt;/{}&gt;</span>
 <span class="x">&lt;/{HxForm}&gt;</span>
@@ -2212,7 +2218,7 @@
 <span class="x">        &lt;{ChatMessage message=msg }/&gt;</span>
 <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 <span class="x">&lt;/div&gt;</span>
-<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx_target=&quot;#messages&quot; hx_swap=&quot;beforeend&quot;}&gt;</span>
+<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx-target=&quot;#messages&quot; hx-swap=&quot;beforeend&quot;}&gt;</span>
 <span class="x">    &lt;{TextareaField name=&quot;message&quot; placeholder=&quot;Chat&quot; }/&gt;</span>
 <span class="x">    &lt;{SubmitButton}&gt;Send&lt;/{}&gt;</span>
 <span class="x">&lt;/{HxForm}&gt;</span>
@@ -2239,7 +2245,7 @@
         <span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">ChatMessage</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">),</span> <span class="n">private</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c">---</span>
 <span class="cp">{%</span> <span class="k">form</span> <span class="cp">%}</span>
-<span class="x">&lt;{HxForm form action=url_for(&quot;PostMessageForm&quot;) hx_swap=&quot;none&quot;}&gt;</span>
+<span class="x">&lt;{HxForm form action=url_for(&quot;PostMessageForm&quot;) hx-swap=&quot;none&quot;}&gt;</span>
 <span class="x">    &lt;{FormField form.message.textarea(required=True, placeholder=&quot;Chat&quot;) }/&gt;</span>
 <span class="x">    &lt;{SubmitButton}&gt;Send&lt;/{}&gt;</span>
 <span class="x">&lt;/{HxForm}&gt;</span>

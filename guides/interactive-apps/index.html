@@ -1986,7 +1986,7 @@ These functions can return a dict with component props to render the component o
 <span class="x">        &lt;{TodoItem todo=todo }/&gt;</span>
 <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 <span class="x">&lt;/table&gt;</span>
-<span class="x">&lt;button hx-get=&quot;</span><span class="cp">{{</span><span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;TodoItemForm&#39;</span><span class="o">)</span><span class="cp">}}</span><span class="x">&quot; hx-target=&quot;previous&quot; hx-swap=&quot;beforeend&quot;&gt;Add todo&lt;/button&gt;</span>
+<span class="x">&lt;{button hx-get=url_for(&#39;TodoItemForm&#39;) hx-target=&quot;previous&quot; hx-swap=&quot;beforeend&quot;}&gt;Add todo&lt;/{button}&gt;</span>
 </code></pre></div>
 <p><em>app/components/TodoItem.jpy</em>:</p>
 <div class="highlight"><pre><span></span><code><span class="c">---</span>
@@ -2005,8 +2005,8 @@ These functions can return a dict with component props to render the component o
 <span class="x">&lt;tr&gt;</span>
 <span class="x">    &lt;td&gt;</span><span class="cp">{{</span><span class="nv">props.todo.title</span><span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
 <span class="x">    &lt;td&gt;</span>
-<span class="x">        &lt;button hx-get=&quot;</span><span class="cp">{{</span><span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;TodoItemForm&#39;</span><span class="o">,</span> <span class="nv">id</span><span class="o">=</span><span class="nv">props.todo.id</span><span class="o">)</span><span class="cp">}}</span><span class="x">&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Edit&lt;/button&gt;</span>
-<span class="x">        &lt;button hx-delete=&quot;</span><span class="cp">{{</span><span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;TodoItem&#39;</span><span class="o">,</span> <span class="nv">id</span><span class="o">=</span><span class="nv">props.todo.id</span><span class="o">)</span><span class="cp">}}</span><span class="x">&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;delete&quot;&gt;Delete&lt;/button&gt;</span>
+<span class="x">        &lt;{button hx-get=url_for(&#39;TodoItemForm&#39;, id=props.todo.id) hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;}&gt;Edit&lt;/{button}&gt;</span>
+<span class="x">        &lt;{button hx-delete=url_for(&#39;TodoItem&#39;, id=props.todo.id) hx-target=&quot;closest tr&quot; hx-swap=&quot;delete&quot;}&gt;Delete&lt;/{button}&gt;</span>
 <span class="x">    &lt;/td&gt;</span>
 <span class="x">&lt;/tr&gt;</span>
 </code></pre></div>
@@ -2034,7 +2034,7 @@ These functions can return a dict with component props to render the component o
 <span class="x">        &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;</span><span class="cp">{{</span><span class="nv">props.todo.title</span> <span class="k">if</span> <span class="nv">props.todo</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="cp">}}</span><span class="x">&quot; required&gt;</span>
 <span class="x">    &lt;/td&gt;</span>
 <span class="x">    &lt;td&gt;</span>
-<span class="x">        &lt;button hx-get=&quot;</span><span class="cp">{{</span><span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;TodoItemForm&#39;</span><span class="o">,</span> <span class="nv">id</span><span class="o">=</span><span class="nv">props.todo.id</span> <span class="k">if</span> <span class="nv">props.todo</span> <span class="k">else</span> <span class="kp">None</span><span class="o">)</span><span class="cp">}}</span><span class="x">&quot; hx-include=&quot;closest tr&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;&gt;Save&lt;/button&gt;</span>
+<span class="x">        &lt;{button hx-get=url_for(&#39;TodoItemForm&#39;, id=props.todo.id if props.todo else None) hx-include=&quot;closest tr&quot; hx-target=&quot;closest tr&quot; hx-swap=&quot;outerHTML&quot;}&gt;Save&lt;/{button}&gt;</span>
 <span class="x">    &lt;/td&gt;</span>
 <span class="x">&lt;/tr&gt;</span>
 </code></pre></div>
