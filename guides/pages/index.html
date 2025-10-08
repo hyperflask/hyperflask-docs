@@ -594,6 +594,8 @@
       
         
       
+        
+      
     
     
     
@@ -767,6 +769,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generating-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating URLs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#layouts" class="md-nav__link">
     <span class="md-ellipsis">
       Layouts
@@ -873,6 +884,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Static content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../assets/" class="md-nav__link">
         
   
@@ -905,8 +939,6 @@
   
     
     
-      
-        
       
         
       
@@ -986,29 +1018,6 @@
   
   <span class="md-ellipsis">
     Models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../static/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Static content
     
   </span>
   
@@ -1687,6 +1696,8 @@
       
         
       
+        
+      
     
     
     
@@ -1734,6 +1745,29 @@
   
   <span class="md-ellipsis">
     Going to production
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting platforms
     
   </span>
   
@@ -1951,6 +1985,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generating-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating URLs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#layouts" class="md-nav__link">
     <span class="md-ellipsis">
       Layouts
@@ -2049,13 +2092,7 @@
 <p>We recommend reading the <a href="https://flask.palletsprojects.com/en/stable/templating/">Flask templating guide</a>.</p>
 <p>Hyperflask includes built-ins UI components powered by <a href="https://daisyui.com/">DaisyUI</a>. Check out the <a href="/guides/components/#built-in-ui-components">Components</a> guide.</p>
 <h2 id="content-pages">Content pages</h2>
-<p>No python code will be executed on content pages.</p>
-<p>Content pages can use the following formats:</p>
-<ul>
-<li><strong>html</strong>: a standard jinja template</li>
-<li><strong>md</strong>: a standard jinja template that will be rendered using markdown</li>
-</ul>
-<p>All formats can have a YAML frontmatter defining variables that will be injected in the page object.</p>
+<p>See <a href="/guides/static#content-pages">static content</a>.</p>
 <h2 id="how-routing-works">How routing works</h2>
 <p>The URL rule is constructed using the following rules:</p>
 <ul>
@@ -2076,6 +2113,17 @@
 </li>
 </ul>
 <p>The placeholder value is available through the <a href="#the-page-object"><code>page</code> object</a> (eg: <code>page.slug</code>).</p>
+<h2 id="generating-urls">Generating URLs</h2>
+<p>Use <a href="https://flask.palletsprojects.com/en/stable/api/#flask.url_for">Flask's <code>url_for()</code></a> function as usual.</p>
+<p>Endpoint names follow the following rules:</p>
+<ul>
+<li><code>page.jpy</code> =&gt; <code>page</code></li>
+<li><code>posts/release-annoucement.jpy</code> =&gt; <code>posts_release-announcement</code></li>
+<li><code>posts/index.jpy</code> =&gt; <code>posts</code></li>
+<li><code>folder/subfolder/page.jpy</code> =&gt; <code>folder_subfolder_page</code></li>
+<li><code>posts/&lt;slug&gt;.jpy</code> =&gt; <code>posts_&lt;slug&gt;</code></li>
+<li><code>folder/(subfolder)/page.jpy</code> =&gt; <code>folder_subfolder_page</code></li>
+</ul>
 <h2 id="layouts">Layouts</h2>
 <p>Hyperflask makes managing layouts for your pages easier. Layouts are saved in the <em>app/layouts</em> folder. The default layout can be overriden at <em>app/layouts/default.html</em>.
 (Hyperflask provides a default layout when none is created)</p>

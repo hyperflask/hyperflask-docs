@@ -587,6 +587,8 @@
       
         
       
+        
+      
     
     
     
@@ -743,6 +745,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../guides/static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Static content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../guides/assets/" class="md-nav__link">
         
   
@@ -775,8 +800,6 @@
   
     
     
-      
-        
       
         
       
@@ -856,29 +879,6 @@
   
   <span class="md-ellipsis">
     Models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../guides/static/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Static content
     
   </span>
   
@@ -1559,6 +1559,8 @@
       
         
       
+        
+      
     
     
     
@@ -1609,6 +1611,29 @@
   
   <span class="md-ellipsis">
     Going to production
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting platforms
     
   </span>
   
@@ -1911,8 +1936,8 @@
 
 <h1 id="monitoring">Monitoring</h1>
 <p>Monitoring is critical when running app in production. It gives you visibility across your infrastructure and allows you to debug issues without touching production servers.</p>
-<p><a href="https://opentelemetry.io/">OpenTelemetry</a> is a set of standards meant to observe production environments across the stack, from server to application. It is a complex system that seems daunting but the Hyperflask stack integrates it in a seamless manner.</p>
-<p>Parallel to Open Telemetry, <a href="https://sentry.io/">Sentry</a> provides error monitoring allowing you to quickly investigate errors in production. Sentry can also provide performance monitoring, equivalent to OpenTelemetry traces.</p>
+<p><a href="https://sentry.io/">Sentry</a> provides error monitoring allowing you to quickly investigate errors in production. Sentry can also provide performance monitoring, equivalent to OpenTelemetry traces.</p>
+<p><a href="https://opentelemetry.io/">OpenTelemetry</a> is a set of standards meant to observe production environments across the stack, from server to application.</p>
 <p>Both are needed for proper monitoring of your infrastructure but Sentry may be sufficient when running on managed hosting providers.</p>
 <h2 id="error-monitoring-using-sentry">Error monitoring using Sentry</h2>
 <p>It can be easily setup using <a href="https://github.com/hyperflask/flask-sentry">Flask-Sentry</a>:</p>
@@ -1932,21 +1957,15 @@
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
 </code></pre></div>
 <h2 id="when-using-a-vps">When using a VPS</h2>
-<p>When deploying to a VPS using <code>hyperflask deploy</code>, the server is configured to be monitored using OpenTelemetry.</p>
-<p>A local OpenTelemetry Collector is installed on the machine to gather all telemetry data before forwarding it to a remote service. By default, the collector will gather:</p>
+<p>When deploying to a VPS, it is recommend to install the <a href="https://opentelemetry.io/docs/collector/">OpenTelemetry Collector</a> to gather all telemetry data before forwarding it to a remote service.</p>
+<p>You can <a href="https://opentelemetry.io/docs/collector/installation/">install the collector</a> as a container then:</p>
 <ul>
-<li>server metrics</li>
-<li>logs</li>
+<li><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#collecting-host-metrics-from-inside-a-container-linux-only">Configure the collector to collect hostmetrics</a></li>
+<li>Collect application metrics using <a href="https://github.com/hyperflask/flask-observability">Flask-Observability</a> and point to the collector</li>
 </ul>
-<p>To collect application metrics as well, use <a href="https://github.com/hyperflask/flask-observability">Flask-Observability</a>.</p>
-<p>Log files are always stored locally and rotated daily.</p>
 <p><a href="https://grafana.com">Grafana</a> is a great service to store and visualize your monitoring data. Their cloud service has a generous free tier but it is hard to self host.<br />
 It can be used as an <a href="https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/">OLTP endpoint</a> to collect OpenTelemetry data. <a href="https://opentelemetry.io/docs/collector/configuration/#exporters">Configure the collector</a> to export to this endpoint.</p>
 <p><a href="https://signoz.io">Signoz</a> is an alternative that is purpose built for OpenTelemetry and that can be easily self hosted.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Checkout <a href="https://github.com/hyperflask/docker-web-deploy">docker-web-deploy documentation</a> for more info.</p>
-</div>
 <h2 id="uptime-monitoring">Uptime monitoring</h2>
 <p>Uptime monitoring allows you to recieve alerts when your infrastructure is completely down and measures how long it has been down.</p>
 <p>Check out <a href="https://uptimerobot.com">UptimeRobot</a> (commercial service, no affiliation).</p>

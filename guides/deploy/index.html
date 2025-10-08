@@ -592,6 +592,8 @@
       
         
       
+        
+      
     
     
     
@@ -748,6 +750,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Static content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../assets/" class="md-nav__link">
         
   
@@ -780,8 +805,6 @@
   
     
     
-      
-        
       
         
       
@@ -861,29 +884,6 @@
   
   <span class="md-ellipsis">
     Models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../static/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Static content
     
   </span>
   
@@ -1305,9 +1305,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-deploy-using-hyperflask-start" class="md-nav__link">
+  <a href="#build-a-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Build &amp; deploy using Hyperflask-Start
+      Build a docker image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backuping-your-sqlite-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backuping your SQLite database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storing-uploaded-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storing uploaded files
     </span>
   </a>
   
@@ -1323,42 +1341,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#building-for-production" class="md-nav__link">
+  <a href="#building-without-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Building for production
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building for production">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#only-building-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      Only building the docker image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#without-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Without docker
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      Monitoring
+      Building without docker
     </span>
   </a>
   
@@ -1666,6 +1651,8 @@
       
         
       
+        
+      
     
     
     
@@ -1713,6 +1700,29 @@
   
   <span class="md-ellipsis">
     Going to production
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting platforms
     
   </span>
   
@@ -1894,9 +1904,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-deploy-using-hyperflask-start" class="md-nav__link">
+  <a href="#build-a-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Build &amp; deploy using Hyperflask-Start
+      Build a docker image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backuping-your-sqlite-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backuping your SQLite database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storing-uploaded-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storing uploaded files
     </span>
   </a>
   
@@ -1912,42 +1940,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#building-for-production" class="md-nav__link">
+  <a href="#building-without-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Building for production
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building for production">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#only-building-the-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      Only building the docker image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#without-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Without docker
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      Monitoring
+      Building without docker
     </span>
   </a>
   
@@ -1978,29 +1973,50 @@
 
 
 <h1 id="deploying">Deploying</h1>
+<h2 id="build-a-docker-image">Build a docker image</h2>
+<p>When using Hyperflask-Start, a <a href="https://github.com/hyperflask/hyperflask-start/blob/main/%7B%7Bcookiecutter.project_slug%7D%7D/Dockerfile">Dockerfile</a> is provider to containerized your app.</p>
+<p>Run <code>docker build . -t &lt;image_name&gt;</code> to build the image.</p>
+<p>The image exposes the port 80 and is ready for production.<br />
+<a href="#backuping-your-sqlite-database">Read about backuping the SQLite database</a>.</p>
+<p>Use any docker hosting platforms or VPS. Check out our <a href="/recipes/hosting">recipe for hosting providers</a>.</p>
+<p>The image exposes some volumes:</p>
+<ul>
+<li><code>/app/database</code>: the database folder. Mount this volume to persist app data.</li>
+<li><code>/app/uploads</code>: the folder where uploaded files are stored. Mount this volume to persist them and <a href="#storing-uploaded-files">read about other solutions</a>.</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>This feature is provided by <a href="https://github.com/hyperflask/docker-web-deploy">Docker Web Deploy</a></p>
+<p>The image uses <a href="https://caddyserver.com/">Caddy</a> as a single access point. It proxies request to the web server or the mercure server. It also serves static files.</p>
 </div>
-<h2 id="build-deploy-using-hyperflask-start">Build &amp; deploy using Hyperflask-Start</h2>
-<p>Run the following command:</p>
-<div class="highlight"><pre><span></span><code>$ uv run hyperflask deploy
-</code></pre></div>
+<h2 id="backuping-your-sqlite-database">Backuping your SQLite database</h2>
+<p>The provided Dockerfile suppports using <a href="https://litestream.io/">Litestream</a>, a real-time SQLite replication solution. It can replicate your SQLite database to various file storage solution, the most common one being S3 (or compatible).</p>
+<p>Build your image with the following env variables:</p>
+<ul>
+<li><code>LITESTREAM_URL</code>: the replica URL</li>
+<li><code>LITESTREAM_ACCESS_KEY_ID</code>: access key for the S3 service</li>
+<li><code>LITESTREAM_SECRET_ACCESS_KEY</code>: secret key for the S3 service</li>
+</ul>
+<p>Example: <code>docker build -e LITESTREAM_URL=s3://bucket/app.db -e LITESTREAM_ACCESS_KEY_ID -e LITESTREAM_SECRET_ACCESS_KEY . -t &lt;image_name&gt;</code></p>
+<p>As an alternative:</p>
+<ul>
+<li>you can provide a <code>litestream.yml</code> file in your project directory (it will be copied to <code>/etc/litestream.yml</code> on container start)</li>
+<li>you can mount a custom litestream config at runtime: <code>docker run -v litestream.yml:/etc/litestream.yml ...</code></li>
+</ul>
+<h2 id="storing-uploaded-files">Storing uploaded files</h2>
+<p>It is recommended to host files on durable object storage like <a href="https://aws.amazon.com/s3/">AWS S3</a> or <a href="https://www.cloudflare.com/developer-platform/products/r2/">Cloudflare R2</a>.</p>
+<p>You will need to <a href="/guides/files#using-s3">configure the files storage</a>.</p>
 <h2 id="static-site-generation">Static site generation</h2>
-<p>Run <code>hyperflask build</code>. You site will be generated in the <code>_site</code> folder.</p>
+<p>First, it is recommended to check out the <a href="/guides/static">Static content guide</a>.</p>
+<p>Run <code>uv run hyperflask build</code>. You site will be generated in the <code>_site</code> folder.</p>
+<p>Use any static hosting platforms, check out our <a href="/recipes/hosting#static-hosting">recipe for hosting providers</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Use <code>hyperflask csp-header</code> to print the CSP policy to properly configure your web server.</p>
+<p>Use <code>uv run hyperflask csp-header</code> to print the CSP policy to properly configure your web server.</p>
 </div>
-<h2 id="building-for-production">Building for production</h2>
-<h3 id="only-building-the-docker-image">Only building the docker image</h3>
-<p>When using Hyperflask-Start, the app is containerized. Run <code>docker build .</code> to build the image.</p>
-<h3 id="without-docker">Without docker</h3>
-<p>Run <code>hyperflask build</code> to build assets and static content.</p>
+<h2 id="building-without-docker">Building without docker</h2>
+<p>Run <code>uv run hyperflask build</code> to build assets and static content.</p>
 <p>In production, assets will not be built and nodejs is not required. Ensure that the file <code>app/assets.json</code> and the <code>public</code> directory are shipped.</p>
 <p>If you have static content, it will be generated in the <em>_site</em> folder. You can use a proxy server like nginx to serve urls from this folder first or fallback to your app for hybrid content mode.</p>
-<h2 id="monitoring">Monitoring</h2>
-<p>Check out the <a href="/recipes/monitoring">recipe on monitoring</a>.</p>
 
 
 

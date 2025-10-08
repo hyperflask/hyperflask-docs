@@ -739,6 +739,8 @@
       
         
       
+        
+      
     
     
     
@@ -895,6 +897,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../guides/static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Static content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../guides/assets/" class="md-nav__link">
         
   
@@ -927,8 +952,6 @@
   
     
     
-      
-        
       
         
       
@@ -1008,29 +1031,6 @@
   
   <span class="md-ellipsis">
     Models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guides/static/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Static content
     
   </span>
   
@@ -1709,6 +1709,8 @@
       
         
       
+        
+      
     
     
     
@@ -1756,6 +1758,29 @@
   
   <span class="md-ellipsis">
     Going to production
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting platforms
     
   </span>
   
@@ -2295,10 +2320,15 @@
 <p>Finally, add <code>page.login_required()</code> at the top of your page frontmatter to require authentication to access it.</p>
 <p>Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <a href="http://localhost:8025">http://localhost:8025</a> to access <a href="https://github.com/axllent/mailpit">Mailpit</a> and read the emails (the code is also printed in the server logs).</p>
 <h2 id="deploying-to-production">Deploying to production</h2>
-<p>Signup for an account on Fly.io or any VPS provider (eg: Digital Ocean) then run the following command from a VS Code terminal (while connected to the dev container):</p>
-<div class="highlight"><pre><span></span><code>uv run hyperflask deploy
-</code></pre></div>
-<p>Some information will be requested then the deployment will happen automatically. Connect to your domain and voilà!</p>
+<p>A Dockerfile is provided and can be used to deploy using any services supporting container deployments.</p>
+<p>For this example, we will use <a href="https://fly.io">Fly.io</a> (no commercial affiliation).</p>
+<ol>
+<li><a href="https://fly.io/docs/flyctl/install/">Install flyctl</a>, their CLI utility: <code>curl -L https://fly.io/install.sh | sh</code></li>
+<li>Create an account with <code>fly auth signup</code> or log in with <code>fly auth login</code>.</li>
+<li>Run <code>fly launch</code></li>
+<li>Run <code>fly deploy</code> to redeploy your app</li>
+</ol>
+<p><a href="/guides/deploy">Read the deployment guide</a> for more deployment options.</p>
 <h2 id="going-further">Going further</h2>
 <p>Checkout the <a href="https://github.com/hyperflask/getting-started">Github repository</a> with the result of this tutorial and more. It also includes a nice UI, chat rooms, etc...</p>
 
