@@ -40,14 +40,7 @@ Hyperflask includes built-ins UI components powered by [DaisyUI](https://daisyui
 
 ## Content pages
 
-No python code will be executed on content pages.
-
-Content pages can use the following formats:
-
-- **html**: a standard jinja template
-- **md**: a standard jinja template that will be rendered using markdown
-
-All formats can have a YAML frontmatter defining variables that will be injected in the page object.
+See [static content](/guides/static#content-pages).
 
 ## How routing works
 
@@ -64,6 +57,19 @@ The URL rule is constructed using the following rules:
     - `folder/(subfolder)/page.jpy` converts to `/folder/page`
 
 The placeholder value is available through the [`page` object](#the-page-object) (eg: `page.slug`).
+
+## Generating URLs
+
+Use [Flask's `url_for()`](https://flask.palletsprojects.com/en/stable/api/#flask.url_for) function as usual.
+
+Endpoint names follow the following rules:
+
+- `page.jpy` => `page`
+- `posts/release-annoucement.jpy` => `posts_release-announcement`
+- `posts/index.jpy` => `posts`
+- `folder/subfolder/page.jpy` => `folder_subfolder_page`
+- `posts/<slug>.jpy` => `posts_<slug>`
+- `folder/(subfolder)/page.jpy` => `folder_subfolder_page`
 
 ## Layouts
 

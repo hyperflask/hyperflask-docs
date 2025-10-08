@@ -86,7 +86,7 @@ template: home.html
         <h2>No messing around with your environment</h2>
         <p>
             Dev and prod environment are standardized on containers. With a tight integration with VS Code, everything is easy to setup and run.
-            Deploy to VPS and various cloud services in one command.
+            Easily deploy to VPS and various cloud services.
         </p>
         <p>
             <a href="/getting-started/">Get started &raquo;</a>

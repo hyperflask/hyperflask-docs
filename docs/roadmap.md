@@ -9,8 +9,6 @@ Checkout the list of all the projects developed as part of the Hyperflask Stack 
 
 Key stuff that is still missing:
 
-- [Dockerfile & Deployments](/guides/deploy/)
-- [Static content mode](/guides/static/)
 - [Image optimizations](/guides/assets/#optimized-images)
 - Syntax highlighting for the macro tags syntax in jinja templates
 
@@ -29,8 +27,7 @@ Planned v1 experience:
 | Background tasks | ✅ | | [dramatiq-sqlite](https://github.com/hyperflask/dramatiq-sqlite)
 | SSE push | ✅ | | [flask-mercure-sse](https://github.com/hyperflask/flask-mercure-sse)
 | I18n | 🚧 | finalizing | [flask-babel-hyper](https://github.com/hyperflask/flask-babel-hyper)
-| Static site generation | ❌ | | [hyperflask](https://github.com/hyperflask/hyperflask)
-| Deployments | ❌ | | [docker-web-deploy](https://github.com/hyperflask/docker-web-deploy)
+| Static site generation | ✅ | | [hyperflask](https://github.com/hyperflask/hyperflask)
 | VS Code integration | 🚧 | missing syntax highlighting for macro tags | 
 | Documentation | 🚧 | continuous improvements, more beginner docs | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
 

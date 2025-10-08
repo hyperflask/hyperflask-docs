@@ -5,16 +5,24 @@ Hyperflask is made of different processes. It uses [honcho](https://honcho.readt
 | Process | Description | Defaut port | Can be multiplied
 | --- | --- | --- | --- |
 | web | The application server handling HTTP requests | 5000 | Yes
-| mercurehub | The mercure hub server for SSE | 5500 | No
 | worker | The worker that executes background tasks | | Yes
 | scheduler | The worker that will trigger cron jobs | | No
+| mercurehub | The mercure hub server for SSE | 5300 | No
 
 Each of these processes can be started independently.
 
  - web processes can be served by a load balancer proxy (like nginx)
  - worker processes can be hosted on different machines and multipled to handle more tasks
 
-You won't be able to use SQLite as a database once you reach scaling issues. We recommend switching to PostgreSQL.
+!!! important
+    You won't be able to use SQLite as a database once you reach scaling issues. We recommend switching to PostgreSQL.
+
+## Starting individual processes
+
+Using Hyperflask-Start and the provided Dockerfile to build a container:
+
+    $ docker run my-app-image run web # only start the web process
+    $ docker run my-app-image run worker scheduler # only start the worker and scheduler processes
 
 ## Scaling workers
 

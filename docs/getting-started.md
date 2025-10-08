@@ -295,11 +295,16 @@ Upon accessing your site, you will be asked to connect using an email address. N
 
 ## Deploying to production
 
-Signup for an account on Fly.io or any VPS provider (eg: Digital Ocean) then run the following command from a VS Code terminal (while connected to the dev container):
+A Dockerfile is provided and can be used to deploy using any services supporting container deployments.
 
-    uv run hyperflask deploy
+For this example, we will use [Fly.io](https://fly.io) (no commercial affiliation).
 
-Some information will be requested then the deployment will happen automatically. Connect to your domain and voilà!
+1. [Install flyctl](https://fly.io/docs/flyctl/install/), their CLI utility: `curl -L https://fly.io/install.sh | sh`
+2. Create an account with `fly auth signup` or log in with `fly auth login`.
+3. Run `fly launch`
+4. Run `fly deploy` to redeploy your app
+
+[Read the deployment guide](/guides/deploy) for more deployment options.
 
 ## Going further
 

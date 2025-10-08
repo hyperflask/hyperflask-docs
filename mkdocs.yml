@@ -16,11 +16,11 @@ nav:
        - guides/pages.md
        - guides/components.md
        - guides/interactive-apps.md
+       - guides/static.md
        - guides/assets.md
     - Handling data:
        - guides/forms.md
        - guides/models.md
-       - guides/static.md
        - guides/files.md
        - guides/suspense.md
     - Digging deeper:
@@ -46,6 +46,7 @@ nav:
     - components/daisyui/index.md
   - Recipes:
     - recipes/going-to-production.md
+    - recipes/hosting.md
     - recipes/sending-emails.md
     - recipes/monitoring.md
     - recipes/analytics.md

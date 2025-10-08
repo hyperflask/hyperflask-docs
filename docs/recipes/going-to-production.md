@@ -3,7 +3,7 @@
 ## Infrastucture
 
 1. Purchase a domain and configure DNS
-2. Deploy your app to a VPS or docker hosting using `hyperflask deploy`
+2. [Deploy your app](/guides/deploy) to any docker hosting platform
 3. Setup [smtp server](/recipes/sending-emails) and configure your app
 4. Setup [error monitoring](/recipes/monitoring) (and optionnaly [analytics](/recipes/analytics))
 5. Review checklist
