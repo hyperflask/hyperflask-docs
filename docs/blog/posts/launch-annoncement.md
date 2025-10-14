@@ -45,7 +45,6 @@ In the same spirit, there are some projects developed as part of Hyperflask that
  - [jinjapy](https://github.com/hyperflask/jinjapy), a new file format that combines python code and a jinja template
  - [jinja-super-macros](https://github.com/hyperflask/jinja-super-macros), a new syntax to call macros in jinja
  - [uilib-spec](https://github.com/hyperflask/uilib-spec), a specification to generate bindings for UI component libraries (see [uilib-spec-daisyui](https://github.com/hyperflask/uilib-spec-daisyui) for a use case)
- - [docker-web-deploy](https://github.com/hyperflask/docker-web-deploy), a CLI tool to deploy containers to various platforms, including VPS
 
 All these projects are available on the [Hyperflask Github organization](https://github.com/hyperflask).
 
