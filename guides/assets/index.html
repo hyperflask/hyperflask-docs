@@ -372,6 +372,28 @@
   
 
       
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -843,11 +865,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optimized-images" class="md-nav__link">
+  <a href="#images" class="md-nav__link">
     <span class="md-ellipsis">
-      Optimized images
+      Images
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert-to-webp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert to webp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsive-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responsive images
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1886,6 +1932,64 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1931,11 +2035,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optimized-images" class="md-nav__link">
+  <a href="#images" class="md-nav__link">
     <span class="md-ellipsis">
-      Optimized images
+      Images
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert-to-webp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert to webp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsive-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responsive images
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2004,8 +2132,33 @@
 </ul>
 <h2 id="styling">Styling</h2>
 <p>Hyperflask uses <a href="https://tailwindcss.com/">Tailwind</a> for styling. It is fully integrated and you can use tailwind utility classes across pages and components.</p>
-<h2 id="optimized-images">Optimized images</h2>
-<p>TODO</p>
+<h2 id="images">Images</h2>
+<p>Use the <code>&lt;{Image}/&gt;</code> component instead of <code>asset_url()</code> to generate image tags.
+Using the component also enables using image placeholders (with a blurry image), responsive images and more.</p>
+<p>Place your images in the assets folder (eg. <code>app/assets/image.png</code>) then include them:</p>
+<div class="highlight"><pre><span></span><code>&lt;{Image src=&quot;image.png&quot; }/&gt;
+</code></pre></div>
+<p>The following default attributes will be set:</p>
+<ul>
+<li><code>width</code> and <code>height</code></li>
+<li><code>loading="lazy"</code> (default for all images can be changed in the configuration using <code>images_default_loading</code>)</li>
+<li><code>decoding="async"</code> (default for all images can be changed in the configuration using <code>images_default_decoding</code>)</li>
+<li><code>style</code> to define a background image using a base64 encoded data URI containing a tiny blurry version of the image (disable using <code>placeholder=False</code> on the Image component)</li>
+</ul>
+<p>Override any of these attributes on the Image component.</p>
+<p>Using <code>preload=True</code> on the Image component will add a preload meta in the page header and use eager loading instead. Use <code>priority=True</code> to set <code>preload=True</code> and fetchpriority to high.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>&lt;{Image src=&quot;image.png&quot; preload=True placeholder=False }/&gt;
+</code></pre></div>
+<h3 id="convert-to-webp">Convert to webp</h3>
+<p>It is possible to auto convert all images to webp by adding <code>assets_images_webp: true</code> in <code>config.yml</code>. Webp is a highly optimized image format for the web.</p>
+<p>If enabled, continue using the original name as the src of the image.</p>
+<h3 id="responsive-images">Responsive images</h3>
+<p>You can resize your images to multiple widths and generate a <code>srcset</code> attribute for <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images">responsive images</a>.</p>
+<p>In your config add the <code>assets_images_sizes</code> key with a list of widths. Example: <code>assets_images_sizes: [400, 1200]</code>.
+The images will be resized to all smaller width than their own.</p>
+<p>The Image component will auto set the srcset attribute based on those sizes.</p>
+<p>It is recommended to have large images as default and auto resize them to smaller ones. Use <code>assets_images_default_size</code> to specify the default size to use as the src attribute.</p>
 <h2 id="using-fonts">Using fonts</h2>
 <p>TODO</p>
 <h2 id="embedded-scripts-and-styles">Embedded scripts and styles</h2>
