@@ -57,14 +57,4 @@ This will disable code based login and require to signup the traditionnal way (k
 
 ## Connection using third party services
 
-Add the following configuration in your app config.yml:
-
-```yaml
-users_allowed_flows: ['sso']
-users_sso_providers: ['google', 'facebook']
-google_client_id: "..."
-google_client_secret: "..."
-facebook_client_id: "..."
-facebook_client_secret: "..."
-```
-
+TODO

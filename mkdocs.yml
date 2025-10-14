@@ -53,8 +53,8 @@ nav:
     - recipes/stripe.md
     - recipes/using-cms.md
   - "Status & Roadmap": roadmap.md
-  # - Blog:
-  #   - blog/index.md
+  - Blog:
+    - blog/index.md
 
 theme:
   name: material

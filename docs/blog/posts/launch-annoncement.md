@@ -1,5 +1,5 @@
 ---
-date: 2025-09-24
+date: 2025-10-14
 pin: true
 ---
 # Launch annoncement

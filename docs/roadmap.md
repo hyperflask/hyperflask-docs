@@ -9,7 +9,7 @@ Checkout the list of all the projects developed as part of the Hyperflask Stack 
 
 Key stuff that is still missing:
 
-- [Image optimizations](/guides/assets/#optimized-images)
+- Missing SSO login
 - Syntax highlighting for the macro tags syntax in jinja templates
 
 Planned v1 experience:
@@ -29,7 +29,7 @@ Planned v1 experience:
 | I18n | 🚧 | finalizing | [flask-babel-hyper](https://github.com/hyperflask/flask-babel-hyper)
 | Static site generation | ✅ | | [hyperflask](https://github.com/hyperflask/hyperflask)
 | VS Code integration | 🚧 | missing syntax highlighting for macro tags | 
-| Documentation | 🚧 | continuous improvements, more beginner docs | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
+| Documentation | ✅ | continuous improvements, more beginner docs | [hyperflask-docs](https://github.com/hyperflask/hyperflask-docs)
 
 ## Extras
 

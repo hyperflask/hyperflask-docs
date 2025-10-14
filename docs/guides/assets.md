@@ -16,9 +16,50 @@ Static assets can be located in 2 different folders:
 
 Hyperflask uses [Tailwind](https://tailwindcss.com/) for styling. It is fully integrated and you can use tailwind utility classes across pages and components.
 
-## Optimized images
+## Images
 
-TODO
+Use the `<{Image}/>` component instead of `asset_url()` to generate image tags.
+Using the component also enables using image placeholders (with a blurry image), responsive images and more.
+
+Place your images in the assets folder (eg. `app/assets/image.png`) then include them:
+
+```
+<{Image src="image.png" }/>
+```
+
+The following default attributes will be set:
+
+- `width` and `height`
+- `loading="lazy"` (default for all images can be changed in the configuration using `images_default_loading`)
+- `decoding="async"` (default for all images can be changed in the configuration using `images_default_decoding`)
+- `style` to define a background image using a base64 encoded data URI containing a tiny blurry version of the image (disable using `placeholder=False` on the Image component)
+
+Override any of these attributes on the Image component.
+
+Using `preload=True` on the Image component will add a preload meta in the page header and use eager loading instead. Use `priority=True` to set `preload=True` and fetchpriority to high.
+
+Example:
+
+```
+<{Image src="image.png" preload=True placeholder=False }/>
+```
+
+### Convert to webp
+
+It is possible to auto convert all images to webp by adding `assets_images_webp: true` in `config.yml`. Webp is a highly optimized image format for the web.
+
+If enabled, continue using the original name as the src of the image.
+
+### Responsive images
+
+You can resize your images to multiple widths and generate a `srcset` attribute for [responsive images](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images).
+
+In your config add the `assets_images_sizes` key with a list of widths. Example: `assets_images_sizes: [400, 1200]`.
+The images will be resized to all smaller width than their own.
+
+The Image component will auto set the srcset attribute based on those sizes.
+
+It is recommended to have large images as default and auto resize them to smaller ones. Use `assets_images_default_size` to specify the default size to use as the src attribute.
 
 ## Using fonts
 
