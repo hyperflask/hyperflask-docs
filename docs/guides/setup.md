@@ -34,7 +34,13 @@ This will prompt you for some options and create the project in a new folder.
 
 Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.
 
-You are now developping from the container inside which you will find Python 3.11, Node & npm and hyperflask installed.
+You are now developping from the container inside which you will find recent versions of Python, Node & npm and hyperflask installed.
+
+Once your VS Code workspace is ready, start your app in a VS Code Terminal:
+
+```
+uv run hyperflask dev
+```
 
 ## Advanced
 

@@ -60,11 +60,13 @@ You are now developping from the container inside which you will find Python 3.1
 
 ## Running your app
 
-In VS Code, press F5 or "Start debugging" in the command palette.
+In a VS Code Terminal, type the following command:
 
-The browser will automatically open to your new site!
+```
+uv run hyperflask dev
+```
 
-Auto-reload is enabled.
+Open your browser at <http://localhost:5000>. Auto-reload is enabled.
 
 ## First look at the code base
 
@@ -135,8 +137,8 @@ Let's add a form to our chat interface. Replace `app/pages/index.jpy` with the f
 <div id="messages">
     {# messages will display here #}
 </div>
-<{HxForm action=url_for("ChatMessage") hx-target="#messages" hx-swap="beforeend"}>
-    <{TextareaField name="message" placeholder="Chat" }/>
+<{HxForm action=url_for("ChatMessage") hx-target="#messages" hx-swap="beforeend" class="flex"}>
+    <{Textarea name="message" placeholder="Chat" class="flex-1" }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
@@ -161,6 +163,8 @@ class Message(db.Model):
     message: str
     timestamp: datetime.datetime = db.Column(default=datetime.datetime.utcnow)
 ```
+
+After modifying `models.py`, restart your app (Ctr+C in the terminal and relaunch the dev command)
 
 Modify our component to save messages:
 
@@ -193,8 +197,8 @@ page.messages = Message.find_all()
         <{ChatMessage message=msg }/>
     {% endfor %}
 </div>
-<{HxForm action=url_for("ChatMessage") hx-target="#messages" hx-swap="beforeend"}>
-    <{TextareaField name="message" placeholder="Chat" }/>
+<{HxForm action=url_for("ChatMessage") hx-target="#messages" hx-swap="beforeend" class="flex"}>
+    <{Textarea name="message" placeholder="Chat" class="flex-1" }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
@@ -230,8 +234,8 @@ def post():
         current_app.sse.publish("messages", current_app.components.ChatMessage(message=msg), private=True)
 ---
 {% form %}
-<{HxForm form action=url_for("PostMessageForm") hx-swap="none"}>
-    <{FormField form.message.textarea(required=True, placeholder="Chat") }/>
+<{HxForm form action=url_for("PostMessageForm") hx-swap="none" class="flex"}>
+    <{FormField form.message.textarea(required=True, placeholder="Chat", class="flex-1") }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
@@ -258,12 +262,17 @@ page.messages = Message.find_all()
 
 ## Adding authentication
 
-First, let's install the [hyperflask-users](https://github.com/hyperflask/hyperflask-users) extension. In a VS Code terminal (while connected to the dev container), execute `uv add hyperflask-users`.
+Hyperflask provides an extension to handle authentication and users management.
 
-As we will not deal with [database migrations](/guides/models) during this tutorial, delete your existing database: `rm database/app.db`.
+We will need to modify our database but as we won't deal with [database migrations](/guides/models) during this tutorial, we will delete the existing database.
 
-!!! info
-    Hyperflask-Users provices login and signup pages as well as everything you need for a professional authentication flow and user management.
+In a VS Code terminal (while connected to the dev container):
+
+```
+# stop the dev server
+uv add hyperflask-users
+rm database/app.db*
+```
 
 Let's create a user model and change our existing model to be bound to users:
 
@@ -281,7 +290,14 @@ class Message(UserRelatedMixin, db.Model):
     timestamp: datetime.datetime = db.Column(default=datetime.datetime.utcnow)
 ```
 
-Modify the component `ChatMessage` to display the author:
+Modify the `PostMessageForm` component to attach messages to the logged in user: replace the `Message.create` function call with `Message.create_for_current_user`:
+
+```py
+with db:
+    msg = Message.create_for_current_user(**form.data)
+```
+
+Modify the `ChatMessage` component to display the author:
 
 ```jinja
 <{ChatBubble header=props.message.user.email}>
@@ -289,9 +305,19 @@ Modify the component `ChatMessage` to display the author:
 </{ChatBubble}>
 ```
 
-Finally, add `page.login_required()` at the top of your page frontmatter to require authentication to access it.
+Finally, add `page.login_required()` at the top of your page frontmatter to require authentication to access it:
 
-Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <http://localhost:8025> to access [Mailpit](https://github.com/axllent/mailpit) and read the emails (the code is also printed in the server logs).
+```jpy
+---
+from app.models import Message
+
+page.login_required()
+page.messages = Message.find_all()
+```
+
+Relaunch the web server. Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection.
+
+Go to <http://localhost:8025> to access [Mailpit](https://github.com/axllent/mailpit) and read the emails (the code is also printed in the server logs). No emails will be sent publicly in dev mode, they are all caught by Mailpit.
 
 ## Deploying to production
 

@@ -17,7 +17,7 @@ The image exposes some volumes:
 - `/app/uploads`: the folder where uploaded files are stored. Mount this volume to persist them and [read about other solutions](#storing-uploaded-files).
 
 !!! info
-    The image uses [Caddy](https://caddyserver.com/) as a single access point. It proxies request to the web server or the mercure server. It also serves static files.
+    The image uses [Caddy](https://caddyserver.com/) as proxy server. It proxies request to the web server or the mercure server. It also serves static files.
 
 ## Backuping your SQLite database
 
@@ -60,3 +60,22 @@ Run `uv run hyperflask build` to build assets and static content.
 In production, assets will not be built and nodejs is not required. Ensure that the file `app/assets.json` and the `public` directory are shipped.
 
 If you have static content, it will be generated in the *_site* folder. You can use a proxy server like nginx to serve urls from this folder first or fallback to your app for hybrid content mode.
+
+## Test production mode locally
+
+It is often useful to test your app using its production configuration.
+
+### Using docker
+
+If you have built your app using docker as explained in the first section of this guide, you can start it using:
+
+    docker run --rm -p 5000:80 <image name>
+
+### Without docker
+
+Without using docker, you will not test the full production path but it could be good enough to validate that your app is working properly.
+
+Build your app without docker then run it:
+
+    uv run hyperflask build
+    uv run hyperflask run
