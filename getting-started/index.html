@@ -2220,9 +2220,10 @@
 <p>Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.</p>
 <p>You are now developping from the container inside which you will find Python 3.13, NodeJS 24, uv and hyperflask installed.</p>
 <h2 id="running-your-app">Running your app</h2>
-<p>In VS Code, press F5 or "Start debugging" in the command palette.</p>
-<p>The browser will automatically open to your new site!</p>
-<p>Auto-reload is enabled.</p>
+<p>In a VS Code Terminal, type the following command:</p>
+<div class="highlight"><pre><span></span><code>uv run hyperflask dev
+</code></pre></div>
+<p>Open your browser at <a href="http://localhost:5000">http://localhost:5000</a>. Auto-reload is enabled.</p>
 <h2 id="first-look-at-the-code-base">First look at the code base</h2>
 <p>In your project folder, you will find the following files and folders:</p>
 <ul>
@@ -2279,8 +2280,8 @@
 <span class="x">&lt;div id=&quot;messages&quot;&gt;</span>
 <span class="x">    </span><span class="c">{# messages will display here #}</span>
 <span class="x">&lt;/div&gt;</span>
-<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx-target=&quot;#messages&quot; hx-swap=&quot;beforeend&quot;}&gt;</span>
-<span class="x">    &lt;{TextareaField name=&quot;message&quot; placeholder=&quot;Chat&quot; }/&gt;</span>
+<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx-target=&quot;#messages&quot; hx-swap=&quot;beforeend&quot; class=&quot;flex&quot;}&gt;</span>
+<span class="x">    &lt;{Textarea name=&quot;message&quot; placeholder=&quot;Chat&quot; class=&quot;flex-1&quot; }/&gt;</span>
 <span class="x">    &lt;{SubmitButton}&gt;Send&lt;/{}&gt;</span>
 <span class="x">&lt;/{HxForm}&gt;</span>
 </code></pre></div>
@@ -2297,6 +2298,7 @@
     <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
 </code></pre></div>
+<p>After modifying <code>models.py</code>, restart your app (Ctr+C in the terminal and relaunch the dev command)</p>
 <p>Modify our component to save messages:</p>
 <div class="highlight"><pre><span></span><code><span class="c">---</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">hyperflask</span><span class="w"> </span><span class="kn">import</span> <span class="n">request</span>
@@ -2323,8 +2325,8 @@
 <span class="x">        &lt;{ChatMessage message=msg }/&gt;</span>
 <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 <span class="x">&lt;/div&gt;</span>
-<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx-target=&quot;#messages&quot; hx-swap=&quot;beforeend&quot;}&gt;</span>
-<span class="x">    &lt;{TextareaField name=&quot;message&quot; placeholder=&quot;Chat&quot; }/&gt;</span>
+<span class="x">&lt;{HxForm action=url_for(&quot;ChatMessage&quot;) hx-target=&quot;#messages&quot; hx-swap=&quot;beforeend&quot; class=&quot;flex&quot;}&gt;</span>
+<span class="x">    &lt;{Textarea name=&quot;message&quot; placeholder=&quot;Chat&quot; class=&quot;flex-1&quot; }/&gt;</span>
 <span class="x">    &lt;{SubmitButton}&gt;Send&lt;/{}&gt;</span>
 <span class="x">&lt;/{HxForm}&gt;</span>
 </code></pre></div>
@@ -2350,8 +2352,8 @@
         <span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">ChatMessage</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">),</span> <span class="n">private</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c">---</span>
 <span class="cp">{%</span> <span class="k">form</span> <span class="cp">%}</span>
-<span class="x">&lt;{HxForm form action=url_for(&quot;PostMessageForm&quot;) hx-swap=&quot;none&quot;}&gt;</span>
-<span class="x">    &lt;{FormField form.message.textarea(required=True, placeholder=&quot;Chat&quot;) }/&gt;</span>
+<span class="x">&lt;{HxForm form action=url_for(&quot;PostMessageForm&quot;) hx-swap=&quot;none&quot; class=&quot;flex&quot;}&gt;</span>
+<span class="x">    &lt;{FormField form.message.textarea(required=True, placeholder=&quot;Chat&quot;, class=&quot;flex-1&quot;) }/&gt;</span>
 <span class="x">    &lt;{SubmitButton}&gt;Send&lt;/{}&gt;</span>
 <span class="x">&lt;/{HxForm}&gt;</span>
 </code></pre></div>
@@ -2374,12 +2376,13 @@
 <p>The MercureStream component uses the <a href="https://htmx.org/extensions/sse/">htmx SSE extension</a> to connect to the sse stream</p>
 </div>
 <h2 id="adding-authentication">Adding authentication</h2>
-<p>First, let's install the <a href="https://github.com/hyperflask/hyperflask-users">hyperflask-users</a> extension. In a VS Code terminal (while connected to the dev container), execute <code>uv add hyperflask-users</code>.</p>
-<p>As we will not deal with <a href="/guides/models">database migrations</a> during this tutorial, delete your existing database: <code>rm database/app.db</code>.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Hyperflask-Users provices login and signup pages as well as everything you need for a professional authentication flow and user management.</p>
-</div>
+<p>Hyperflask provides an extension to handle authentication and users management.</p>
+<p>We will need to modify our database but as we won't deal with <a href="/guides/models">database migrations</a> during this tutorial, we will delete the existing database.</p>
+<p>In a VS Code terminal (while connected to the dev container):</p>
+<div class="highlight"><pre><span></span><code># stop the dev server
+uv add hyperflask-users
+rm database/app.db*
+</code></pre></div>
 <p>Let's create a user model and change our existing model to be bound to users:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">hyperflask.factory</span><span class="w"> </span><span class="kn">import</span> <span class="n">db</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">hyperflask_users</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserMixin</span><span class="p">,</span> <span class="n">UserRelatedMixin</span>
@@ -2392,13 +2395,24 @@
     <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
 </code></pre></div>
-<p>Modify the component <code>ChatMessage</code> to display the author:</p>
+<p>Modify the <code>PostMessageForm</code> component to attach messages to the logged in user: replace the <code>Message.create</code> function call with <code>Message.create_for_current_user</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">db</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="o">.</span><span class="n">create_for_current_user</span><span class="p">(</span><span class="o">**</span><span class="n">form</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+<p>Modify the <code>ChatMessage</code> component to display the author:</p>
 <div class="highlight"><pre><span></span><code><span class="x">&lt;{ChatBubble header=props.message.user.email}&gt;</span>
 <span class="x">    </span><span class="cp">{{</span><span class="nv">props.message.message</span><span class="o">|</span><span class="nf">markdown</span><span class="cp">}}</span>
 <span class="x">&lt;/{ChatBubble}&gt;</span>
 </code></pre></div>
-<p>Finally, add <code>page.login_required()</code> at the top of your page frontmatter to require authentication to access it.</p>
-<p>Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection. Go to <a href="http://localhost:8025">http://localhost:8025</a> to access <a href="https://github.com/axllent/mailpit">Mailpit</a> and read the emails (the code is also printed in the server logs).</p>
+<p>Finally, add <code>page.login_required()</code> at the top of your page frontmatter to require authentication to access it:</p>
+<div class="highlight"><pre><span></span><code><span class="c">---</span>
+<span class="err">from app.models import Message</span>
+
+<span class="x">page.login_required()</span>
+<span class="x">page.messages = Message.find_all()</span>
+</code></pre></div>
+<p>Relaunch the web server. Upon accessing your site, you will be asked to connect using an email address. No confirmation will be asked on first connection. On further connections, you will be asked for a code to complete the connection.</p>
+<p>Go to <a href="http://localhost:8025">http://localhost:8025</a> to access <a href="https://github.com/axllent/mailpit">Mailpit</a> and read the emails (the code is also printed in the server logs). No emails will be sent publicly in dev mode, they are all caught by Mailpit.</p>
 <h2 id="deploying-to-production">Deploying to production</h2>
 <p>A Dockerfile is provided and can be used to deploy using any services supporting container deployments.</p>
 <p>For this example, we will use <a href="https://fly.io">Fly.io</a> (no commercial affiliation).</p>

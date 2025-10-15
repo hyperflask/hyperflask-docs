@@ -2123,7 +2123,10 @@
 <p>This will prompt you for some options and create the project in a new folder.</p>
 <h2 id="launching-using-vs-code-and-dev-containers">Launching using VS Code and dev containers</h2>
 <p>Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.</p>
-<p>You are now developping from the container inside which you will find Python 3.11, Node &amp; npm and hyperflask installed.</p>
+<p>You are now developping from the container inside which you will find recent versions of Python, Node &amp; npm and hyperflask installed.</p>
+<p>Once your VS Code workspace is ready, start your app in a VS Code Terminal:</p>
+<div class="highlight"><pre><span></span><code>uv run hyperflask dev
+</code></pre></div>
 <h2 id="advanced">Advanced</h2>
 <p>Although <strong>VS Code with dev containers is the recommended experience</strong>, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI.</p>
 <h3 id="launching-without-dev-containers">Launching without dev containers</h3>

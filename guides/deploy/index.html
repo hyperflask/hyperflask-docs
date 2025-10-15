@@ -1371,6 +1371,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#test-production-mode-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test production mode locally
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test production mode locally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#without-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Without docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2028,6 +2061,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#test-production-mode-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test production mode locally
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test production mode locally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#without-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Without docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2066,7 +2132,7 @@
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The image uses <a href="https://caddyserver.com/">Caddy</a> as a single access point. It proxies request to the web server or the mercure server. It also serves static files.</p>
+<p>The image uses <a href="https://caddyserver.com/">Caddy</a> as proxy server. It proxies request to the web server or the mercure server. It also serves static files.</p>
 </div>
 <h2 id="backuping-your-sqlite-database">Backuping your SQLite database</h2>
 <p>The provided Dockerfile suppports using <a href="https://litestream.io/">Litestream</a>, a real-time SQLite replication solution. It can replicate your SQLite database to various file storage solution, the most common one being S3 (or compatible).</p>
@@ -2097,6 +2163,18 @@
 <p>Run <code>uv run hyperflask build</code> to build assets and static content.</p>
 <p>In production, assets will not be built and nodejs is not required. Ensure that the file <code>app/assets.json</code> and the <code>public</code> directory are shipped.</p>
 <p>If you have static content, it will be generated in the <em>_site</em> folder. You can use a proxy server like nginx to serve urls from this folder first or fallback to your app for hybrid content mode.</p>
+<h2 id="test-production-mode-locally">Test production mode locally</h2>
+<p>It is often useful to test your app using its production configuration.</p>
+<h3 id="using-docker">Using docker</h3>
+<p>If you have built your app using docker as explained in the first section of this guide, you can start it using:</p>
+<div class="highlight"><pre><span></span><code>docker run --rm -p 5000:80 &lt;image name&gt;
+</code></pre></div>
+<h3 id="without-docker">Without docker</h3>
+<p>Without using docker, you will not test the full production path but it could be good enough to validate that your app is working properly.</p>
+<p>Build your app without docker then run it:</p>
+<div class="highlight"><pre><span></span><code>uv run hyperflask build
+uv run hyperflask run
+</code></pre></div>
 
 
 
