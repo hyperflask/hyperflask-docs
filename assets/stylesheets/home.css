@@ -237,3 +237,22 @@ body[data-md-color-scheme="slate"] {
     transform: rotate(0deg);
 }
 }
+
+#home-sponsors {
+    text-align: center;
+    margin: 3rem auto 4rem;
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    a {
+        display: inline-block;
+        margin: 20px;
+    }
+
+    img {
+        max-width: 300px;
+        max-height: 150px;
+    }
+}
