@@ -238,7 +238,7 @@ def post():
 ---
 {% form %}
 <{HxForm form action=url_for("PostMessageForm") hx-swap="none" class="flex"}>
-    <{FormField form.message.textarea(required=True, placeholder="Chat", class="flex-1") }/>
+    <{FormField form.message.textarea(required=True, placeholder="Chat") }/>
     <{SubmitButton}>Send</{}>
 </{HxForm}>
 ```
