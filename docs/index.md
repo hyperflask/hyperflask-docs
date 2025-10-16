@@ -109,3 +109,8 @@ template: home.html
         </p>
     </div>
 </div>
+<div id="home-sponsors">
+    <h3>Sponsors</h3>
+    <a href="https://kantree.io"><img src="/assets/sponsors/kantree.png" alt="Kantree"></a>
+    <a href="https://sqlify.me"><img src="https://sqlify.me/static/logo.png" alt="SQLify"></a>
+</div>

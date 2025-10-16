@@ -50,6 +50,6 @@ All these projects are available on the [Hyperflask Github organization](https:/
 
 Check out the [Getting Started](/getting-started) tutorial, read more about the [goals, technologies and reasoning](/why) behind the project or [deep dive into the guides](/guides/setup).
 
-PS: I've already used Hyperflask to build [SQLify](https://sqlify.me/) as part of my job at [Digicoop](https://digicoop.io) and the experience was very satisfying.
+PS: I've already used Hyperflask to build [SQLify](https://sqlify.me/) as part of my job at [Digicoop](https://digicoop.io) / [Kantree](https://kantree.io) and the experience was very satisfying.
 
 

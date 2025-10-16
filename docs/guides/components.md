@@ -72,6 +72,8 @@ And finally, let's create a dropdown:
     Components are in fact jinja macros. Any jinja macro can be called using the new macro tag syntax.  
     [Read more about Flask Super Macros](https://github.com/hyperflask/flask-super-macros)
 
+### Backend logic
+
 HTML components can have their own custom backend logic. Read on to the [next guide about interactive apps](/guides/interactive-apps).
 
 ## Frontend interactions using Alpine.js

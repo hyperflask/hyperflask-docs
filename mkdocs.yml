@@ -55,6 +55,7 @@ nav:
   - "Status & Roadmap": roadmap.md
   - Blog:
     - blog/index.md
+  - Discussions: https://github.com/hyperflask/hyperflask/discussions
 
 theme:
   name: material
