@@ -2419,7 +2419,7 @@ rm database/app.db*
 <ol>
 <li><a href="https://fly.io/docs/flyctl/install/">Install flyctl</a>, their CLI utility: <code>curl -L https://fly.io/install.sh | sh</code></li>
 <li>Create an account with <code>fly auth signup</code> or log in with <code>fly auth login</code>.</li>
-<li>Run <code>fly launch</code></li>
+<li>Run <code>fly launch --secret "FLASK_SECRET_KEY=$(uv run hyperflask gen secret-key)"</code></li>
 <li>Run <code>fly deploy</code> to redeploy your app</li>
 </ol>
 <p><a href="/guides/deploy">Read the deployment guide</a> for more deployment options.</p>
