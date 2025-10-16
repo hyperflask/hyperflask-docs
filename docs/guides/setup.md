@@ -20,15 +20,23 @@ Additional VS Code extensions will be suggested when you open a project:
  - [SQLORM Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=hyperflask.sqlorm-language-support)
  - [Jinjapy Language Support](https://marketplace.visualstudio.com/items?itemName=hyperflask.jinjapy-language-support)
 
-## Installation using Hyperflask-Start
+## Starting a new project using Hyperflask-Start
 
-We will use [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) to create our project.
+[Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) is the starter kit for Hyperflask projects. It is the recommended experience.
 
 Launch the following command to create your project:
 
     curl -L https://raw.githubusercontent.com/hyperflask/hyperflask-start/main/start.sh | bash
 
 This will prompt you for some options and create the project in a new folder.
+
+!!! note
+    The start.sh script is very simple and uses a container to create a new project using [cookiecutter](https://cookiecutter.readthedocs.io).  
+    To directly create a project using cookiecutter, run the following command:
+    
+    ```
+    cookiecutter gh:hyperflask/hyperflask-start
+    ```
 
 ## Launching using VS Code and dev containers
 
@@ -48,7 +56,7 @@ Although **VS Code with dev containers is the recommended experience**, it is no
 
 ### Launching without dev containers
 
-First [create a project using Hyperflask-Start](#installation-using-hyperflask-start).
+First [create a project using Hyperflask-Start](#starting-a-new-project-using-hyperflask-start).
 
 1. Ensure that your system meet the requirements:
     - Python (>=3.10)
@@ -64,9 +72,11 @@ If you are not using VS Code but want to use dev containers, a CLI tool is avail
 1. [Install devcontainers-cli](https://github.com/devcontainers/cli#npm-install)
 2. Start dev container: `devcontainer up --workspace-folder .`
 3. Launch your app: `devcontainer exec uv run hyperflask dev`
-3. Go to http://localhost:5000
 
 ### Installation without Hyperflask-Start
+
+!!! warning
+    All the documentation assumes you are using Hyperflask-Start
 
 This installation method works with any python package manager
 
@@ -74,6 +84,6 @@ This installation method works with any python package manager
 2. Create your project directory: `mkdir example-project && cd example-project`
 2. Create and activate a virtualenv: `python -m venv .venv && source .venv/bin/activate`
 3. `pip install hyperflask`
-4. Run `hyperflask init .`
+4. Run `mkdir pages && echo "Hello world" > pages/index.jpy`
 5. Run `npm install`
 6. Start a development server using `hyperflask dev`

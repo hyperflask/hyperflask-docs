@@ -42,7 +42,7 @@ Additional VS Code extensions will be suggested when you open a project:
  - [Jinjapy Language Support](https://marketplace.visualstudio.com/items?itemName=hyperflask.jinjapy-language-support)
 
 !!! info
-    Although VS Code with dev containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI. See the [setup guide for more information on how to run without VS Code or dev containers](/guides/setup/#advanced)
+    Although VS Code with dev containers is the recommended experience, it is not mandatory. If you decide not to use dev containers, make sure you have Python 3.10, [uv](https://docs.astral.sh/uv/) and nodejs >= 22. See the [setup guide for more information on how to run without VS Code or dev containers](/guides/setup/#advanced)
 
 ## Installation
 
@@ -60,13 +60,16 @@ You are now developping from the container inside which you will find Python 3.1
 
 ## Running your app
 
-In a VS Code Terminal, type the following command:
+In a VS Code Terminal, type the following command to start a development server:
 
 ```
 uv run hyperflask dev
 ```
 
 Open your browser at <http://localhost:5000>. Auto-reload is enabled.
+
+!!! note
+    If you are not using dev containers, run `npm install` before starting the dev server.
 
 ## First look at the code base
 
