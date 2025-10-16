@@ -327,7 +327,7 @@ For this example, we will use [Fly.io](https://fly.io) (no commercial affiliatio
 
 1. [Install flyctl](https://fly.io/docs/flyctl/install/), their CLI utility: `curl -L https://fly.io/install.sh | sh`
 2. Create an account with `fly auth signup` or log in with `fly auth login`.
-3. Run `fly launch`
+3. Run `fly launch --secret "FLASK_SECRET_KEY=$(uv run hyperflask gen secret-key)"`
 4. Run `fly deploy` to redeploy your app
 
 [Read the deployment guide](/guides/deploy) for more deployment options.

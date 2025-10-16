@@ -2,6 +2,9 @@
 
 The [emails](/guides/emails) guide covered creating email templates and sending them. This guide covers setting up the rest of the infrastructure.
 
+!!! note
+    Commercial services mentionned here are chosen for their quality. No commercial affiliation.
+
 ## Using a cloud provider
 
 There are many available providers. Below we list some of the most popular ones. As many offer a free plan, it is good to have 2 setup with one as backup in case of outages.

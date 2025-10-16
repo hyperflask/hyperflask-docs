@@ -6,10 +6,15 @@ When using Hyperflask-Start, a [Dockerfile](https://github.com/hyperflask/hyperf
 
 Run `docker build . -t <image_name>` to build the image.
 
-The image exposes the port 80 and is ready for production.  
+The image exposes port 8080 and is ready for production.  
 [Read about backuping the SQLite database](#backuping-your-sqlite-database).
 
 Use any docker hosting platforms or VPS. Check out our [recipe for hosting providers](/recipes/hosting).
+
+!!! warning
+    A secret key is needed for Hyperflask apps to start. You must provide a secret key either via the `FLASK_SECRET_KEY` env var (recommended) or via the configuration file (not recommended)
+
+    [Read more about secrets](#managing-secrets)
 
 The image exposes some volumes:
 
@@ -19,17 +24,31 @@ The image exposes some volumes:
 !!! info
     The image uses [Caddy](https://caddyserver.com/) as proxy server. It proxies request to the web server or the mercure server. It also serves static files.
 
+## Managing secrets
+
+Sensitive information like the secret key, api keys to third party services, etc... are called "secrets". They are commonly provided as environment variables.
+
+`.env` files won't be added to your container image. To manage secrets in production, multiple options are possible:
+
+- Use your [hosting provider](/recipes/hosting) secrets management facility (recommended)
+- Provide env vars when running the container (either using `--env-file` or `--env`)
+
 ## Backuping your SQLite database
 
 The provided Dockerfile suppports using [Litestream](https://litestream.io/), a real-time SQLite replication solution. It can replicate your SQLite database to various file storage solution, the most common one being S3 (or compatible).
 
-Build your image with the following env variables:
+Provide the following env variables when running the container:
 
- - `LITESTREAM_URL`: the replica URL
- - `LITESTREAM_ACCESS_KEY_ID`: access key for the S3 service
- - `LITESTREAM_SECRET_ACCESS_KEY`: secret key for the S3 service
- 
-Example: `docker build -e LITESTREAM_URL=s3://bucket/app.db -e LITESTREAM_ACCESS_KEY_ID -e LITESTREAM_SECRET_ACCESS_KEY . -t <image_name>`
+ - `LITESTREAM_BUCKET`: the bucket name to replicate to
+ - `LITESTREAM_ACCESS_KEY_ID`: access key for the S3 service (or `AWS_ACCESS_KEY_ID`)
+ - `LITESTREAM_SECRET_ACCESS_KEY`: secret key for the S3 service (or `AWS_SECRET_ACCESS_KEY`)
+ - `LITESTREAM_TYPE`: the replica type (optional, default: s3)
+ - `LITESTREAM_ENDPOINT`: the s3 service endpoint (optional, default: AWS S3)
+ - `LITESTREAM_PATH`: path to store at on the s3 service (optional, default: app.db)
+ - `LITESTREAM_REGION`: the s3 region (optional)
+
+!!! note
+    The access and secret keys should be provided as [secrets](#managing-secrets)
 
 As an alternative:
 
@@ -69,7 +88,9 @@ It is often useful to test your app using its production configuration.
 
 If you have built your app using docker as explained in the first section of this guide, you can start it using:
 
-    docker run --rm -p 5000:80 <image name>
+    docker run --rm -p 8080:8080 <image name>
+
+Go to <http://localhost:8080>
 
 ### Without docker
 
