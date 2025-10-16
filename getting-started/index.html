@@ -2209,7 +2209,7 @@
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Although VS Code with dev containers is the recommended experience, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI. See the <a href="/guides/setup/#advanced">setup guide for more information on how to run without VS Code or dev containers</a></p>
+<p>Although VS Code with dev containers is the recommended experience, it is not mandatory. If you decide not to use dev containers, make sure you have Python 3.10, <a href="https://docs.astral.sh/uv/">uv</a> and nodejs &gt;= 22. See the <a href="/guides/setup/#advanced">setup guide for more information on how to run without VS Code or dev containers</a></p>
 </div>
 <h2 id="installation">Installation</h2>
 <p>We will use <a href="https://github.com/hyperflask/hyperflask-start">Hyperflask-Start</a> to create our project.</p>
@@ -2220,10 +2220,14 @@
 <p>Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.</p>
 <p>You are now developping from the container inside which you will find Python 3.13, NodeJS 24, uv and hyperflask installed.</p>
 <h2 id="running-your-app">Running your app</h2>
-<p>In a VS Code Terminal, type the following command:</p>
+<p>In a VS Code Terminal, type the following command to start a development server:</p>
 <div class="highlight"><pre><span></span><code>uv run hyperflask dev
 </code></pre></div>
 <p>Open your browser at <a href="http://localhost:5000">http://localhost:5000</a>. Auto-reload is enabled.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are not using dev containers, run <code>npm install</code> before starting the dev server.</p>
+</div>
 <h2 id="first-look-at-the-code-base">First look at the code base</h2>
 <p>In your project folder, you will find the following files and folders:</p>
 <ul>
