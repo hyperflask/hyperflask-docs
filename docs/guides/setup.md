@@ -81,9 +81,9 @@ If you are not using VS Code but want to use dev containers, a CLI tool is avail
 This installation method works with any python package manager
 
 1. Ensure that your system meet the requirements
-2. Create your project directory: `mkdir example-project && cd example-project`
+1. Create your project directory: `mkdir example-project && cd example-project`
 2. Create and activate a virtualenv: `python -m venv .venv && source .venv/bin/activate`
 3. `pip install hyperflask`
+5. Run `npm install esbuild tailwindcss @tailwindcss/cli htmx.org htmx-ext-sse bootstrap-icons daisyui`
 4. Run `mkdir pages && echo "Hello world" > pages/index.jpy`
-5. Run `npm install`
 6. Start a development server using `hyperflask dev`
