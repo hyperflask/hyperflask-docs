@@ -103,8 +103,7 @@ markdown_extensions:
 plugins:
   - search
   - callouts
-  - blog:
-      archive: false
+  - blog
   - redirects:
       redirect_maps:
         'guides/index.md': 'guides/setup.md'
