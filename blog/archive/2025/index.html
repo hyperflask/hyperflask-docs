@@ -2039,6 +2039,49 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2025-11-11 00:00:00+00:00">November 11, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="blending-sql-and-python-with-sqlorm"><a class="toclink" href="../../2025/11/11/blending-sql-and-python-with-sqlorm/">Blending SQL and Python with SQLORM</a></h2>
+<p>At $dayjob, I use <a href="https://www.sqlalchemy.org/">SQLAlchemy</a> as an ORM. It's an amazing project, powerful and flexible. However, I've always felt some of the design choices didn't fit how I like to use an ORM. Notably:</p>
+<ul>
+<li>I'm not a big fan of the <a href="https://martinfowler.com/eaaCatalog/unitOfWork.html">Unit of Work</a> pattern and the fact that you do not control when DML queries are issued. I like queries to be executed as soon as they are called in code.</li>
+<li>I do not want my objects to be "attached" to a session or a specific database. I want to be able to fetch from one database and insert into another using the same object.</li>
+<li>I mostly want plain objects to map a table row.</li>
+<li>I want to write SQL by hand for complex queries. I do not want to use a query builder or DSL, I prefer writing actual SQL.</li>
+<li>I do not care about abstracting the database. I usually choose a database server when starting a project and optimize for it.</li>
+<li>Stay as close to DB-API as possible.</li>
+</ul>
+<p>With these ideas in mind, SQLORM was born. (The name isn't great — I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.</p>
+
+    
+      <nav class="md-post__action">
+        <a href="../../2025/11/11/blending-sql-and-python-with-sqlorm/">
+          Continue reading
+        </a>
+      </nav>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2025-11-10 00:00:00+00:00">November 10, 2025</time></li>
         
         
