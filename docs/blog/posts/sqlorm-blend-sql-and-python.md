@@ -12,7 +12,7 @@ At $dayjob, I use [SQLAlchemy](https://www.sqlalchemy.org/) as an ORM. It's an a
 - I do not care about abstracting the database. I usually choose a database server when starting a project and optimize for it.
 - Stay as close to DB-API as possible.
 
-With these ideas in mind, SQLORM was born. (The name isn't great — I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.
+With these ideas in mind, [SQLORM](https://github.com/hyperflask/sqlorm) was born. (The name isn't great — I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.
 
 <!-- more -->
 
