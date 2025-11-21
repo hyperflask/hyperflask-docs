@@ -1,6 +1,8 @@
 ---
 date: 2025-10-14
 pin: true
+authors:
+  - maximebf
 ---
 # Launch annoncement
 

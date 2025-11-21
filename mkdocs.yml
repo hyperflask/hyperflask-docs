@@ -1,4 +1,5 @@
 site_name: Hyperflask
+site_url: https://hyperflask.dev
 repo_url: https://github.com/hyperflask/hyperflask
 repo_name: hyperflask/hyperflask
 edit_uri: https://github.com/hyperflask/hyperflask-docs/edit/main/docs/
@@ -107,6 +108,41 @@ plugins:
   - redirects:
       redirect_maps:
         'guides/index.md': 'guides/setup.md'
+  - llmstxt-md:
+      enable_copy_button: false
+      sections:
+        Guides:
+        - guides/setup.md
+        - guides/structure.md
+        - guides/config.md
+        - guides/pages.md
+        - guides/components.md
+        - guides/interactive-apps.md
+        - guides/static.md
+        - guides/assets.md
+        - guides/forms.md
+        - guides/models.md
+        - guides/files.md
+        - guides/suspense.md
+        - guides/flash.md
+        - guides/metadata.md
+        - guides/emails.md
+        - guides/tasks.md
+        - guides/i18n.md
+        - guides/push.md
+        - guides/security.md
+        - guides/errors.md
+        - guides/deploy.md
+        - guides/scaling.md
+        - guides/users.md
+        Components:
+        - components/index.md
+        - components/icons.md
+        - components/forms.md
+        - components/modals.md
+        - components/layout.md
+        - components/daisyui/index.md
+
 
 extra_css:
   - assets/stylesheets/extra.css

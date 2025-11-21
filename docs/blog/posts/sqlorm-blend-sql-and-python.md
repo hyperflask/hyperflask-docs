@@ -1,5 +1,7 @@
 ---
 date: 2025-11-11
+authors:
+  - maximebf
 ---
 # Blending SQL and Python with SQLORM
 

@@ -2,3 +2,4 @@ mkdocs-material
 mkdocs-callouts
 mkdocs-redirects
 jinjapy
+mkdocs-llmstxt-md
