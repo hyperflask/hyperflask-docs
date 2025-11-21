@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://hyperflask.dev/guides/deploy/">
+      
       
         <link rel="prev" href="../errors/">
       
@@ -15,8 +17,11 @@
         <link rel="next" href="../scaling/">
       
       
+        
+      
+      
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
@@ -24,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -52,7 +57,6 @@
     
       
 
-    
     
     
   </head>
@@ -201,7 +205,7 @@
         <a href="https://github.com/hyperflask/hyperflask" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     hyperflask/hyperflask
@@ -445,7 +449,7 @@
       <a href="https://github.com/hyperflask/hyperflask" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     hyperflask/hyperflask
@@ -467,9 +471,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Home
+  
+
     
   </span>
+  
   
 
       </a>
@@ -489,9 +498,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Why Hyperflask ?
+  
+
     
   </span>
+  
   
 
       </a>
@@ -511,9 +525,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Getting started
+  
+
     
   </span>
+  
   
 
       </a>
@@ -568,9 +587,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Guides
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -579,7 +603,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Guides
+            
+  
+    Guides
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -595,9 +623,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Setup
+  
+
     
   </span>
+  
   
 
       </a>
@@ -648,9 +681,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Basics
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -659,7 +697,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
-            Basics
+            
+  
+    Basics
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -675,9 +717,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Project structure
+  
+
     
   </span>
+  
   
 
       </a>
@@ -698,9 +745,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Configuration
+  
+
     
   </span>
+  
   
 
       </a>
@@ -721,9 +773,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Pages
+  
+
     
   </span>
+  
   
 
       </a>
@@ -744,9 +801,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Components
+  
+
     
   </span>
+  
   
 
       </a>
@@ -767,9 +829,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Interactive apps
+  
+
     
   </span>
+  
   
 
       </a>
@@ -790,9 +857,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Static content
+  
+
     
   </span>
+  
   
 
       </a>
@@ -813,9 +885,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Assets
+  
+
     
   </span>
+  
   
 
       </a>
@@ -868,9 +945,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Handling data
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -879,7 +961,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
-            Handling data
+            
+  
+    Handling data
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -895,9 +981,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Forms
+  
+
     
   </span>
+  
   
 
       </a>
@@ -918,9 +1009,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Models
+  
+
     
   </span>
+  
   
 
       </a>
@@ -941,9 +1037,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Files
+  
+
     
   </span>
+  
   
 
       </a>
@@ -964,9 +1065,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Loading data
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1027,9 +1133,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Digging deeper
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1038,7 +1149,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
-            Digging deeper
+            
+  
+    Digging deeper
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1054,9 +1169,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Flash messages
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1077,9 +1197,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Metadata
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1100,9 +1225,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Emails
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1123,9 +1253,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Background tasks
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1146,9 +1281,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Internationalization
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1169,9 +1309,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Server push
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1192,9 +1337,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Security
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1215,9 +1365,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Errors
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1268,9 +1423,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Deploy to production
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1279,7 +1439,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
-            Deploy to production
+            
+  
+    Deploy to production
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1304,9 +1468,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Deploying
+  
+
     
   </span>
+  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -1317,9 +1486,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Deploying
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1342,7 +1516,9 @@
         <li class="md-nav__item">
   <a href="#build-a-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Build a docker image
+      
+        Build a docker image
+      
     </span>
   </a>
   
@@ -1351,7 +1527,9 @@
         <li class="md-nav__item">
   <a href="#managing-secrets" class="md-nav__link">
     <span class="md-ellipsis">
-      Managing secrets
+      
+        Managing secrets
+      
     </span>
   </a>
   
@@ -1360,7 +1538,9 @@
         <li class="md-nav__item">
   <a href="#backuping-your-sqlite-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Backuping your SQLite database
+      
+        Backuping your SQLite database
+      
     </span>
   </a>
   
@@ -1369,7 +1549,9 @@
         <li class="md-nav__item">
   <a href="#storing-uploaded-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Storing uploaded files
+      
+        Storing uploaded files
+      
     </span>
   </a>
   
@@ -1378,7 +1560,9 @@
         <li class="md-nav__item">
   <a href="#static-site-generation" class="md-nav__link">
     <span class="md-ellipsis">
-      Static site generation
+      
+        Static site generation
+      
     </span>
   </a>
   
@@ -1387,7 +1571,9 @@
         <li class="md-nav__item">
   <a href="#building-without-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Building without docker
+      
+        Building without docker
+      
     </span>
   </a>
   
@@ -1396,7 +1582,9 @@
         <li class="md-nav__item">
   <a href="#test-production-mode-locally" class="md-nav__link">
     <span class="md-ellipsis">
-      Test production mode locally
+      
+        Test production mode locally
+      
     </span>
   </a>
   
@@ -1406,7 +1594,9 @@
           <li class="md-nav__item">
   <a href="#using-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Using docker
+      
+        Using docker
+      
     </span>
   </a>
   
@@ -1415,7 +1605,9 @@
           <li class="md-nav__item">
   <a href="#without-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Without docker
+      
+        Without docker
+      
     </span>
   </a>
   
@@ -1447,9 +1639,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Scaling
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1478,9 +1675,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     User management
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1501,9 +1703,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     For Flask users
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1562,9 +1769,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Components
+  
+
     
   </span>
+  
   
 
             </a>
@@ -1579,7 +1791,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Components
+            
+  
+    Components
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1597,9 +1813,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Icons
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1620,9 +1841,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Forms
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1643,9 +1869,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Modals
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1666,9 +1897,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Layout
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1689,9 +1925,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     DaisyUI components
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1749,9 +1990,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Recipes
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1760,7 +2006,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Recipes
+            
+  
+    Recipes
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1776,9 +2026,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Going to production
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1799,9 +2054,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Hosting platforms
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1822,9 +2082,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Sending emails
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1845,9 +2110,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Monitoring
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1868,9 +2138,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Web &amp; product analytics
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1891,9 +2166,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Stripe Checkout
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1914,9 +2194,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Using a CMS
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1944,9 +2229,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Status & Roadmap
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1989,9 +2279,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Blog
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2006,7 +2301,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            Blog
+            
+  
+    Blog
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2042,9 +2341,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Archive
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -2053,7 +2357,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8_2">
             <span class="md-nav__icon md-icon"></span>
-            Archive
+            
+  
+    Archive
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2071,9 +2379,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2025
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2109,9 +2422,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Discussions
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2148,7 +2466,9 @@
         <li class="md-nav__item">
   <a href="#build-a-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Build a docker image
+      
+        Build a docker image
+      
     </span>
   </a>
   
@@ -2157,7 +2477,9 @@
         <li class="md-nav__item">
   <a href="#managing-secrets" class="md-nav__link">
     <span class="md-ellipsis">
-      Managing secrets
+      
+        Managing secrets
+      
     </span>
   </a>
   
@@ -2166,7 +2488,9 @@
         <li class="md-nav__item">
   <a href="#backuping-your-sqlite-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Backuping your SQLite database
+      
+        Backuping your SQLite database
+      
     </span>
   </a>
   
@@ -2175,7 +2499,9 @@
         <li class="md-nav__item">
   <a href="#storing-uploaded-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Storing uploaded files
+      
+        Storing uploaded files
+      
     </span>
   </a>
   
@@ -2184,7 +2510,9 @@
         <li class="md-nav__item">
   <a href="#static-site-generation" class="md-nav__link">
     <span class="md-ellipsis">
-      Static site generation
+      
+        Static site generation
+      
     </span>
   </a>
   
@@ -2193,7 +2521,9 @@
         <li class="md-nav__item">
   <a href="#building-without-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Building without docker
+      
+        Building without docker
+      
     </span>
   </a>
   
@@ -2202,7 +2532,9 @@
         <li class="md-nav__item">
   <a href="#test-production-mode-locally" class="md-nav__link">
     <span class="md-ellipsis">
-      Test production mode locally
+      
+        Test production mode locally
+      
     </span>
   </a>
   
@@ -2212,7 +2544,9 @@
           <li class="md-nav__item">
   <a href="#using-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Using docker
+      
+        Using docker
+      
     </span>
   </a>
   
@@ -2221,7 +2555,9 @@
           <li class="md-nav__item">
   <a href="#without-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Without docker
+      
+        Without docker
+      
     </span>
   </a>
   
@@ -2242,6 +2578,73 @@
           
           
             <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../setup/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Guides
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Deploy to production
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
               <article class="md-content__inner md-typeset">
                 
                   
@@ -2431,10 +2834,11 @@ uv run hyperflask run
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

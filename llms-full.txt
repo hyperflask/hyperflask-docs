@@ -1,0 +1,2523 @@
+# Hyperflask
+
+# Guides
+
+## Setup
+
+# Setup
+
+## Requirements
+
+Hyperflask simplifies development environments by standardizing everything around containers.
+
+VS Code is also the recommended editor (and currently the only one with syntax highlighting for Jinjapy files).
+
+**What you will need:**
+
+- A UNIX like system (Linux, MacOS or [WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install))
+- [Docker](https://www.docker.com/)
+- [VS Code](https://code.visualstudio.com/) with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+Python is not needed on your machine, everything will be executed inside containers.
+
+Additional VS Code extensions will be suggested when you open a project:
+
+ - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+ - [SQLORM Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=hyperflask.sqlorm-language-support)
+ - [Jinjapy Language Support](https://marketplace.visualstudio.com/items?itemName=hyperflask.jinjapy-language-support)
+
+## Starting a new project using Hyperflask-Start
+
+[Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) is the starter kit for Hyperflask projects. It is the recommended experience.
+
+Launch the following command to create your project:
+
+    curl -L https://raw.githubusercontent.com/hyperflask/hyperflask-start/main/start.sh | bash
+
+This will prompt you for some options and create the project in a new folder.
+
+!!! note
+    The start.sh script is very simple and uses a container to create a new project using [cookiecutter](https://cookiecutter.readthedocs.io).  
+    To directly create a project using cookiecutter, run the following command:
+    
+    ```
+    cookiecutter gh:hyperflask/hyperflask-start
+    ```
+
+## Launching using VS Code and dev containers
+
+Open your project folder in VS Code. It should prompt you to "re-open workspace in development container" which you should accept. VS Code will create and start the development container and re-launch itself.
+
+You are now developping from the container inside which you will find recent versions of Python, Node & npm and hyperflask installed.
+
+Once your VS Code workspace is ready, start your app in a VS Code Terminal:
+
+```
+uv run hyperflask dev
+```
+
+## Advanced
+
+Although **VS Code with dev containers is the recommended experience**, it is not mandatory. Hyperflask apps are standard python apps and you can install their requirements in a virtualenv and start a server using the CLI.
+
+### Launching without dev containers
+
+First [create a project using Hyperflask-Start](#starting-a-new-project-using-hyperflask-start).
+
+1. Ensure that your system meet the requirements:
+    - Python (>=3.10)
+    - [uv](https://docs.astral.sh/uv/)
+    - [nodejs](https://nodejs.org/fr) (>=22)
+2. Run `npm install`
+3. Launch app using `uv run hyperflask dev`
+
+### Launching with devcontainers-cli
+
+If you are not using VS Code but want to use dev containers, a CLI tool is available:
+
+1. [Install devcontainers-cli](https://github.com/devcontainers/cli#npm-install)
+2. Start dev container: `devcontainer up --workspace-folder .`
+3. Launch your app: `devcontainer exec uv run hyperflask dev`
+
+### Installation without Hyperflask-Start
+
+!!! warning
+    All the documentation assumes you are using Hyperflask-Start
+
+This installation method works with any python package manager
+
+1. Ensure that your system meet the requirements
+1. Create your project directory: `mkdir example-project && cd example-project`
+2. Create and activate a virtualenv: `python -m venv .venv && source .venv/bin/activate`
+3. `pip install hyperflask`
+5. Run `npm install esbuild tailwindcss @tailwindcss/cli htmx.org htmx-ext-sse bootstrap-icons daisyui`
+4. Run `mkdir pages && echo "Hello world" > pages/index.jpy`
+6. Start a development server using `hyperflask dev`
+
+
+## Project structure
+
+# Project structure
+
+!!! info
+    This guide assumes you have created your app using Hyperflask-Start
+
+In your project folder, you will find the following files and folders:
+
+ - **app**: your app code
+    - **assets**: scripts and stylesheets that will be bundled using [esbuild](https://esbuild.github.io/)
+        - **main.css**: tailwind entrypoint
+    - **components**: components to compose your app
+    - **pages**: your site pages
+ - **public**: all files in this folder are publicly accessible
+ - **tests**: tests using [pytest](https://pytest.org)
+ - **.env**: environment variables
+ - **config.yml**: your app configuration file
+ - **Dockerfile**: Dockerfile to build your production image
+ - **pyproject.toml**: list python dependencies and tool options
+ - **package.json**: list javascript dependencies
+
+When using the `hyperflask` command, an Hyperflask app instance will be automatically created from the *app* folder.
+
+!!! info
+    If you are coming from Flask, this means you do not create the `app` object yourself.
+    
+    The actuall application object is available at `hyperflask.factory:app` (or `hyperflask:current_app` when in [app context](https://flask.palletsprojects.com/en/stable/appcontext/)).
+
+The *app* folder is available as a python package and the following will be automatically imported from it if they exist:
+
+ - *models* : to define your database models
+ - *routes* : to define app routed endpoints
+ - *tasks*: to define background tasks using dramatiq
+ - *cron*: to define scheduled tasks using dramatiq
+ - *cli*: to define command line tasks
+
+Define them as modules (eg. `app/models.py`) or packages (eg. `app/models/__init__.py`)?
+
+To import things from the rest of your app:
+
+```py
+# app/models.py
+from hyperflask.factory import db
+
+class MyModel(db.Model):
+    pass
+```
+
+```py
+# anywhere else
+from app.models import MyModel
+```
+
+
+## Configuration
+
+# Configuration
+
+Hyperflask configuration is stored in a YAML file called *config.yml* at the root of your project folder.
+
+Loaded configuration is then available through `app.config`.
+
+To prevent including secret variables in the config file, you can use environment variables. Any variable prefixed using `FLASK_` will be used a a configuration value.
+`FLASK_SECRET_KEY` would be available under `app.config['SECRET_KEY']`.
+
+A *.env* file containing environment variables can be placed at the root of your project folder. It will be automatically loaded.
+
+!!! info
+    This feature is provided by [Flask-Configurator](https://github.com/hyperflask/flask-configurator)
+
+## Environment-specific configuration
+
+Hyperflask defines the concept of environments to load different set of configs depending on the execution context.
+
+The default environment is named *production*. When debug is activated, the environment is set to * development*.
+The environment can be overriden using the `ENV` configuration (or `FLASK_ENV` environment variable).
+
+An environment specific configuration file can be created. It will be loaded after *config.yml* and will override its values.
+The format should be *config.env_name.yml*, so *config.production.yml* or *config.development.yml* for the default environments.
+
+An environment specific *.env* file can also be created following the format *.env.env_name*, so *.env.production* or *.env.development*.
+
+## Common configuration values
+
+See [Flask documentation](https://flask.palletsprojects.com/en/stable/config/#builtin-configuration-values) for the full list of Flask options.
+
+Each Flask extension may have their own configuration.
+
+| Key | Type | Description | Default value |
+| --- | --- | --- | --- |
+| SECRET_KEY | str | The encryption key for all secret values (including the session) (set by default in .env) | random
+| SITE_TITLE | str |  |
+| SITE_LANG | str |  |
+| HTMX_EXT | list[str] |  |
+| HTMX_BOOST_SITE | bool |  |
+| EMAIL_BACKGROUND_COLOR | str |  |
+| EMAIL_BACKGROUND_ACCENT_COLOR | str |  |
+| STATIC_MODE | str |  |
+| MARKDOWN_OPTIONS | dict |  |
+| FLASH_TOAST_OOB | bool | Whether to add flash messages to htmx request as oob swaps |
+| FLASH_TOAST_REMOVE_AFTER | str | Use the remove-me htmx extension to auto remove the toast alerts after some time |
+| INIT_DATABASE | bool | Whether to automatically init the db on start |
+
+## Pages
+
+# Pages
+
+Easily create static and dynamic pages with a layout.
+
+!!! info
+    This feature is provided by [Flask-File-Routes](https://github.com/hyperflask/flask-file-routes)
+
+## Dynamic pages
+
+Pages use the [jinjapy](https://github.com/hyperflask/jinjapy) file format. It combines python code and a [jinja template](#the-page-template). The python code will be executed first on every request, then the template will be rendered. The python code is enclosed inside 2 lines containing 3 dashes "---".
+
+Create new pages in the `app/pages` folder using the `.jpy` extension.
+
+A special [page object](#the-page-object) is available in the python code. Assign values to this object so that they become available in the template.
+
+```jpy
+---
+page.message = "Hello world"
+---
+{{ message }}
+```
+
+Both the python code or the templates are optional:
+
+- If the python code is missing, the file only contains a Jinja template
+- If the python code is left unclosed (the file starts with "---" on a single line followed by some python code), the file has no template
+
+The python code has a few global variables injected when executed: `page`, `request`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
+
+!!! tip
+    Pages can also be declared using .py files. In this case they will be pure python modules. Use `page.respond()` to send a response.
+
+## The page template
+
+Templates are powered by [Jinja](https://jinja.palletsprojects.com/en/stable/).
+
+We recommend reading the [Flask templating guide](https://flask.palletsprojects.com/en/stable/templating/).
+
+Hyperflask includes built-ins UI components powered by [DaisyUI](https://daisyui.com/). Check out the [Components](/guides/components/#built-in-ui-components) guide.
+
+## Content pages
+
+See [static content](/guides/static#content-pages).
+
+## How routing works
+
+The URL rule is constructed using the following rules:
+
+- `index.jpy` file are roots
+- folder hierarchy are transformed to url paths:
+    - `posts/release-annoucement.jpy` converts to `/posts/release-annoucement`
+    - `posts/index.jpy` converts to `/posts`
+    - `folder/subfolder/page.jpy` converts to `/folder/subfolder/page`
+- placeholders are allowed in filenames:
+    - `posts/<slug>.jpy` converts to `/posts/<slug>`
+- surround a folder name with parentheses so that it does not appear in the url
+    - `folder/(subfolder)/page.jpy` converts to `/folder/page`
+
+The placeholder value is available through the [`page` object](#the-page-object) (eg: `page.slug`).
+
+## Generating URLs
+
+Use [Flask's `url_for()`](https://flask.palletsprojects.com/en/stable/api/#flask.url_for) function as usual.
+
+Endpoint names follow the following rules:
+
+- `page.jpy` => `page`
+- `posts/release-annoucement.jpy` => `posts_release-announcement`
+- `posts/index.jpy` => `posts`
+- `folder/subfolder/page.jpy` => `folder_subfolder_page`
+- `posts/<slug>.jpy` => `posts_<slug>`
+- `folder/(subfolder)/page.jpy` => `folder_subfolder_page`
+
+## Layouts
+
+Hyperflask makes managing layouts for your pages easier. Layouts are saved in the *app/layouts* folder. The default layout can be overriden at *app/layouts/default.html*.
+(Hyperflask provides a default layout when none is created)
+
+For a page to use a layout, include the `{% use_layout %}` at the top of the template. Layouts can provide multiple placeholders to fill in named "blocks". Content outside of blocks will be added to the default block named "content".
+
+Example template:
+
+```jinja
+{% use_layout %}
+
+{% block page_title %}New title!{% endblock %}
+
+My page content
+```
+
+`{% use_layout %}` can also be given a template filename as argument to extend from any other template.
+
+!!! tip
+    When providing your own layout, you can extend from [*layouts/base.html*](https://github.com/hyperflask/hyperflask/blob/main/hyperflask/layouts/web.html).
+
+## The page object
+
+The `page` object is accessible without import in any pages or can be imported from `hyperflask`.
+
+Any properties set onto the object will be available as a variable in the template.
+
+Some helper methods that immediatly stop the page execution and return a response:
+
+ - return an http error code using `page.abort(http_code)`
+ - redirect to another page using `page.redirect(url)`
+ - send any [response object](https://flask.palletsprojects.com/en/stable/api/#response-objects) using `page.respond(response)`
+
+URL placeholders are available as read-only properties of the page object.
+
+Additional helpers can be registered on the page object:
+
+```python
+@app.page_helper
+def method(page):
+    return request.method
+
+page.method
+```
+
+!!! info
+    The page object is accessible under `hyperflask.page` or `g.page` in **all** routes of your app.
+
+    ```python
+    from hyperflask import page
+
+    @app.route("/")
+    def index():
+        page.message = "hello world"
+        return render_template_string("{{message}}")
+    ```
+
+## Handling different HTTP methods
+
+When using jpy or python files, you can create functions named after http methods in lower case (get, post, put, patch, delete). These functions will be executed after the main body of the python code depending on the request's http method.
+
+Allowed http methods for a route depends on:
+
+ - If no method function is present, the route will be available throught GET only
+ - As soon as a method function is present, the route is available through the defined http methods.
+ - Possible methods can be defined manually using a comment at the start of the python code listing allowed http methods in the following format: `# methods=GET,POST`
+
+## The request object
+
+A `request` object is available in your pages' python code. It can be used to access the request's data and metadata.
+
+ - Use `request.args` to access query string parameters (`request.args['param-name']`)
+ - Use `request.form` to access form data (`request.form['input-name']`)
+
+See Flask [documentation about the request object](https://flask.palletsprojects.com/en/stable/quickstart/#the-request-object) for more information.
+
+## Function-based endpoints
+
+Hyperflask also allows you to create endpoints using python functions like Flask does.
+
+In `app/routes.py`:
+
+```python
+from hyperflask.factory import app
+
+@app.route('/my-endpoint')
+def my_endpoint():
+    return "hello"
+```
+
+Templates can also be used. They should be located in the `app/templates` folder.
+
+## Components
+
+# Components
+
+Components are essentials pieces of Hyperflask apps. They can be interactive, are isolated and can apply to the frontend or backend.
+
+!!! info
+    This feature is in part provided by [Flask-Super-Macros](https://github.com/hyperflask/flask-super-macros)
+
+## HTML components
+
+HTML components are re-usable pieces of HTML. Define them in the *app/components* folder. The filename is the component name.
+They are rendered on the backend.
+
+Components can recieve parameters named *props*.
+
+For example, to create a dropdown component, let's create the file *app/components/Dropdown.html*:
+
+```jinja
+<div class="dropdown">
+    <button>{{props.label}}</button>
+    <ul class="dropmenu">
+        {% for item in props.items %}
+            <li>{{item}}</li>
+        {% endfor %}
+    </ul>
+</div>
+```
+
+Here, the component must be provided 2 parameters: label and items.
+
+To call this component, we use a [special syntax](https://github.com/hyperflask/jinja-super-macros?tab=readme-ov-file#new-macro-tags-syntax) in our templates:
+
+ - `<{ComponentName prop1=value prop2=value }/>` : to call a component without providing children
+ - `<{ComponentName prop1=value }>...</{ComponentName}>` : to provide children
+
+To use python expressions as prop values, surround them with parentheses: `<{Component prop1=(1+1) }/>`
+
+Back to our example:
+
+```
+<{Dropdown label="Colors" items=["red", "blue"] }/>
+```
+
+Now, let's rework our component to use another component for the dropdown items.
+
+```jinja
+<div class="dropdown">
+    <button>{{props.label}}</button>
+    <ul class="dropmenu">
+        {{children()}}
+    </ul>
+</div>
+```
+
+Now create *app/components/DropdownItem.html*:
+
+```jinja
+<li>
+    <a href="{{prop.url}}">{{children()}}</a>
+</li>
+```
+
+And finally, let's create a dropdown:
+
+```jinja
+<{Dropdown label="Countries"}>
+    <{DropdownItem url=url_for('countries', code="fr")}>France</{DropdownItem}>
+    <{DropdownItem url=url_for('countries', code="hk")}>Hong Kong</{DropdownItem}>
+<{/Dropdown}>
+```
+
+!!! info
+    Components are in fact jinja macros. Any jinja macro can be called using the new macro tag syntax.  
+    [Read more about Flask Super Macros](https://github.com/hyperflask/flask-super-macros)
+
+### Backend logic
+
+HTML components can have their own custom backend logic. Read on to the [next guide about interactive apps](/guides/interactive-apps).
+
+## Frontend interactions using Alpine.js
+
+[Alpine.js](https://alpinejs.dev/) can be used to add interactivity to your component on the frontend. Alpine is bundled with Hyperflask and automatically loaded when used as part of a component.
+
+Example using the previous *app/components/Dropdown.html*:
+
+```jinja
+<div class="dropdown" x-data="{ open: false }">
+    <button @click="open = true">{{props.label}}</button>
+    <ul class="dropmenu" x-show="open">
+        {{children()}}
+    </ul>
+</div>
+```
+
+## Styling and scripting
+
+Scripts and styles can be embedded in components and bundled automatically.
+
+See [Embedded scripts and styles in the Assets guide](/guides/assets/#embedded-scripts-and-styles)
+
+## Pure frontend components
+
+Pure frontend components can be created using *.js* (or *.ts*) files for Web Components or *.jsx* (or *.tsx*) for React components.
+
+!!! tip
+    New adapters can be created for other frontend frameworks and component libraries.
+    You can also force which adapter to use for one or multiple files.
+
+### Web Components
+
+In the case of Web Components, the js file should define the custom element and register it. The filename should be named after the component name (use underscores instead of dashes).
+
+When the component is used as part of a template, the custom tag will be used and the file included in the page assets.
+
+Example, *app/components/custom_dropdown.js*:
+
+```js
+class CustomDropdown extends HTMLElement {
+    // ...
+}
+
+customElements.define('custom-dropdown', CustomDropdown);
+```
+
+In a template: `<{custom_dropdown}/>`
+
+!!! tip
+    [lit](https://lit.dev/) is a great library to implement Web Components. To use with Hyperflask, simply install it and use it as described in their documentation.
+
+### React components
+
+Define react components as usual in a jsx file named after the component. You must export your component as default. Call them in your template like any other component. Each component call will create an independant react tree.
+
+!!! important
+    React is not bundled with Hyperflask. You will need to install it using npm.
+
+Properties provided to the component will be serialized to JSON. You cannot provide children.
+
+Example, *app/components/Dropdown.jsx*:
+
+```js
+export default function Dropdown(props) {
+    return <div></div>;
+}
+```
+
+In a template: `<{Dropdown}/>`
+
+## Built-in UI components
+
+Hyperflask includes a rich library of UI components powered by [DaisyUI](https://daisyui.com).
+
+Check out the [Components library](/components)
+
+## Components with custom logic
+
+For backend components, you can execute business logic before rendering the template.
+Use a jinjapy file instead of html file (.jpy extension) and implement the render function.
+
+The render function will be provided the props as arguments.
+
+```jpy
+---
+def render(prop1, prop2):
+    # custom logic
+    return {"var": "value"} # template variables
+---
+{{var}}
+```
+
+## Interactive apps
+
+# Interactive apps
+
+Hyperflask can be used to create interactive apps thanks to HTMX.
+
+## HTMX introduction
+
+HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
+
+TODO
+
+## Interactive components
+
+Components can define their own custom backend logic. Similar to pages, files should use the *jpy* extension and provide a frontmatter with the python code.
+
+Functions named after HTTP methods will be registered as routes. For example, if a *get* function exists, Hyperflask will make the component accessible through GET requests.  
+These functions can return a dict with component props to render the component or any other valid Flask response value.
+
+Use HTMX to call your component logic and retrieve only the necessery HTML.
+
+Let's create a todo app:
+
+*app/pages/index.jpy*:
+
+```jpy
+---
+from app.models import Todo
+page.todos = Todo.find_all()
+---
+<table>
+    {% for todo in todos %}
+        <{TodoItem todo=todo }/>
+    {% endfor %}
+</table>
+<{button hx-get=url_for('TodoItemForm') hx-target="previous" hx-swap="beforeend"}>Add todo</{button}>
+```
+
+*app/components/TodoItem.jpy*:
+
+```jpy
+---
+from app.models import db, Todo
+
+def get():
+    todo = Todo.get_or_404(request.args['id'])
+    return {"todo": todo}
+
+def delete():
+    with db:
+        todo = Todo.get_or_404(request.args['id'])
+        todo.delete()
+    return ""
+---
+<tr>
+    <td>{{props.todo.title}}</td>
+    <td>
+        <{button hx-get=url_for('TodoItemForm', id=props.todo.id) hx-target="closest tr" hx-swap="outerHTML"}>Edit</{button}>
+        <{button hx-delete=url_for('TodoItem', id=props.todo.id) hx-target="closest tr" hx-swap="delete"}>Delete</{button}>
+    </td>
+</tr>
+```
+
+*app/components/TodoItemForm.jpy*:
+
+```jpy
+---
+from hyperflask import request, current_app
+from app.models import db, Todo
+
+def get():
+    todo = Todo.get_or_404(request.args['id']) if "id" in request.args else None
+    return {"todo": todo}
+
+def post():
+    with db:
+        if "id" in request.values:
+            todo = Todo.get_or_404(request.args['id'])
+        else:
+            todo = Todo()
+        todo.title = request.form["title"]
+        todo.save()
+    return current_app.components.TodoItem(todo=todo) # return another component
+---
+<tr>
+    <td>
+        <input type="text" name="title" value="{{props.todo.title if props.todo else ''}}" required>
+    </td>
+    <td>
+        <{button hx-get=url_for('TodoItemForm', id=props.todo.id if props.todo else None) hx-include="closest tr" hx-target="closest tr" hx-swap="outerHTML"}>Save</{button}>
+    </td>
+</tr>
+```
+
+!!! warning
+    Unlike pages, all python imports are mandatory in components
+
+!!! warning
+    When using Alpine.js in components that will be loaded via htmx, Alpine may not be included automatically.
+    To ensure it is included, use `current_app.assets.include('@hyperflask/alpine')` in your page python code.
+
+!!! tip
+    The `request` object in Hyperflask uses [htmx-Flask](https://github.com/sponsfreixes/htmx-flask) subclass that [provides easy access to htmx headers](https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage).
+
+## Pure frontend interactions
+
+For simple frontend interactions, we recommend using [Alpine.js](https://alpinejs.dev/) with html components.
+
+Sometines, you need a truly interactive component. In this case you can use Web Components, React or any other frontend framework. [Creating frontend components](/guides/components/#pure-frontend-components) is fully integrated in Hyperflask component system.
+
+## Highligting active URLs
+
+Use the built-in `hx-active-url` htmx extension. Apply the attribute to anchor elements or their parents. Its value is a class name that will be applied to the anchor element when its url matches window.location.
+
+The url is resolved in the following order: hx-push-url, hx-replace-url, href, hx-get.
+
+```html
+<nav hx-active-url="active">
+    <a hx-get="/page1" hx-push-url="true">Page 1</a>
+    <a href="/page2">Page 2</a>
+</nav>
+```
+
+When a link is fetching a component, the url may not be the right one. Use `hx-href` to setup the href attribute properly and activate `hx-push-url`:
+
+```html
+<nav hx-active-url="active">
+    <a hx-get={{url_for('Component')}} hx-href={{url_for('index', id=1)}}>Page 1</a>
+</nav>
+```
+
+## HTMX utilities
+
+Perform an htmx redirection using `htmx_redirect()`:
+
+```py
+from hyperflask import htmx_redirect
+def post():
+    # ...
+    return htmx_redirect("/")
+```
+
+Perform an Out-Of-Band (oob) swap using `htmx_oob()`:
+
+```py
+from hyperflask import htmx_oob
+def post():
+    # ...
+    return htmx_oob(current_app.components.Sidebar()) # replaces the sidebar element with a new version of itself
+```
+
+You can also add out of band elements in your template using the `<{HtmxOob}>` component:
+
+```
+<{HtmxOob}><{Sidebar}/></{HtmxOob}>
+```
+
+## Realtime apps
+
+Add realtime updates to your app using [push messages](/guides/push).
+
+## Static content
+
+# Static content
+
+Hyperflask makes it easy to build pages out of static content !
+
+## Content pages
+
+No python code will be executed on content pages.
+
+Content pages can use the following formats:
+
+- **html**: a standard jinja template
+- **md**: a standard jinja template that will be rendered using markdown
+
+All formats can have a YAML frontmatter defining variables that will be injected in the page object.
+
+Use the `layout` property in the frontmatter to use a layout for the page. This uses Jinja extends sustem. The default block name will be `content`. You can provide an alternative block name after the template name separated by a colon.
+
+```md
+---
+layout: layouts/default.html:body
+---
+# Hello world
+```
+
+## Collections
+
+Collections are a way to manage a collection of static pages generated from a content source.
+
+!!! info
+    This feature is provided by [Flask-Collections](https://github.com/hyperflask/flask-collections)
+
+Your app can have multiple collections. Each collection has a set of entries.
+
+Each entry has a "slug", some content and a set of properties. Formats for each entries varies depending on the collection type.
+
+When the `is_markdown` property is set to true (which is automatic if a file-based entry has the *.md* extension), the content is rendered as markdown.
+
+When using a filename, it can contain a date prefix in the form of YYYY-MM-DD. The date will be available as the `date` property.
+
+### File-backed collections
+
+In a directory named after the collection located in *app/collections*, use one file per entry.
+
+Example:
+
+```
+app/collections
+  blog/
+    2025-01-01-new-year.md
+    2025-02-01-second-month.md
+```
+
+Example *2025-01-01-new-year.md*:
+
+```
+---
+title: "Happy new year!"
+---
+Hello world
+```
+
+### Data-backed collections
+
+These are collections where entries are all stored in a single structed file like CSV, JSON or YAML.
+
+Example *app/collections/blog.csv*:
+
+```
+slug,date,title,content
+new-year,2025-01-01,"Happy new year!","Hello world"
+```
+
+An sqlite database can also be used using the *.db* extension. A table or query must be provided a config.
+
+### Configuring collections
+
+Collections can be configured under the `COLLECTIONS` key. Create a subkey named after the collection that contains a dict of options.
+
+By default, collections are bound to a url under a path named after the collection. This can be overriden using the `url` config key.  
+You can also provide a layout template for collection entries. This template will receive an `entry` and `content` variable.
+
+```
+collections:
+    blog:
+        url: /blog
+        layout: layouts/post.html
+    categories:
+        path: meta.db
+        table: categories
+```
+
+To prevent a collection from being exposed via a URL, set url to false.
+
+### Accessing collections programmatically
+
+Collections are accessible under `app.collections`.
+
+```py
+for post in app.collections.blog:
+    print((post.slug, post.title, post.url))
+```
+
+## Content strategies
+
+!!! info
+    This feature uses [Frozen-Flask](https://frozen-flask.readthedocs.io/en/latest/)
+
+### Dynamic (default)
+
+Static site generation is disabled. All routes will be served by the Flask app.
+
+### Hybrid
+
+Static site generation is enabled. GET routes will be statically generated. 
+
+When in production, URLs will be first matched against static files and fallback to the Flask app otherwise.
+
+To activate, add `static_mode: hybrid` in `config.yml`.
+
+### 100% static site
+
+Build your website locally and upload the statically generated site to a static hosting provider.
+
+Check out the [deployment guide](/guides/deploy#static-site-generation)
+
+To activate, add `static_mode: static` in `config.yml`.
+
+## Assets
+
+# Assets
+
+Hyperflask integrates esbuild to bundle assets and tailwind for styles.
+
+!!! info
+    This feature is provided by [Flask-Assets-Pipeline](https://github.com/hyperflask/flask-assets-pipeline)
+
+## Static assets
+
+Static assets can be located in 2 different folders:
+
+ - *app/assets*: files located here will be copied to the *public* folder when the app is built. A hash will be appended to the filename for cache busting. URLs for these files should be created using `asset_url(filename)`
+ - *public*: files located here are left untouched and are directly accessible from the web. URLs for these files should be created using `static_url(filename)`
+
+## Styling
+
+Hyperflask uses [Tailwind](https://tailwindcss.com/) for styling. It is fully integrated and you can use tailwind utility classes across pages and components.
+
+## Images
+
+Use the `<{Image}/>` component instead of `asset_url()` to generate image tags.
+Using the component also enables using image placeholders (with a blurry image), responsive images and more.
+
+Place your images in the assets folder (eg. `app/assets/image.png`) then include them:
+
+```
+<{Image src="image.png" }/>
+```
+
+The following default attributes will be set:
+
+- `width` and `height`
+- `loading="lazy"` (default for all images can be changed in the configuration using `images_default_loading`)
+- `decoding="async"` (default for all images can be changed in the configuration using `images_default_decoding`)
+- `style` to define a background image using a base64 encoded data URI containing a tiny blurry version of the image (disable using `placeholder=False` on the Image component)
+
+Override any of these attributes on the Image component.
+
+Using `preload=True` on the Image component will add a preload meta in the page header and use eager loading instead. Use `priority=True` to set `preload=True` and fetchpriority to high.
+
+Example:
+
+```
+<{Image src="image.png" preload=True placeholder=False }/>
+```
+
+### Convert to webp
+
+It is possible to auto convert all images to webp by adding `assets_images_webp: true` in `config.yml`. Webp is a highly optimized image format for the web.
+
+If enabled, continue using the original name as the src of the image.
+
+### Responsive images
+
+You can resize your images to multiple widths and generate a `srcset` attribute for [responsive images](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images).
+
+In your config add the `assets_images_sizes` key with a list of widths. Example: `assets_images_sizes: [400, 1200]`.
+The images will be resized to all smaller width than their own.
+
+The Image component will auto set the srcset attribute based on those sizes.
+
+It is recommended to have large images as default and auto resize them to smaller ones. Use `assets_images_default_size` to specify the default size to use as the src attribute.
+
+## Using fonts
+
+TODO
+
+## Embedded scripts and styles
+
+You can define scripts and styles directly in your templates. Their content will be extracted and bundled automatically.
+
+Add the `bundle` attribute to your script and style tags to extract and bundle them.
+
+Example *components/Datatable.html* template:
+
+```html
+<table class="datatable">
+    <!-- ... -->
+</table>
+
+<script bundle>
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".datatable").forEach(table => {
+        // ...
+    });
+});
+</script>
+
+<style bundle>
+.datatable {
+    /* ... */
+}
+</style>
+```
+
+When this component is used as part of your request, its associated assets will be automatically included.
+
+You can import any javascript package from node_modules in the script tag as it will be bundled using esbuild.
+
+!!! tip "Important"
+	No jinja directives can be used inside the bundled script and style tags
+
+!!! note
+	Extracted assets will be stored in your assets folder.  
+	You can customize the name of the extracted files using a value for the bundle attribute: `<script bundle="filename.js">`
+
+## Bundles
+
+You can create bundles compiled using esbuild. Bundles need to be declared in the configuration. Bundles can be js or css files.
+
+Let's imagine a file located at *app/assets/app.js*. Create a bundle for it by adding the following in *config.yml*:
+
+```yaml
+assets_bundles:
+  - app.js
+```
+
+The bundles will be automatically included on all pages. To prevent automatic inclusion, add `assets_include: false`.
+You can then include your bundle manually using `app.assets.include("app.js")` in python code or `{{ include_asset("app.js") }}` in templates.
+
+Esbuild will bundle css files included in js files. These files will be automatically included when their parent js file is.
+
+## Forms
+
+# Forms
+
+Easily define forms that can be validated on the frontend and the backend.
+
+!!! info
+    This feature is provided by [Jinja-WTForms](https://github.com/hyperflask/jinja-wtforms)
+
+## Creating forms in templates
+
+Create forms in templates by calling fields on a `form` object as if they would be already declared. The syntax for calling fields is slightly different compared to raw wtforms as it also includes the field type.
+
+```jinja
+{# signup.html #}
+<{Form form}>
+    <{FormField form.firstname.text("First name") }/>
+    <{FormField form.lastname.text("Last name") }/>
+    <{FormField form.email.email("Email", required=True) }/>
+    <{FormField form.password.password("Password", required=True) }/>
+    <{SubmitButton}>Signup</{}>
+</{Form}>
+```
+
+!!! info
+    This example uses built-ins UI form components
+
+Field declarations look like `form.field_name.field_type(label, **options)`. Available field types: checkbox, decimal, date, datetime, float, int, radio, select, selectmulti, text, textarea, password, hidden, datetimelocal, decimalrange, email, intrange, search, tel, url, file, files.
+
+Field types map to their equivalent wtforms field definition.
+
+The [`{% form %}` directive](https://github.com/hyperflask/jinja-wtforms?tab=readme-ov-file#the-form-directive) can also be used before a form declaration. When used, a form object will be automatically created if none are provided. This directive also allows to customize the class name and declare multiple forms per template.
+
+## Validating data on the backend
+
+The process is the same as [using Wtforms](https://wtforms.readthedocs.io/en/3.1.x/forms/#using-forms).
+
+To make things easier, when using pages, forms declared inside pages are available through `page.form` and `page.forms`. (It also works for components)
+
+Example page:
+
+```jpy
+---
+form = page.form()
+def post():
+    if form.validate():
+        # do something with form.data
+---
+<{Form form}>
+    <{FormField form.name.text("Name", required=True) }/>
+    <{SubmitButton}>Signup</{}>
+</{Form}>
+```
+
+## Forms outside pages
+
+Forms can be defined in any template. It is recommended to use the `{% form %}` directive as it will ensure a form object is always available.
+
+Form classes can be accessed through `app.forms[template_filename]`.
+
+## Form components
+
+Hyperflask includes some [form related UI components](/components/forms) to build beautiful apps. Input widgets are also automatically styled.
+
+`<{Form}/>` can be used as an alternative to the form tag. It takes the form object as the first positional argument.
+
+Use `<{FormField }/>` with the field as first argument to display a field correctly.
+
+## Posting forms using HTMX
+
+`<{HxForm}/>` can be used to create htmx powered forms. Use `action=url` as usual to define the form target. The form will be automatically resetted on successful submit.
+
+## Models
+
+# Models
+
+Models are the way to persist data in a database. Hyperflask uses [SQLORM](https://hyperflask.github.io/sqlorm), an easy to use ORM that does not abstract away SQL. By default, Hyperflask apps are configured to use SQLite which has been tuned for great web app performance.
+
+!!! info
+    This feature is provided by [Flask-SQLORM](https://github.com/hyperflask/flask-sqlorm)
+
+## Defining models
+
+Models are classes inheriting from `Model`. To define which table they represent, use the `table` class property.
+
+To define column mapping, define properties via annotations. The type used will be [converted to an sql type](https://hyperflask.github.io/sqlorm/models/#column-types).
+For more control over the mapping, you can use instantiate `Column()` objects.
+
+Example *app/models.py*:
+
+```python
+from hyperflask.factory import db
+
+class Task(db.Model):
+    table = "tasks"
+
+    id: int
+    title: str = db.Column(type="varchar(20)") # set the column type (used in create_table())
+    done = db.Column("completed", bool, default=False) # no annotation, column name is "completed" but property name will be "done"
+```
+
+Once columns are defined via annotations or `db.Column` properties, they are accessible as class and instance properties.
+
+[Read more in sqlorm documentation](https://hyperflask.github.io/sqlorm/models/)
+
+## Persisting data
+
+Manipulate model objects as you would with any python objects. The following methods help you execute DML statements:
+
+- `save()` executes `insert()` or `update()` depending on the fact that the object has a primary key or not
+- `insert()` executes an insert statement
+- `update()` executes an update statement
+- `delete()` executes a delete statement
+- `refresh()` executes a select statement (same as `get()`) and updates the object attribute values
+- `create()` a class method to create and insert an object in one line
+
+These methods (apart from `create()`) return a boolean indicating if the operation was performed.
+
+The data used to insert or update will be limited to "dirty" attributes, which means attributes that have been
+modified since the last DML statement. Setting an attribute will automatically flag it as dirty.
+
+To call this methods, you must be in a transaction context. Use the db object to initiate one.
+
+```py
+from app.models import db, Task
+
+with db:
+    task = Task.create(title="my task") # INSERT INTO tasks (title) VALUES ('my task')
+
+    task = Task()
+    task.title = "my task"
+    task.save() # INSERT INTO tasks (title) VALUES ('my task')
+    # same as task.insert()
+
+    task = Task.get(1)
+    task.title = "renamed task"
+    task.save() # UPDATE tasks SET title = 'renamed task' WHERE id = 1
+    # same as task.update()
+
+    task = Task.get(2)
+    task = Task.get_or_404(2) # raise a 404 error if object not found
+    task.delete() # DELETE FROM tasks WHERE id = 2
+
+    task = Task()
+    task.id = 1
+    task.refresh() # SELECT * FROM tasks WHERE id = 1
+```
+
+[Read more in sqlorm documentation](https://hyperflask.github.io/sqlorm/models/#manipulating-model-objects)
+
+## Querying data
+
+The following methods can be used to query data:
+
+- `query()` executes the provided statement using [`fetchhydrated()`](https://hyperflask.github.io/sqlorm/executing/#fetching-composite-objects)
+- `find_all()` constructs a select statement based on the provided arguments and executes using `query()`
+- `find_one()` same as `find_all()` but only returns the first row
+- `get()` to find one row by primary key
+
+The two finder methods can take as argument a where condition (sql string) or keyword arguments representing attributes to filter by.
+
+It is not needed to provide a transaction context to call these methods.
+
+```python
+todos = Task.query("SELECT * FROM tasks WHERE NOT done")
+todos = Task.find_all("NOT done")
+todos = Task.find_all(Task.done==False)
+todos = Task.find_all(done=False)
+task = Task.find_one("id=1")
+task = Task.get(1)
+```
+
+[Read more in sqlorm documentation](https://hyperflask.github.io/sqlorm/models/#querying-model-objects)
+
+## Rendering model objects
+
+Model objects can be rendered using any jinja macro (components being macros). Set the `__macro__` class property to the name of the macro.
+
+```py
+class Task:
+    __macro__ = "Task"
+```
+
+The macro will be provided an `obj` property. This can be overriden using the syntax `MacroName(property)`.
+
+```py
+class Task:
+    __macro__ = "Task(task)"
+```
+
+In `app/components/Task.html`:
+
+```html
+<label>
+    <input type="checkbox">
+    {{props.task.title}}
+</label>
+```
+
+Once defined, you can "print" your objects and result sets directly in your templates:
+
+```jpy
+---
+page.tasks = Task.find_all()
+---
+{{tasks}}
+```
+
+```jpy
+---
+page.task = Task.get(1)
+---
+{{task}}
+```
+
+## Managing the schema
+
+Hyperflask will automatically create missing tables on start. It will not however alter existing tables.
+
+To manage your schema, you can use migrations as [described in the sqlorm documentation](https://hyperflask.github.io/sqlorm/schema/#migrations).
+
+Initialize migrations using the following command: `uv run hyperflask db init-migrations --set-version`.
+This will create a migration file at *data/migrations/000_initial.sql*.
+
+Once migrations are activated, they will be auto applied on application start. This can be disabled using `init_database: false` in the config, in which case run your migrations using `uv run hyperflask db migrate`.
+
+To create a new migration version for a new model use: `uv run hyperflask db init-migrations MyModel`
+
+## Choosing a database
+
+By default, Hyperflask uses [SQLite](https://sqlite.org) with [optimizations](https://fractaledmind.com/2023/09/07/enhancing-rails-sqlite-fine-tuning/) for usage in web applications.
+
+If SQLite is not a good fit for your app, we recommend [PostgreSQL](https://www.postgresql.org/). In this case install the postgresql dbapi adapter using `uv add psycopg[binary]` then set the `sqlorm_uri` configuration parameter to the postgresql connection string.
+
+## Going further
+
+[Read sqlorm documentation](https://hyperflask.github.io/sqlorm/)
+
+## Files
+
+# Files
+
+Manage user uploaded files.
+
+!!! info
+    This feature is provided by [Flask-Files](https://github.com/hyperflask/flask-files)
+
+## Upload files to store in models
+
+Add a file column to your model:
+
+```py
+from hyperflask.factory import db
+
+class MyModel(db.Model):
+    file = Column(type=db.File)
+```
+
+In a page using a form:
+
+```jpy
+---
+form = page.form()
+def post():
+    if form.validate():
+        with db:
+            obj = MyModel.create(**form.data)
+---
+<{Form}>
+    <{FormField form.file.file("File") }/>
+    <{SubmitButton}>Upload</{}>
+</{Form}>
+```
+
+Or without forms:
+
+```py
+MyModel.create(file=request.files['file'])
+```
+
+When accessing the model property, the value is a [file object](https://github.com/hyperflask/flask-files#file-object).
+
+To generate a url for the file:
+
+```jpy
+---
+page.obj = MyModel.get(1)
+---
+<img src="{{obj.file}}">
+```
+
+## Using S3
+
+To store files on S3 (or compatible services), configure your app as follow:
+
+In *.env*:
+
+```
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+AWS_DEFAULT_REGION=...
+```
+
+In *config.yml*:
+
+```
+files_default_filesystem: s3
+files_base_path: bucket_name
+```
+
+## Uploading without models
+
+Use `save_file()` to store a file and get a [file object](https://github.com/hyperflask/flask-files#file-object). File objects are serializable as string or JSON.
+
+```jpy
+---
+from hyperflask import save_file
+
+form = page.form()
+
+def post():
+    if form.validate():
+        file = save_file(form.file.data)
+        # do something with file object
+---
+<{Form}>
+    <{FormField form.file.file("File") }/>
+    <{SubmitButton}>Upload</{}>
+</{Form}>
+```
+
+## Loading data
+
+# Loading data
+
+There are 2 ways to load data while displaying a loader to the user.
+
+## Using suspense
+
+!!! info
+    This feature is provided by [Flask-Suspense](https://github.com/hyperflask/flask-suspense)
+
+Suspense uses response streaming to delay the rendering of parts of the template to the end, allowing you to display loading states as part of a single request. This makes it the most efficient solution.
+
+Let's create a component to render a big data table, in `components/DataTable.jpy`:
+
+```jpy
+---
+def render():
+    return {"data": MyModel.find_all()}
+---
+<table>
+    {% for row in data %}
+        <tr>
+            ...
+        </tr>
+    {% endfor %}
+</table>
+```
+
+As you can see, this component fetches data when it is being rendered. If we were using this component directly, the page render would pause while the data is fetched. The user would have no feedback on what is hapenning.
+
+To prevent this issue, and display a loader, we can wrap the call to this component using a `{% suspense %}` block:
+
+```jinja
+{% suspense %}
+    <{DataTable}/>
+{% fallback %}
+    <p>Loading...</p>
+{% endsuspense %}
+```
+
+Now the page will display immediatly with a loading message. Once the datatable is finished rendering, it will appear instead of the loading message.
+
+This method is also useful when performing API calls.
+
+!!! tip
+    You can also use suspense blocks without using components. Use the `defer()` function as [explained in Flask-Suspense doc](https://github.com/hyperflask/flask-suspense).
+
+!!! warning
+    Suspense can be used with htmx requests but htmx does not support streaming responses out of the box.
+    Add `hx-stream` to elements fetching streaming data to handle it properly.
+
+## Using htmx
+
+Using component endpoints, you can fetch a component on page load.
+
+Let's make the component from the previous section accessible via GET:
+
+```jpy
+---
+def get():
+    pass
+def render():
+    return {"data": MyModel.find_all()}
+---
+<table>
+    {% for row in data %}
+        <tr>
+            ...
+        </tr>
+    {% endfor %}
+</table>
+```
+
+Then use htmx to fetch the component on load:
+
+```jinja
+<div hx-get="{{url_for('DataTable')}}" hx-trigger="load" hx-swap="outerHTML">
+    Loading...
+</div>
+```
+
+## Flash messages
+
+# Flash messages
+
+Flask [provides a mechanism](https://flask.palletsprojects.com/en/stable/patterns/flashing/) for showing one time messages to the user.
+
+Use `flash()` or `page.flash()` as described by Flask documentation.
+
+```jpy
+---
+page.flash("Welcome to my page!", "success")
+---
+{% use_layout %}
+Hello
+```
+
+Hyperflask will automatically print the messages as [alert messages in a toast](https://daisyui.com/components/toast/). This will also work when flashing messages during ajax requests.
+
+## Metadata
+
+# Metadata
+
+Hyperflask can manage a page metadata for you. This is necessary for SEO.
+
+Set metadata by defining `page.metadata` to a dict. This only works on pages using the default layout.
+
+```jpy
+---
+page.metadata = {
+    "title": "Page title"
+}
+---
+{% use_layout %}
+My page
+```
+
+## Title
+
+Set the `title` property on `page.metadata`.
+
+You can use the `SITE_TITLE` configuration option to determine how your title looks like. `SITE_TITLE` can have different values:
+
+ - If it's a string with no template markers, it will always be used as the page title (it overrides all others)
+ - If it's a string with a template marker `%s`, the page title will be replaced. (eg: with `SITE_TITLE="%s | My site`, the page title would be "Page title | Site title")
+ - It can be a dict with a `template` key and a `default` key. If no page title is provided, the default value is used, otherwise the template value is used.
+
+Pages can override the title in all cases using a dict with an `absolute` key:
+
+```py
+page.metadata = {
+    "title": {"absolute": "Page title"}
+}
+```
+
+## Common metadata
+
+You can set any other common metadata on the `page.metadata` dict. Depending on their name, some metadata will be included as `<link>` tags.
+
+Values can be lists to generate multiple tags of the same name.
+
+```py
+page.metadata = {
+    "description": "My awesome page",
+    "keywords": ["awesome", "amazing"], # in the case of keywords, the list is joined
+    "icon": asset_url("icon.png"),
+    "author": ["John", "Peter"]
+}
+```
+
+Will generate:
+
+```html
+<meta name="description" content="My awesome page">
+<meta name="keywords" content="awesome,amazing">
+<link rel="icon" href="/static/icon.png">
+<meta name="author" content="John">
+<meta name="author" content="Peter">
+```
+
+### Keywords
+
+Keywords can be a list list, in which case the list is joined as comma separated values.
+
+### Authors
+
+```py
+page.metadata = {
+    "author": [
+        "John",
+        {"name": "Peter", "url": "/authors/peter"}
+    ]
+}
+```
+
+Will generate:
+
+```html
+<meta name="author" content="John">
+<link rel="author" href="/authors/peter">
+<meta name="author" content="Peter">
+```
+
+### Alternates
+
+```py
+page.metadata = {
+    "alternate-lang": {
+        "en-US": "/en",
+        "fr-FR": "/fr"
+    },
+    "alternate-media": {
+        "only screen and (max-width: 600px)": "/mobile"
+    },
+    "alternate-type": {
+        "application/rss+xml": "/rss"
+    }
+}
+```
+
+Will generate:
+
+```html
+<link rel="alternate" hreflang="en-US" href="/en">
+<link rel="alternate" hreflang="de-DE" href="/fr">
+<link rel="alternate" media="only screen and (max-width: 600px)" href="/mobile">
+<link rel="alternate" type="application/rss+xml" href="/rss">
+```
+
+### Robots
+
+```py
+page.metadata = {
+    "robots": {
+        "index": True,
+        "follow": True,
+        "nocache": False
+    },
+    "googlebot": {
+        "index": True,
+        "max-video-preview": -1
+    }
+}
+```
+
+Will generate:
+
+```html
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, max-video-preview:-1">
+```
+
+## OpenGraph
+
+```py
+page.metadata = {
+    "opengraph": {
+        "title": "My article",
+        "site_name": "My site",
+        "image": {
+            "url": asset_url("og.png", _external=True),
+            "width": 800,
+            "height": 600,
+            "alt": "My image"
+        }
+    }
+}
+```
+
+Will generate:
+
+```html
+<meta name="og:title" content="My article">
+<meta name="og:site_name" content="My site">
+<meta name="og:image" content="http://localhost:5000/static/og.png">
+<meta name="og:image:width" content="800">
+<meta name="og:image:height" content="600">
+<meta name="og:image:alt" content="My image">
+```
+
+## Twitter
+
+```py
+page.metadata = {
+    "twitter": {
+        "creator": "@example",
+        "image": asset_url("twitter.png", _external=True)
+    }
+}
+```
+
+Will generate:
+
+```html
+<meta name="twitter:creator" content="@hyperflask">
+<meta name="twitter:image" content="http://...">
+```
+
+## JSON-LD
+
+```py
+page.metadata = {
+    "json-ld": {
+        "@context": "https://schema.org/",
+        "@type": "Recipe",
+        "name": "Banana Bread Recipe",
+        "description": "The best banana bread recipe you'll ever find! Learn how to use up all those extra bananas.",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4.7,
+            "ratingCount": 123
+        },
+        "video": {
+            "@type": "VideoObject",
+            "name": "How To Make Banana Bread",
+            "description": "This is how you make banana bread, in 5 easy steps.",
+            "contentUrl": "https://www.example.com/video123.mp4"
+        }
+    }
+}
+```
+
+Will generate:
+
+```html
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    "name": "Banana Bread Recipe",
+    "description": "The best banana bread recipe you'll ever find! Learn how to use up all those extra bananas.",
+    "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 4.7,
+    "ratingCount": 123
+    },
+    "video": {
+    "@type": "VideoObject",
+    "name": "How To Make Banana Bread",
+    "description": "This is how you make banana bread, in 5 easy steps.",
+    "contentUrl": "https://www.example.com/video123.mp4"
+    }
+}
+</script>
+```
+
+## Apple
+
+```py
+page.metadata = {
+    "apple": {
+        "itunes-app": "app-id=XXX",
+        "web-app-capable": "yes"
+        "touch-icon": asset_url("apply-icon.png", _external=True)
+    }
+}
+```
+
+Will generate:
+
+```html
+<meta name="apple-itunes-app" content="app-id=XXX">
+<meta name="apple-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="http://localhost:5000/static/apple-icon.png">
+```
+
+## Applinks
+
+```py
+page.metadata = {
+    "applinks": {
+        "ios": {
+            "url": "http://...",
+            "app_store_id": "XXX"
+        },
+        "android": {
+            "package": "com.example...",
+            "app_name": "XXX"
+        }
+    }
+}
+```
+
+Will generate:
+
+```html
+<meta property="al:ios:url" content="https://...">
+<meta property="al:ios:app_store_id" content="XXX">
+<meta property="al:android:package" content="com.example....">
+<meta property="al:android:app_name" content="XXX">
+```
+
+## Common metadata for all pages
+
+Use the `SITE_METADATA` configuration option.
+
+Example, in `config.yml`:
+
+```yml
+site_metadata:
+    robots:
+        index: false
+```
+
+The default configuration will be deeply merged with the page provided configuration.
+
+## Generating metadata ouside of pages
+
+Use `hyperflask.utils.metadata_tags()` to generate metadata tags according to the configuration object passed as first argument.
+
+## Emails
+
+# Emails
+
+Send emails templated with [MJML](https://mjml.io).
+
+!!! info
+    This feature is provided by [Flask-Mailman](https://waynerv.github.io/flask-mailman) and [Flask-Mailman-Templates](https://github.com/hyperflask/flask-mailman-templates)
+
+## Templates
+
+Email templates are located in the *app/emails* folder. The recommended format is MJML for the best possible email compatible html rendering.
+
+Template files can contain a YAML frontmatter with extra metadata like subject. The frontmatter values are templated as well.
+
+```jinja
+---
+subject: "Welcome {{name}} to example.com!"
+---
+{% use_layout %}
+<mj-text>
+    <h1>Hello {{name}},</h1>
+    <p>Thank you for joining</p>
+</mj-text>
+```
+
+A default layout is provided by Hyperflask. Feel free to override it by creating *app/emails/layout.mjml*. Using the directive `{% use_layout %}` ensures that the layout is used for this template.
+
+!!! tip
+    When providing your own layout, you can extend from [*base_layout.html*](https://github.com/hyperflask/hyperflask/blob/main/hyperflask/layouts/email.mjml).
+
+## Sending
+
+To send an email, use `send_mail()`:
+
+```py
+from hyperflask import send_mail
+send_mail("welcome.mjml", "user@example.com")
+```
+
+You can provide template variables as keywork arguments.
+
+## Configuring an SMTP server
+
+When developping, [mailpit](https://mailpit.axllent.org/) is running to provide a live view of all the emails you are sending. Access it at <http://localhost:8025>.
+
+!!! info
+    When not using Hyperflask-Start, if no backend is defined, mail will be printed on stdout when in debug mode.
+
+For sending email in production, provide the following configuration in your *config.yml*:
+
+```yaml
+mail_server: some_server.com
+mail_port: 587
+mail_username: some_username
+mail_password: some_password
+mail_use_tls: true
+mail_default_sender: no-reply@yourdomain.com
+```
+
+## Background tasks
+
+# Background tasks
+
+Perform long-running or blocking tasks in the background.
+
+!!! info
+    This feature uses [Dramatiq](https://dramatiq.io) and [Periodiq](https://gitlab.com/bersace/periodiq)
+
+
+## Creating tasks
+
+Tasks are python functions decorated with `@app.actor`.
+
+In *app/tasks.py*:
+
+```py
+from hyperflask.factory import app
+
+@app.actor
+def fetch_url(url):
+    # ...
+```
+
+## Queuing tasks
+
+Tasks can be queued for execution from anywhere:
+
+```py
+from app.tasks import fetch_url
+fetch_url.send("http://...")
+```
+
+## Scheduled tasks (cron jobs)
+
+```py
+from hyperflask.factory import app
+from hyperflask import cron
+
+@app.actor(periodiq=cron("1 * * * *"))
+def do_something_every_day(url):
+    # ...
+```
+
+## Brokers
+
+The component queueing and dispatching tasks is called a "broker". Dramatiq supports multiple brokers: [Rabbitmq](https://dramatiq.io/advanced.html#brokers), [Redis](https://dramatiq.io/advanced.html#brokers), [Amazon SQS](https://github.com/Bogdanp/dramatiq_sqs), [Postgresql](https://gitlab.com/dalibo/dramatiq-pg).
+
+The default broker used in Hyperflask uses [sqlite](https://github.com/hyperflask/dramatiq-sqlite). It does not require any kind of setup but will not scale past 1 server. If you want to offload your background processing to a second server, use redis or postgresql.
+
+## Internationalization
+
+# Internationalization
+
+!!! info
+    This feature is provided by [Flask-Babel-Hyper](https://github.com/hyperflask/flask-babel-hyper)
+
+## Marking strings for translation
+
+Use [gettext functions](https://docs.python.org/3/library/gettext.html#module-gettext) to mark all strings requiring translation.
+
+In templates:
+
+```jinja
+{{_("this string will be translated")}}
+```
+
+In python:
+
+```py
+from hyperflask import _
+
+_("this string will be translated")
+```
+
+Other available functions:
+
+|Full name|Short name|Description|
+|---|---|---|
+|gettext|_|Return a localized string|
+|ngettext|_n|Like gettext(), but consider plural forms|
+|pgettext|_p|Like gettext(), but specify the context|
+|lazy_gettext|_lazy|Like gettext(), but evaluation is delayed|
+
+!!! tip
+    Format strings should be resolved after the translation has happenned.
+
+    Bad: `_("hello %(name)s" % {"name": "world"})`
+
+    Good: `_("hello %(name)s") % {"name": "world"}`
+
+## Creating a translation
+
+Run the following command:
+
+```
+$ hyperflask babel init LOCALE
+```
+
+Where LOCALE should be a locale code (eg: `fr`)
+
+Translate the generated po file in *app/translations/{LOCALE}/LC_MESSAGES* using a tool like [poedit](https://poedit.net/).
+
+Once all the translations have been completed, run the following command:
+
+```
+$ hyperflask babel compile
+```
+
+## Locale detection
+
+Locale is automatically selected from, in order:
+
+ - the `locale` query string parameter
+ - the browser's Accept-Language header
+ - the default locale
+
+When the locale is set via the query string parameter, it is stored in the session until further change.
+
+## Updating translations
+
+Run the following command:
+
+```
+$ hyperflask babel update
+```
+
+Add missing translations in po files then run the following command:
+
+```
+$ hyperflask babel compile
+```
+
+## Server push
+
+# Server push
+
+Allow your frontend to react to server events using [Server Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) (SSE).
+
+!!! info
+    This feature is provided by [Flask-Mercure-SSE](https://github.com/hyperflask/flask-mercure-sse)
+
+## Publishing events
+
+Use `app.sse.publish(event_name, data)` for publishing a new event. By default, anybody listening on the SSE endpoint will see these events. Add `private=True` to only send to authentified clients.
+
+```py
+current_app.sse.publish("messages", "hello world")
+```
+
+Data sent with the event can be a string or a json serializable object. You can send rendered component by calling components programmatically:
+
+```py
+current_app.sse.publish("messages", current_app.components.ChatMessage(msg="hello world"))
+```
+
+## Listening for events
+
+Hyperflask provides some components to leverage the htmx [sse extension](https://htmx.org/extensions/sse/). 
+
+```jinja
+<{MercureStream topic="messages"}>
+    {# default content #}
+</{MercureStream}>
+```
+
+| Property | Required | Type | Description | Default |
+|----------|----------|------|-------------|---------|
+|topic|Yes|string|The topic name|
+|private|No|bool|Whether to use an authentified url|False
+|hx_swap|No|string|The swap strategy|beforeend
+|type|No|string|The type of event to listen to|message
+|auto_scroll|No|bool|Whether to keep the div scrolled at the bottom when receiving new items|False
+|Any additional properties|||Will be used as attributes of the div|
+
+To create a div which content will be replaced on each new message, use `hx_swap="innerHTML"`.
+
+!!! info
+    Using Hyperflask components is optional and htmx sse extension or any EventSource can be used directly.
+    
+    Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
+
+    ```html
+    <div hx-ext="sse" sse-connect="{{mercure_authentified_hub_url('messages')}}" sse-swap="message" hx-swap="beforeend">
+    </div>
+    ```
+
+## Using with models
+
+Model objects can be used as topic and/or data when publishing and subscribing. Combined with models rendering capability, this makes it easy to publish rendered objects on a stream.
+
+When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.
+
+```py
+class TodoList(db.Model):
+    pass
+
+class TodoItem(db.Model):
+    __macro__ = "TodoItem"
+
+todolist = TodoList()
+item1 = TodoItem()
+
+# publish the rendered item using the <{TodoItem}/> component
+# on the todolist stream named "TodoList/{id}" (where id will be replaced by the list id)
+current_app.sse.publish(todolist, item1)
+```
+
+## Multiplexing a stream
+
+Publish messages on multiple topics and set a type:
+
+```py
+current_app.sse.publish("topic1", "data", type="topic1")
+current_app.sse.publish("topic2", "data", type=True) # same effect without repeating topic in type
+```
+
+!!! tip
+    Add `mercure_type_is_topic: true` to your config file to make it the default behavior.
+
+Connect to multiple topics at once and distinguish messages using their type:
+
+```jinja
+<{MercureStreamContext topics=["topic1", "topic2"]}>
+    <{MercureStream type="topic1"}>
+
+    </{MercureStream}>
+    <{MercureStream type="topic2"}>
+
+    </{MercureStream}>
+</{MercureStreamContext}>
+```
+
+## Security
+
+# Security
+
+## HTTPS
+
+If you are serving your website behing https, add `server_secured: true` in your config.
+
+This will:
+
+ - force https as the default scheme in url_for()
+ - force session cookies to be secured
+ - set the `Strict-Transport-Security` to `max-age=31556926; includeSubDomains` (override with `hsts_header` config)
+
+## Content Security Policy
+
+A [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) (CSP) is activated by default.
+
+When a policy is active, `X-XSS-Protection: 1; mode=block` and `X-Content-Type-Options: nosniff` headers are also set.
+
+You can disable the CSP header using `csp_header: false` in the config.
+
+### Default policy
+
+| Directive | Sources | Notes |
+| --- | --- | --- |
+| default-src | 'self' | Will add all safe sources from the config |
+| script-src | {default-src} 'unsafe-eval' 'unsafe-inline' |
+| style-src | {default-src} 'unsafe-eval' 'unsafe-inline' |
+| manifest-src | 'self' |
+| connect-src | http: ws: | Will use secure versions if server_secured is true
+| img-src | * data: blob: |
+| media-src | * data: blob: |
+| frame-src | * data: blob: |
+| object-src | * data: blob: |
+
+**This policy is a compromise** between safe good defaults requiring a lot of configuration and an easy to use policy as good starting point.
+
+If you are not using any inline scripts, it is recommended to add `csp_unsafe_inline: false` to your config
+
+Unsafe evals are authorized because they are required by Alpine.js. However, Alpine [provides a special build](https://alpinejs.dev/advanced/csp) that works with unsafe eval disabled. This build will be used if unsafe eval is disabled. To disable use `csp_unsafe_eval: false`.
+
+!!! important
+    When disabling unsafe eval, install `@alpinejs/csp` first or your javascript builds will not work.
+
+!!! warning
+    unsafe-inline is always added in debug mode for compatibility with Flask-DebugToolbar
+
+### Safe sources
+
+Define safe sources using the `csp_safe_src` config.
+
+```yaml
+csp_safe_src: ["'self'", "*.gstatic.com", "fonts.googleapis.com"]
+```
+
+These sources can be used in any directive of a custom policy using the `'safe-src'` keyword.
+
+### Disable embedding via iframes
+
+To disable embedding via iframes, add `csp_frame_ancestors: false` to your config.
+
+To only allow embedding from a list of sources, set the value to a list of sources.
+
+### Custom policy
+
+The `csp_header` can be a dict where keys are directive names. Using a dict will completely override the default policy. However, unsafe eval and inline configuration still applies. Disable them so they don't impact your custom policy.
+
+## Referrer Policy
+
+The `Referrer-Policy` is set by default to `strict-origin-when-cross-origin`.
+
+Change by setting the `referrer_policy` config.
+
+## Errors
+
+# Errors
+
+## Custom error pages
+
+Create custom error pages by creating the following pages:
+
+| Error code | Page name | Description |
+| --- | --- | --- |
+| 404 | 404.html | URL not found page
+| 500 | 500.html | Server error
+
+
+## Deploying
+
+# Deploying
+
+## Build a docker image
+
+When using Hyperflask-Start, a [Dockerfile](https://github.com/hyperflask/hyperflask-start/blob/main/%7B%7Bcookiecutter.project_slug%7D%7D/Dockerfile) is provider to containerized your app.
+
+Run `docker build . -t <image_name>` to build the image.
+
+The image exposes port 8080 and is ready for production.  
+[Read about backuping the SQLite database](#backuping-your-sqlite-database).
+
+Use any docker hosting platforms or VPS. Check out our [recipe for hosting providers](/recipes/hosting).
+
+!!! warning
+    A secret key is needed for Hyperflask apps to start. You must provide a secret key either via the `FLASK_SECRET_KEY` env var (recommended) or via the configuration file (not recommended)
+
+    [Read more about secrets](#managing-secrets)
+
+The image exposes some volumes:
+
+- `/app/database`: the database folder. Mount this volume to persist app data.
+- `/app/uploads`: the folder where uploaded files are stored. Mount this volume to persist them and [read about other solutions](#storing-uploaded-files).
+
+!!! info
+    The image uses [Caddy](https://caddyserver.com/) as proxy server. It proxies request to the web server or the mercure server. It also serves static files.
+
+## Managing secrets
+
+Sensitive information like the secret key, api keys to third party services, etc... are called "secrets". They are commonly provided as environment variables.
+
+`.env` files won't be added to your container image. To manage secrets in production, multiple options are possible:
+
+- Use your [hosting provider](/recipes/hosting) secrets management facility (recommended)
+- Provide env vars when running the container (either using `--env-file` or `--env`)
+
+## Backuping your SQLite database
+
+The provided Dockerfile suppports using [Litestream](https://litestream.io/), a real-time SQLite replication solution. It can replicate your SQLite database to various file storage solution, the most common one being S3 (or compatible).
+
+Provide the following env variables when running the container:
+
+ - `LITESTREAM_BUCKET`: the bucket name to replicate to
+ - `LITESTREAM_ACCESS_KEY_ID`: access key for the S3 service (or `AWS_ACCESS_KEY_ID`)
+ - `LITESTREAM_SECRET_ACCESS_KEY`: secret key for the S3 service (or `AWS_SECRET_ACCESS_KEY`)
+ - `LITESTREAM_TYPE`: the replica type (optional, default: s3)
+ - `LITESTREAM_ENDPOINT`: the s3 service endpoint (optional, default: AWS S3)
+ - `LITESTREAM_PATH`: path to store at on the s3 service (optional, default: app.db)
+ - `LITESTREAM_REGION`: the s3 region (optional)
+
+!!! note
+    The access and secret keys should be provided as [secrets](#managing-secrets)
+
+As an alternative:
+
+- you can provide a `litestream.yml` file in your project directory (it will be copied to `/etc/litestream.yml` on container start)
+- you can mount a custom litestream config at runtime: `docker run -v litestream.yml:/etc/litestream.yml ...`
+
+## Storing uploaded files
+
+It is recommended to host files on durable object storage like [AWS S3](https://aws.amazon.com/s3/) or [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/).
+
+You will need to [configure the files storage](/guides/files#using-s3).
+
+## Static site generation
+
+First, it is recommended to check out the [Static content guide](/guides/static).
+
+Run `uv run hyperflask build`. You site will be generated in the `_site` folder.
+
+Use any static hosting platforms, check out our [recipe for hosting providers](/recipes/hosting#static-hosting).
+
+!!! tip
+    Use `uv run hyperflask csp-header` to print the CSP policy to properly configure your web server.
+
+## Building without docker
+
+Run `uv run hyperflask build` to build assets and static content.
+
+In production, assets will not be built and nodejs is not required. Ensure that the file `app/assets.json` and the `public` directory are shipped.
+
+If you have static content, it will be generated in the *_site* folder. You can use a proxy server like nginx to serve urls from this folder first or fallback to your app for hybrid content mode.
+
+## Test production mode locally
+
+It is often useful to test your app using its production configuration.
+
+### Using docker
+
+If you have built your app using docker as explained in the first section of this guide, you can start it using:
+
+    docker run --rm -p 8080:8080 <image name>
+
+Go to <http://localhost:8080>
+
+### Without docker
+
+Without using docker, you will not test the full production path but it could be good enough to validate that your app is working properly.
+
+Build your app without docker then run it:
+
+    uv run hyperflask build
+    uv run hyperflask run
+
+## Scaling
+
+# Scaling
+
+Hyperflask is made of different processes. It uses [honcho](https://honcho.readthedocs.io/en/latest/) as process manager.
+
+| Process | Description | Defaut port | Can be multiplied
+| --- | --- | --- | --- |
+| web | The application server handling HTTP requests | 5000 | Yes
+| worker | The worker that executes background tasks | | Yes
+| scheduler | The worker that will trigger cron jobs | | No
+| mercurehub | The mercure hub server for SSE | 5300 | No
+
+Each of these processes can be started independently.
+
+ - web processes can be served by a load balancer proxy (like nginx)
+ - worker processes can be hosted on different machines and multipled to handle more tasks
+
+!!! important
+    You won't be able to use SQLite as a database once you reach scaling issues. We recommend switching to PostgreSQL.
+
+## Starting individual processes
+
+Using Hyperflask-Start and the provided Dockerfile to build a container:
+
+    $ docker run my-app-image run web # only start the web process
+    $ docker run my-app-image run worker scheduler # only start the worker and scheduler processes
+
+## Scaling workers
+
+If you are hosting workers on another machine than the app server, a queue server will be needed.
+
+[Dramatiq](https://dramatiq.io/), the background tasks library at the heart of Hyperflask, can use [different brokers](https://dramatiq.io/advanced.html#brokers).
+
+The easiest is to install [valkey](https://valkey.io/) and use the redis broker.
+
+## Using multiple database servers
+
+SQLORM supports using [multiple engines](https://github.com/hyperflask/flask-sqlorm#using-multiple-engines).
+
+For example, you can have a primary server for read/writes and a replica for reads.
+
+## User management
+
+# User management
+
+!!! info
+    This feature is provided by [Hyperflask-Users](https://github.com/hyperflask/hyperflask-users). It uses [Flask-Login](https://github.com/maxcountryman/flask-login) for session management.
+
+## Installation
+
+    uv add hyperflask-users
+
+## Setup
+
+Hyperflask-Users requires the creation of a user model.
+
+```py
+from hyperflask.factory import db
+from hyperflask_users import UserMixin
+
+class User(UserMixin, db.Model):
+    pass
+```
+
+## Protecting pages
+
+Use `page.login_required()` at the start of any page code block to prevent access for unauthentified users.
+You can also decorate endpoints and method functions using the `hyperflask_users.login_required` decorator.
+
+```jpy
+---
+page.login_required()
+---
+Your email is {{current_user.email}}
+```
+
+When a protected page is accessed, if the user is not authentified, it redirects to the default connection page.
+
+The `current_user` object is automatically available in pages. It represents the current user model object.
+Use `current_user.is_authentified` to check if a user is authentified.
+
+## Connection using email and code
+
+The default connection mode is using an email with a verification code sent at this email. This prevents the need for storing passwords and reduce the attack surface.
+
+!!! warning
+    This means a properly configured email server is needed.
+
+To redirect to the connection page use `url_for('users.connect')`.
+
+## Connection using email and password
+
+Add the following configuration in your app config.yml:
+
+```yaml
+users_allowed_flows: ['password']
+```
+
+This will disable code based login and require to signup the traditionnal way (keep "connect" in the list of allowed_flows to allow both methods)
+
+## Connection using third party services
+
+TODO
+
+# Components
+
+## Components
+
+# Components
+
+Hyperflask includes a rich set of UI components from [DaisyUI](https://daisyui.com) as well as utility components deeply integrated with Hyperflask.
+
+Learn more on how to use and create components in the [components guide](/guides/components).
+
+## Icons
+
+# Icons
+
+Icons are provided by [Bootstrap Icons](https://icons.getbootstrap.com).
+
+Use the `Icon` component and provide the icon name:
+
+```jinja
+<{Icon "cart" }/>
+```
+
+## Forms
+
+# Forms
+
+Use the `Form` component with a form object to write the form tag. Use `HxForm` instead of `Form` for an HTMX powered form instead.
+
+```jinja
+<{Form form action="..."}>
+    
+</{Form}>
+```
+
+!!! tip
+    The component will automatically wrap its inner components with a fieldset. Use `fieldset=False` in the component props to disable.
+
+Use `FormField` components to style fields properly:
+
+```jinja
+<{Form form}>
+    <{FieldsetLegend}>Login</{}>
+
+    <{FormField form.email.email("Email") }/>
+    <{FormField form.password.password("Password") }/>
+
+    <{SubmitButton}>Login</{}>
+</{Form}>
+```
+
+Use the `form-w-full` call on the form tag for full width forms.
+
+## Styling forms without the Form component
+
+Follow the DaisyUI pattern:
+
+```jinja
+<{Fieldset}>
+    <{FieldsetLegend}>Login</{}>
+
+    <{Label}>Email</{}>
+    <{Input type="email" }/>
+
+    <{Label}>Password</{}>
+    <{Input type="password" }/>
+
+    <{Button type="submit" color="neutral"}>Login</{}>
+</{Fieldset}>
+```
+
+## Modals
+
+# Modals
+
+Use the `Modal` component to create an [HTML dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog).
+
+```jinja
+<{Button onclick="modal1.showModal()" }>Say hello</{Button}>
+<{Modal id="modal1"}>
+    <{ModalTitle}>Hello!</{ModalTitle}>
+    <p>
+        How are you doing today ?
+    </p>
+    <{ModalActions}>
+        <{Button}>Close</{Button}>
+    </{ModalActions}>
+</{Modal}>
+```
+
+## Pattern for modal components
+
+Create a backend-driven modal that auto opens when called. Uses the built-in hf-modal htmx extension.
+
+Example *components/SignupModal.jpy*:
+
+```jpy
+---
+from hyperflask import htmx_redirect
+
+def get():
+    pass
+
+def post():
+    form = page.form()
+    if form.validate():
+        # ...
+        return htmx_redirect("/")
+---
+{% form %}
+<{Modal}>
+    <{ModalTitle}>Hello!</{ModalTitle}>
+    <{ModalForm form}>
+        <{FormField form.email.email("Email") }/>
+        <{FormField form.password.password("Password") }/>
+        <{SubmitButton}>Signup</{}>
+    </{ModalForm}>
+</{Modal}>
+```
+
+Using `<{ModalForm}>` ensures that the modal closes on successfull submit. When the `action` attribute is not provided, the URL of the component is used.
+
+!!! tip
+    You can also use `htmx_oob()` to update the page instead of redirecting
+
+In a page:
+
+```jinja
+<{Button hf_modal=url_for('SignupModal')}>Signup</{}>
+```
+
+
+## Layout
+
+# Layout
+
+Hyperflask includes a few utilties to help you design your app quickly.
+
+## Common app UI
+
+Use the following snippet to kick start a very common application UI with a sidebar:
+
+```jinja
+<{AppUI}>
+    <{Viewport}>
+
+    </{Viewport}>
+    <{Sidebar}>
+
+    </{Sidebar}>
+</{AppUI}>
+```
+
+Use the [Menu](/components/daisyui/Menu) component to create menus in the sidebar.
+
+Viewport is a vertical flexbox with overflow by default. Use `<{Viewport overflow=False}>` for no overflowing.
+
+## Flex boxes
+
+Use `<{HBox}>` and `<{VBox}>` for respectively row and column flexbox with a gap between each items.
+
+Use `<{CenterBox}>` for a box which content is vertically and horizontally centered.
+
+Use `<{Spacer}/>` to add a growing div that takes all the space between 2 items.
+
+## DaisyUI components
+
+# DaisyUI components
+
+List of available components from DaisyUI
+
+This components are generated using [uilib-spec-daisyui](https://github.com/hyperflask/uilib-spec-daisyui).
+
+## Actions
+
+| Component | Description |
+|-----------|-------------|
+| [Button](/components/daisyui/Button) | Buttons allow the user to take actions or make choices. |
+| [Dropdown](/components/daisyui/Dropdown) | Dropdown can open a menu or any other element when the button is clicked. |
+| [Modal](/components/daisyui/Modal) | Modal is used to show a dialog or a box when you click a button. |
+| [Swap](/components/daisyui/Swap) | Swap allows you to toggle the visibility of two elements using a checkbox or a class name. |
+
+
+## Data display
+
+| Component | Description |
+|-----------|-------------|
+| [Accordion](/components/daisyui/Accordion) | Accordion is used for showing and hiding content but only one item can stay open at a time. |
+| [Avatar](/components/daisyui/Avatar) | Avatars are used to show a thumbnail representation of an individual or business in the interface. |
+| [AvatarGroup](/components/daisyui/AvatarGroup) | Stack avatars together |
+| [Badge](/components/daisyui/Badge) | Badges are used to inform the user of the status of specific data. |
+| [Card](/components/daisyui/Card) | Cards are used to group and display content in a way that is easily readable. |
+| [ChatBubble](/components/daisyui/ChatBubble) | Chat bubbles are used to show one line of conversation and all its data, including the author image, author name, time, etc. |
+| [Countdown](/components/daisyui/Countdown) | Countdown gives you a transition effect when you change a number between 0 to 99. |
+| [Kbd](/components/daisyui/Kbd) | Kbd is used to display keyboard shortcuts. |
+| [List](/components/daisyui/List) | List is a vertical layout to display information in rows. |
+| [Stat](/components/daisyui/Stat) | Stat is used to show numbers and data in a block. |
+| [Stats](/components/daisyui/Stats) | Group multiple Stat components together. |
+| [Table](/components/daisyui/Table) | Table can be used to show a list of data in a table format. |
+
+
+## Navigation
+
+| Component | Description |
+|-----------|-------------|
+| [Breadcrumbs](/components/daisyui/Breadcrumbs) | Breadcrumbs helps users to navigate through the website. |
+| [Link](/components/daisyui/Link) | Link adds the missing underline style to links. |
+| [Menu](/components/daisyui/Menu) | Menu is used to display a list of links vertically or horizontally. |
+| [Navbar](/components/daisyui/Navbar) | Navbar is used to show a navigation bar on the top of the page. |
+| [Pagination](/components/daisyui/Pagination) | Pagination is a group of buttons that allow the user to navigate between a set of related content. |
+| [Steps](/components/daisyui/Steps) | Steps can be used to show a list of steps in a process. |
+| [Tabs](/components/daisyui/Tabs) | Tabs can be used to show a list of links in a tabbed format. |
+
+
+## Feedback
+
+| Component | Description |
+|-----------|-------------|
+| [Alert](/components/daisyui/Alert) | Alert informs users about important events. |
+| [Loading](/components/daisyui/Loading) | Loading shows an animation to indicate that something is loading. |
+| [Progress](/components/daisyui/Progress) | Progress bar can be used to show the progress of a task or to show the passing of time. |
+| [Toast](/components/daisyui/Toast) | Toast is a wrapper to stack elements, positioned on the corner of page. |
+| [Tooltip](/components/daisyui/Tooltip) | Tooltip can be used to show a message when hovering over an element. |
+
+
+## Data input
+
+| Component | Description |
+|-----------|-------------|
+| [Checkbox](/components/daisyui/Checkbox) | Checkboxes are used to select or deselect a value. |
+| [Fieldset](/components/daisyui/Fieldset) | Fieldset is a container for grouping related form elements. It includes fieldset-legend as a title and label as a description. |
+| [FileInput](/components/daisyui/FileInput) | File Input is a an input field for uploading files. |
+| [Filter](/components/daisyui/Filter) | Filter is a group of radio buttons. Choosing one of the options will hide the others and shows a reset button next to the chosen option. |
+| [Input](/components/daisyui/Input) | Text Input is a simple input field. |
+| [InputLabel](/components/daisyui/InputLabel) | Label for input element |
+| [Label](/components/daisyui/Label) | Label is used to provide a name or title for an input field. Label can be placed before or after the field. |
+| [LabeledCheckbox](/components/daisyui/LabeledCheckbox) | A checkbox wrapped in a label |
+| [LabeledToggle](/components/daisyui/LabeledToggle) | A Toggle wrapped in a label |
+| [Radio](/components/daisyui/Radio) | Radio buttons allow the user to select one option from a set. |
+| [Range](/components/daisyui/Range) | Range slider is used to select a value by sliding a handle. |
+| [Rating](/components/daisyui/Rating) | Rating is a set of radio buttons that allow the user to rate something. |
+| [Select](/components/daisyui/Select) | Select is used to pick a value from a list of options. |
+| [Textarea](/components/daisyui/Textarea) | Textarea allows users to enter text in multiple lines. |
+| [Toggle](/components/daisyui/Toggle) | Toggle is a checkbox that is styled to look like a switch button. |
+
+
+## Layout
+
+| Component | Description |
+|-----------|-------------|
+| [Divider](/components/daisyui/Divider) | Divider will be used to separate content vertically or horizontally. |
+| [Drawer](/components/daisyui/Drawer) | Drawer is a grid layout that can show/hide a sidebar on the left or right side of the page. |
+| [Footer](/components/daisyui/Footer) | Footer can contain logo, copyright notice, and links to other pages. |
+| [FooterNav](/components/daisyui/FooterNav) |  |
+| [Indicator](/components/daisyui/Indicator) | Indicators are used to place an element on the corner of another element. |
+| [Join](/components/daisyui/Join) | Join is a container for grouping multiple items, it can be used to group buttons, inputs, etc. Join applies border radius to the first and last item. Join can be used to create a horizontal or vertical list of items. |
+| [Stack](/components/daisyui/Stack) | Stack visually puts elements on top of each other. |
