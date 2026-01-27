@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2342,84 +2342,6 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2025-10-14 00:00:00+00:00">October 14, 2025</time></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              3 min read
-            
-          </li>
-        
-        
-          <span class="md-pin"></span>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="launch-annoncement"><a class="toclink" href="../../2025/10/14/launch-annoncement/">Launch annoncement</a></h2>
-<p>After 2 years of working on &amp; off on Hyperflask, I'm happy to finally announce a working version that can be used to create actual production apps ! Although it is still in beta, all the desired features are present and working.</p>
-<p>In reality, Hyperflask is more than 10 years in the making ! My previous attempt at a comprehensive framework went nowhere but some of its ideas survived. The rise of <a href="https://htmx.org/">htmx</a> and the revival of backend driven apps led me to get excited again.</p>
-<p>Backend-driven apps using something like htmx are not an answer to all type of web development. However, I'm convinced that they provide a solution for 80% of use cases (if not more) while simplying greatly the development experience, the cognitive load and the many footguns that frontend-heavy frameworks bring.</p>
-<p>I love <a href="https://flask.palletsprojects.com/">Flask</a> as a framework but unfortunately, a lot of Flask extensions are barely maintained. In the meantime, other frameworks have introduced amazing innovations that greatly simplify the developer experience. Hyperflask is my attempt at synthetizing all the parts I like across various technologies and frameworks in a coherent stack. Integration between each chosen technology should be completely seamless.</p>
-<p>Among these innovations, notable ones are:</p>
-<ul>
-<li><a href="/guides/pages/">File-based routing</a> with a <a href="https://github.com/hyperflask/jinjapy">new file format</a> that combines some python code and a jinja template, inspired by <a href="https://docs.astro.build/en/basics/astro-pages/#astro-pages">Astro pages</a></li>
-<li><a href="/guides/components/">A component system</a> inspired by frontend frameworks and <a href="https://docs.astro.build/en/concepts/islands/">Astro islands</a>. It can be used to create frontend or backend components. Components can have their own endpoints.</li>
-<li>Using streaming content to <a href="/guides/suspense/">display loaders</a>, inspired by <a href="https://react.dev/reference/react/Suspense">React Suspense</a></li>
-<li><a href="/guides/static/">Static content</a> generation with collections, inspired by <a href="https://jekyllrb.com/">Jekyll</a></li>
-</ul>
-<p>More than just a framework, <strong>Hyperflask is a truly full stack solution</strong>. From dev environments, to UI framework to deployments.<br />
-On top of the previously mentionned features, Hyperflask provides:</p>
-<ul>
-<li>Deep integration with <a href="https://htmx.org/">htmx</a></li>
-<li>An easy to use and <a href="https://github.com/hyperflask/sqlorm">powerful ORM</a> that stays close to SQL</li>
-<li>A large library of <a href="/components/">UI components</a> powered by <a href="https://tailwindcss.com/">Tailwind</a>, <a href="https://daisyui.com/">DaisyUI</a> and <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
-<li>A modern assets pipeline using <a href="https://esbuild.github.io/">esbuild</a> with image optimizations</li>
-<li><a href="/guides/push/">Server push</a> for realtime updates using SSE, based on the <a href="https://mercure.rocks/">Mercure protocol</a></li>
-<li><a href="/guides/emails/">Template based emails</a> powered by <a href="https://mjml.io/">MJML</a></li>
-<li>Background tasks</li>
-<li>Translations</li>
-<li>Dev environments based on <a href="https://containers.dev/">dev containers</a></li>
-<li>Deployments using containers</li>
-</ul>
-<p>All the technologies used by Hyperflask have been carefully selected for their quality, developer experience, ease of use, feature set and popularity.</p>
-<p>The framework is optimized to limit "magic" features while ensuring ease of use. React Server Components or Phoenix LiveView are impressive but they hide too many things, often leading to many footguns and hacks around them. In Hyperflask, everything is just Python, standard Flask and Jinja with jinjapy files and htmx as the binding agent.</p>
-<p>One of my side goals with Hyperflask is to revive and modernize the Flask ecosystem. As a result, <strong>almost all of the features listed before have been developed as independent Flask extensions</strong>. Hyperflask itself is mostly glue code to make them work together. <a href="https://github.com/hyperflask">Pick and choose the extensions</a> you want for your own projects.</p>
-<p>In the same spirit, there are some projects developed as part of Hyperflask that can be used indepently of Flask:</p>
-<ul>
-<li><a href="https://github.com/hyperflask/sqlorm">sqlorm</a>, a performant and straighforward ORM that does not attempt to hide SQL</li>
-<li><a href="https://github.com/hyperflask/jinjapy">jinjapy</a>, a new file format that combines python code and a jinja template</li>
-<li><a href="https://github.com/hyperflask/jinja-super-macros">jinja-super-macros</a>, a new syntax to call macros in jinja</li>
-<li><a href="https://github.com/hyperflask/uilib-spec">uilib-spec</a>, a specification to generate bindings for UI component libraries (see <a href="https://github.com/hyperflask/uilib-spec-daisyui">uilib-spec-daisyui</a> for a use case)</li>
-</ul>
-<p>All these projects are available on the <a href="https://github.com/hyperflask">Hyperflask Github organization</a>.</p>
-<p>Check out the <a href="/getting-started">Getting Started</a> tutorial, read more about the <a href="/why">goals, technologies and reasoning</a> behind the project or <a href="/guides/setup">deep dive into the guides</a>.</p>
-<p>PS: I've already used Hyperflask to build <a href="https://sqlify.me/">SQLify</a> as part of my job at <a href="https://digicoop.io">Digicoop</a> / <a href="https://kantree.io">Kantree</a> and the experience was very satisfying.</p>
-    
-    
-      <hr>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/305740?v=4" alt="maximebf">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
           <time datetime="2025-11-11 00:00:00+00:00">November 11, 2025</time></li>
         
         
@@ -2446,7 +2368,7 @@ On top of the previously mentionned features, Hyperflask provides:</p>
 <li>I do not care about abstracting the database. I usually choose a database server when starting a project and optimize for it.</li>
 <li>Stay as close to DB-API as possible.</li>
 </ul>
-<p>With these ideas in mind, <a href="https://github.com/hyperflask/sqlorm">SQLORM</a> was born. (The name isn't great — I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.</p>
+<p>With these ideas in mind, <a href="https://github.com/hyperflask/sqlorm">SQLORM</a> was born. (The name isn't great, I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.</p>
 
     
       <nav class="md-post__action">
@@ -2493,6 +2415,80 @@ On top of the previously mentionned features, Hyperflask provides:</p>
 <p>Almost a month ago, I announced Hyperflask and posted the link on <a href="https://news.ycombinator.com/item?id=45604673">Hacker News</a>. The submission was very well recieved, staying 24h on the front page. Since then, the Hyperflask project on Github has reached 300 stars.</p>
 <p>It will take time to build momentum around a new framework but I'm already very happy with the positive feedback I've recieved. Thank you to everybody who read about and/or tried Hyperflask !</p>
 <p>If you have tried out the framework, please leave a comment on the <a href="https://github.com/hyperflask/hyperflask/discussions/2">Github disccusion thread</a> or shout me an email (maxime.bouroumeau@gmail.com). I would love to hear about your experience.</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://avatars.githubusercontent.com/u/305740?v=4" alt="maximebf">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-10-14 00:00:00+00:00">October 14, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="launch-annoncement"><a class="toclink" href="../../2025/10/14/launch-annoncement/">Launch annoncement</a></h2>
+<p>After 2 years of working on &amp; off on Hyperflask, I'm happy to finally announce a working version that can be used to create actual production apps ! Although it is still in beta, all the desired features are present and working.</p>
+<p>In reality, Hyperflask is more than 10 years in the making ! My previous attempt at a comprehensive framework went nowhere but some of its ideas survived. The rise of <a href="https://htmx.org/">htmx</a> and the revival of backend driven apps led me to get excited again.</p>
+<p>Backend-driven apps using something like htmx are not an answer to all type of web development. However, I'm convinced that they provide a solution for 80% of use cases (if not more) while simplying greatly the development experience, the cognitive load and the many footguns that frontend-heavy frameworks bring.</p>
+<p>I love <a href="https://flask.palletsprojects.com/">Flask</a> as a framework but unfortunately, a lot of Flask extensions are barely maintained. In the meantime, other frameworks have introduced amazing innovations that greatly simplify the developer experience. Hyperflask is my attempt at synthetizing all the parts I like across various technologies and frameworks in a coherent stack. Integration between each chosen technology should be completely seamless.</p>
+<p>Among these innovations, notable ones are:</p>
+<ul>
+<li><a href="/guides/pages/">File-based routing</a> with a <a href="https://github.com/hyperflask/jinjapy">new file format</a> that combines some python code and a jinja template, inspired by <a href="https://docs.astro.build/en/basics/astro-pages/#astro-pages">Astro pages</a></li>
+<li><a href="/guides/components/">A component system</a> inspired by frontend frameworks and <a href="https://docs.astro.build/en/concepts/islands/">Astro islands</a>. It can be used to create frontend or backend components. Components can have their own endpoints.</li>
+<li>Using streaming content to <a href="/guides/suspense/">display loaders</a>, inspired by <a href="https://react.dev/reference/react/Suspense">React Suspense</a></li>
+<li><a href="/guides/static/">Static content</a> generation with collections, inspired by <a href="https://jekyllrb.com/">Jekyll</a></li>
+</ul>
+<p>More than just a framework, <strong>Hyperflask is a truly full stack solution</strong>. From dev environments, to UI framework to deployments.<br />
+On top of the previously mentionned features, Hyperflask provides:</p>
+<ul>
+<li>Deep integration with <a href="https://htmx.org/">htmx</a></li>
+<li>An easy to use and <a href="https://github.com/hyperflask/sqlorm">powerful ORM</a> that stays close to SQL</li>
+<li>A large library of <a href="/components/">UI components</a> powered by <a href="https://tailwindcss.com/">Tailwind</a>, <a href="https://daisyui.com/">DaisyUI</a> and <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
+<li>A modern assets pipeline using <a href="https://esbuild.github.io/">esbuild</a> with image optimizations</li>
+<li><a href="/guides/push/">Server push</a> for realtime updates using SSE, based on the <a href="https://mercure.rocks/">Mercure protocol</a></li>
+<li><a href="/guides/emails/">Template based emails</a> powered by <a href="https://mjml.io/">MJML</a></li>
+<li>Background tasks</li>
+<li>Translations</li>
+<li>Dev environments based on <a href="https://containers.dev/">dev containers</a></li>
+<li>Deployments using containers</li>
+</ul>
+<p>All the technologies used by Hyperflask have been carefully selected for their quality, developer experience, ease of use, feature set and popularity.</p>
+<p>The framework is optimized to limit "magic" features while ensuring ease of use. React Server Components or Phoenix LiveView are impressive but they hide too many things, often leading to many footguns and hacks around them. In Hyperflask, everything is just Python, standard Flask and Jinja with jinjapy files and htmx as the binding agent.</p>
+<p>One of my side goals with Hyperflask is to revive and modernize the Flask ecosystem. As a result, <strong>almost all of the features listed before have been developed as independent Flask extensions</strong>. Hyperflask itself is mostly glue code to make them work together. <a href="https://github.com/hyperflask">Pick and choose the extensions</a> you want for your own projects.</p>
+<p>In the same spirit, there are some projects developed as part of Hyperflask that can be used indepently of Flask:</p>
+<ul>
+<li><a href="https://github.com/hyperflask/sqlorm">sqlorm</a>, a performant and straighforward ORM that does not attempt to hide SQL</li>
+<li><a href="https://github.com/hyperflask/jinjapy">jinjapy</a>, a new file format that combines python code and a jinja template</li>
+<li><a href="https://github.com/hyperflask/jinja-super-macros">jinja-super-macros</a>, a new syntax to call macros in jinja</li>
+<li><a href="https://github.com/hyperflask/uilib-spec">uilib-spec</a>, a specification to generate bindings for UI component libraries (see <a href="https://github.com/hyperflask/uilib-spec-daisyui">uilib-spec-daisyui</a> for a use case)</li>
+</ul>
+<p>All these projects are available on the <a href="https://github.com/hyperflask">Hyperflask Github organization</a>.</p>
+<p>Check out the <a href="/getting-started">Getting Started</a> tutorial, read more about the <a href="/why">goals, technologies and reasoning</a> behind the project or <a href="/guides/setup">deep dive into the guides</a>.</p>
+<p>PS: I've already used Hyperflask to build <a href="https://sqlify.me/">SQLify</a> as part of my job at <a href="https://digicoop.io">Digicoop</a> / <a href="https://kantree.io">Kantree</a> and the experience was very satisfying.</p>
     
     
   </div>
@@ -2579,10 +2575,10 @@ On top of the previously mentionned features, Hyperflask provides:</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
