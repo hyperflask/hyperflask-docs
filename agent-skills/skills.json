@@ -1,0 +1,72 @@
+[
+  {
+    "name": "hyperflask",
+    "description": "Create web apps using the Hyperflask framework",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask/"
+  },
+  {
+    "name": "hyperflask-ai",
+    "description": "Best practices to implement AI features inside Hyperflask apps",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-ai/"
+  },
+  {
+    "name": "hyperflask-assets",
+    "description": "How to use frontend assets (javascript, styles, fonts, images, ...) in Hyperflask apps. This skill is needed as soon as the app requires extra styles (use tailwind as much as possible first), custom javascript or use images.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-assets/"
+  },
+  {
+    "name": "hyperflask-background-tasks",
+    "description": "Define and use background tasks in your Hyperflask apps",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-background-tasks/"
+  },
+  {
+    "name": "hyperflask-components",
+    "description": "Create component-driven Hyperflask apps. Components can be backend-only, frontend-only, or both. Components can be used to build interactive apps.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-components/"
+  },
+  {
+    "name": "hyperflask-emails",
+    "description": "Create email templates and send emails from Hyperflask apps",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-emails/"
+  },
+  {
+    "name": "hyperflask-files",
+    "description": "Handle file uploads in Hyperflask apps.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-files/"
+  },
+  {
+    "name": "hyperflask-forms",
+    "description": "Create forms that can",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-forms/"
+  },
+  {
+    "name": "hyperflask-models",
+    "description": "Define database models, run migrations. Use this skill when you need to persist data and/or access data that is persisted.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-models/"
+  },
+  {
+    "name": "hyperflask-pages",
+    "description": "Create pages and routes in Hyperflask apps.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-pages/"
+  },
+  {
+    "name": "hyperflask-push",
+    "description": "Use Server-Sent-Events to implement server push in Hyperflask apps. Useful for realtime updates in collaborative scenarios.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-push/"
+  },
+  {
+    "name": "hyperflask-security-headers",
+    "description": "How to configure Content Security Policy header and associated security headers.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-security-headers/"
+  },
+  {
+    "name": "hyperflask-ui",
+    "description": "Handle file uploads in Hyperflask apps.",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-ui/"
+  },
+  {
+    "name": "hyperflask-users-and-auth",
+    "description": "Add user management and authentication capabilities to Hyperflask apps. Includes support for social logins, SSO, MFA, etc...",
+    "url": "https://hyperflask.dev/agent-skills/hyperflask-users-and-auth/"
+  }
+]
