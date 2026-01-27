@@ -11,6 +11,7 @@ nav:
   - getting-started.md
   - Guides:
     - guides/setup.md
+    #- guides/agent-coding.md
     - Basics:
        - guides/structure.md
        - guides/config.md
@@ -53,6 +54,7 @@ nav:
     - recipes/analytics.md
     - recipes/stripe.md
     - recipes/using-cms.md
+    #- recipes/ai-apps.md
   - "Status & Roadmap": roadmap.md
   - Blog:
     - blog/index.md
@@ -102,6 +104,7 @@ markdown_extensions:
       custom_checkbox: true
 
 plugins:
+  - hyperflask_docs
   - search
   - callouts
   - blog

@@ -14,7 +14,7 @@ At $dayjob, I use [SQLAlchemy](https://www.sqlalchemy.org/) as an ORM. It's an a
 - I do not care about abstracting the database. I usually choose a database server when starting a project and optimize for it.
 - Stay as close to DB-API as possible.
 
-With these ideas in mind, [SQLORM](https://github.com/hyperflask/sqlorm) was born. (The name isn't great — I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.
+With these ideas in mind, [SQLORM](https://github.com/hyperflask/sqlorm) was born. (The name isn't great, I'm bad at finding names for projects like this.) It's inspired by many ORMs while bringing some unique features.
 
 <!-- more -->
 
@@ -111,7 +111,7 @@ class Task(Model):
 
 Model classes provide many more utilities for handling relationships, lazy loading, column types, etc.
 
-As mentioned earlier, model classes are not attached to any particular engine — they run on the engine provided by the current context. This makes it easy to implement patterns such as reading from a replica and writing to the primary.
+As mentioned earlier, model classes are not attached to any particular engine, they run on the engine provided by the current context. This makes it easy to implement patterns such as reading from a replica and writing to the primary.
 
 We can implement reading from a replica and writing to the primary in a few lines:
 
