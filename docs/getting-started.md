@@ -159,12 +159,12 @@ Hyperflask uses [sqlorm](https://hyperflask.github.io/sqlorm/) as its ORM.
 Create your first model. In `app/models.py`, add the following:
 
 ```py
-from hyperflask.factory import db
+from hyperflask.models import Model, Column
 import datetime
 
-class Message(db.Model):
+class Message(Model):
     message: str
-    timestamp: datetime.datetime = db.Column(default=datetime.datetime.utcnow)
+    timestamp: datetime.datetime = Column(default=datetime.datetime.utcnow)
 ```
 
 After modifying `models.py`, restart your app (Ctr+C in the terminal and relaunch the dev command)
@@ -173,11 +173,11 @@ Modify our component to save messages:
 
 ```jpy
 ---
-from hyperflask import request
-from app.models import db, Message
+from hyperflask import request, transaction
+from app.models import Message
 
 def post():
-    with db:
+    with transaction():
         msg = Message.create(message=request.form["message"])
     return {"message": msg}
 ---
@@ -226,13 +226,13 @@ We will also use the a [form](/guides/forms) in this component to easily validat
 
 ```jpy
 ---
-from hyperflask import page, current_app
-from app.models import db, Message
+from hyperflask import page, current_app, transaction
+from app.models import Message
 
 def post():
     form = page.form()
     if form.validate():
-        with db:
+        with transaction():
             msg = Message.create(**form.data)
         current_app.sse.publish("messages", current_app.components.ChatMessage(message=msg), private=True)
 ---
@@ -281,22 +281,22 @@ Let's create a user model and change our existing model to be bound to users:
 
 
 ```py
-from hyperflask.factory import db
+from hyperflask.models import Model, Column
 from hyperflask_users import UserMixin, UserRelatedMixin
 import datetime
 
-class User(UserMixin, db.Model):
+class User(UserMixin, Model):
     pass
 
-class Message(UserRelatedMixin, db.Model):
+class Message(UserRelatedMixin, Model):
     message: str
-    timestamp: datetime.datetime = db.Column(default=datetime.datetime.utcnow)
+    timestamp: datetime.datetime = Column(default=datetime.datetime.utcnow)
 ```
 
 Modify the `PostMessageForm` component to attach messages to the logged in user: replace the `Message.create` function call with `Message.create_for_current_user`:
 
 ```py
-with db:
+with transaction():
     msg = Message.create_for_current_user(**form.data)
 ```
 

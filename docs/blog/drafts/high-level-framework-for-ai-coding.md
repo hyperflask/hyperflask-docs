@@ -5,5 +5,3 @@ authors:
 ---
 # High level abstractions for humans and agent coding
 
-
-

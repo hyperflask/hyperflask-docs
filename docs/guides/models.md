@@ -15,17 +15,21 @@ For more control over the mapping, you can use instantiate `Column()` objects.
 Example *app/models.py*:
 
 ```python
-from hyperflask.factory import db
+from hyperflask.models import Model, Column, PrimaryKey
+import datetime
 
-class Task(db.Model):
+class Task(Model):
     table = "tasks"
 
-    id: int
-    title: str = db.Column(type="varchar(20)") # set the column type (used in create_table())
-    done = db.Column("completed", bool, default=False) # no annotation, column name is "completed" but property name will be "done"
+    id: PrimaryKey[int]
+    title: str = Column(type="varchar(20)") # set the column type (used in create_table())
+    created_at: datetime.datetime = Column(default=datetime.datetime.now)
+    done: bool = Column("completed", bool, default=False) # no annotation, column name is "completed" but property name will be "done"
 ```
 
-Once columns are defined via annotations or `db.Column` properties, they are accessible as class and instance properties.
+Once columns are defined via annotations or `Column` properties, they are accessible as class and instance properties.
+
+Use the `PrimaryKey` annotation to denote the primary key column. If no `PrimaryKey` annotation is used, a primary key will be automatically added.
 
 [Read more in sqlorm documentation](https://hyperflask.github.io/sqlorm/models/)
 
@@ -45,12 +49,13 @@ These methods (apart from `create()`) return a boolean indicating if the operati
 The data used to insert or update will be limited to "dirty" attributes, which means attributes that have been
 modified since the last DML statement. Setting an attribute will automatically flag it as dirty.
 
-To call this methods, you must be in a transaction context. Use the db object to initiate one.
+To call this methods, you must be in a transaction context, otherwise changes will be rollbacked.
 
 ```py
-from app.models import db, Task
+from hyperflask import transaction
+from app.models import Task
 
-with db:
+with transaction():
     task = Task.create(title="my task") # INSERT INTO tasks (title) VALUES ('my task')
 
     task = Task()

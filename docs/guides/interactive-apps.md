@@ -6,7 +6,41 @@ Hyperflask can be used to create interactive apps thanks to HTMX.
 
 HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
 
-TODO
+HTMX allows you to access AJAX, WebSockets and Server-Sent Events directly in HTML attributes. Instead of writing JavaScript to make requests, you can use attributes like `hx-get`, `hx-post`, and `hx-swap` to specify what should happen.
+
+### Basic example
+
+```html
+<button hx-get="/api/message" hx-target="#result">
+    Load message
+</button>
+<div id="result"></div>
+```
+
+When clicked, this button makes a GET request to `/api/message` and replaces the content of `#result` with the response.
+
+### Core concepts
+
+- **hx-get/post/put/delete**: Specify the HTTP method and URL
+- **hx-target**: Select which element receives the response (uses CSS selectors)
+- **hx-swap**: Define how to insert the response (`innerHTML`, `outerHTML`, `beforeend`, etc.)
+- **hx-trigger**: Control what event triggers the request (defaults to `click` for buttons)
+
+### Example with form submission
+
+```html
+<form hx-post="/todos" hx-target="#todos" hx-swap="beforeend">
+    <input type="text" name="title" required>
+    <button type="submit">Add Todo</button>
+</form>
+<div id="todos"></div>
+```
+
+Instead of a full page reload, HTMX sends the form data via AJAX and appends the response to `#todos`.
+
+### Response handling
+
+Your backend returns only the HTML fragment needed, not the entire page. This makes interactions faster and reduces bandwidth.
 
 ## Interactive components
 
@@ -38,14 +72,15 @@ page.todos = Todo.find_all()
 
 ```jpy
 ---
-from app.models import db, Todo
+from hyperflask import request, transaction
+from app.models import dbTodo
 
 def get():
     todo = Todo.get_or_404(request.args['id'])
     return {"todo": todo}
 
 def delete():
-    with db:
+    with transaction():
         todo = Todo.get_or_404(request.args['id'])
         todo.delete()
     return ""
@@ -63,15 +98,15 @@ def delete():
 
 ```jpy
 ---
-from hyperflask import request, current_app
-from app.models import db, Todo
+from hyperflask import request, current_app, transaction
+from app.models import Todo
 
 def get():
     todo = Todo.get_or_404(request.args['id']) if "id" in request.args else None
     return {"todo": todo}
 
 def post():
-    with db:
+    with transaction():
         if "id" in request.values:
             todo = Todo.get_or_404(request.args['id'])
         else:

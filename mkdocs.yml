@@ -11,7 +11,7 @@ nav:
   - getting-started.md
   - Guides:
     - guides/setup.md
-    #- guides/agent-coding.md
+    - guides/agent-coding.md
     - Basics:
        - guides/structure.md
        - guides/config.md
@@ -34,6 +34,7 @@ nav:
        - guides/push.md
        - guides/security.md
        - guides/errors.md
+       #- guides/testing.md
     - Deploy to production:
        - guides/deploy.md
        - guides/scaling.md
@@ -68,7 +69,7 @@ theme:
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
-    - media: "(prefers-color-scheme: dark)" 
+    - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       toggle:
@@ -90,7 +91,7 @@ theme:
   icon:
     edit: material/pencil
   favicon: assets/favicon.png
-  
+
 markdown_extensions:
   - admonition
   - attr_list
@@ -104,7 +105,6 @@ markdown_extensions:
       custom_checkbox: true
 
 plugins:
-  - hyperflask_docs
   - search
   - callouts
   - blog

@@ -10,10 +10,10 @@ Manage user uploaded files.
 Add a file column to your model:
 
 ```py
-from hyperflask.factory import db
+from hyperflask.models import Model, Column, File
 
-class MyModel(db.Model):
-    file = Column(type=db.File)
+class MyModel(Model):
+    file = Column(type=File)
 ```
 
 In a page using a form:
@@ -23,7 +23,7 @@ In a page using a form:
 form = page.form()
 def post():
     if form.validate():
-        with db:
+        with transaction():
             obj = MyModel.create(**form.data)
 ---
 <{Form}>

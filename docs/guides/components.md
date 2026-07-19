@@ -43,13 +43,16 @@ Back to our example:
 Now, let's rework our component to use another component for the dropdown items.
 
 ```jinja
-<div class="dropdown">
+<{div class={"dropdown": True, "open": props.get("open", False)} }>
     <button>{{props.label}}</button>
     <ul class="dropmenu">
         {{children()}}
     </ul>
-</div>
+</{div}>
 ```
+
+!!! tip
+    The special component calling syntax can also be used with html tags
 
 Now create *app/components/DropdownItem.html*:
 
@@ -62,7 +65,7 @@ Now create *app/components/DropdownItem.html*:
 And finally, let's create a dropdown:
 
 ```jinja
-<{Dropdown label="Countries"}>
+<{Dropdown label="Countries" open=True}>
     <{DropdownItem url=url_for('countries', code="fr")}>France</{DropdownItem}>
     <{DropdownItem url=url_for('countries', code="hk")}>Hong Kong</{DropdownItem}>
 <{/Dropdown}>

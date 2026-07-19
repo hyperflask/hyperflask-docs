@@ -8,10 +8,3 @@ dependencies = [
     "mkdocs-material>=9.7.1",
     "mkdocs-redirects>=1.2.2",
 ]
-
-[project.entry-points."mkdocs.plugins"]
-hyperflask_docs = "hyperflask_docs:HyperflaskPlugin"
-
-[build-system]
-requires = ["uv_build>=0.8.11,<0.9.0"]
-build-backend = "uv_build"

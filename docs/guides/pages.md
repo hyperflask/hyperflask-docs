@@ -25,7 +25,7 @@ Both the python code or the templates are optional:
 - If the python code is missing, the file only contains a Jinja template
 - If the python code is left unclosed (the file starts with "---" on a single line followed by some python code), the file has no template
 
-The python code has a few global variables injected when executed: `page`, `request`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
+The python code has a few global variables injected when executed: `page`, `request`, `session`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
 
 !!! tip
     Pages can also be declared using .py files. In this case they will be pure python modules. Use `page.respond()` to send a response.
@@ -147,6 +147,13 @@ A `request` object is available in your pages' python code. It can be used to ac
  - Use `request.form` to access form data (`request.form['input-name']`)
 
 See Flask [documentation about the request object](https://flask.palletsprojects.com/en/stable/quickstart/#the-request-object) for more information.
+
+## Sessions
+
+A `session` object is available to persist user data in between requests. The data is persisted through a cookie.
+Only small amount of data should be persisted this way and it should mostly be used for user identification purposes.
+
+See Flask [documentation about sessions](https://flask.palletsprojects.com/en/stable/quickstart/#sessions) for more information.
 
 ## Function-based endpoints
 
