@@ -61,10 +61,6 @@ The Image component will auto set the srcset attribute based on those sizes.
 
 It is recommended to have large images as default and auto resize them to smaller ones. Use `assets_images_default_size` to specify the default size to use as the src attribute.
 
-## Using fonts
-
-TODO
-
 ## Embedded scripts and styles
 
 You can define scripts and styles directly in your templates. Their content will be extracted and bundled automatically.

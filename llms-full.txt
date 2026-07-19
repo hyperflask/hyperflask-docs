@@ -228,7 +228,7 @@ Both the python code or the templates are optional:
 - If the python code is missing, the file only contains a Jinja template
 - If the python code is left unclosed (the file starts with "---" on a single line followed by some python code), the file has no template
 
-The python code has a few global variables injected when executed: `page`, `request`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
+The python code has a few global variables injected when executed: `page`, `request`, `session`, `abort`, `redirect`, `url_for`, `current_app`, `render_template`.
 
 !!! tip
     Pages can also be declared using .py files. In this case they will be pure python modules. Use `page.respond()` to send a response.
@@ -351,6 +351,13 @@ A `request` object is available in your pages' python code. It can be used to ac
 
 See Flask [documentation about the request object](https://flask.palletsprojects.com/en/stable/quickstart/#the-request-object) for more information.
 
+## Sessions
+
+A `session` object is available to persist user data in between requests. The data is persisted through a cookie.
+Only small amount of data should be persisted this way and it should mostly be used for user identification purposes.
+
+See Flask [documentation about sessions](https://flask.palletsprojects.com/en/stable/quickstart/#sessions) for more information.
+
 ## Function-based endpoints
 
 Hyperflask also allows you to create endpoints using python functions like Flask does.
@@ -414,13 +421,16 @@ Back to our example:
 Now, let's rework our component to use another component for the dropdown items.
 
 ```jinja
-<div class="dropdown">
+<{div class={"dropdown": True, "open": props.get("open", False)} }>
     <button>{{props.label}}</button>
     <ul class="dropmenu">
         {{children()}}
     </ul>
-</div>
+</{div}>
 ```
+
+!!! tip
+    The special component calling syntax can also be used with html tags
 
 Now create *app/components/DropdownItem.html*:
 
@@ -433,7 +443,7 @@ Now create *app/components/DropdownItem.html*:
 And finally, let's create a dropdown:
 
 ```jinja
-<{Dropdown label="Countries"}>
+<{Dropdown label="Countries" open=True}>
     <{DropdownItem url=url_for('countries', code="fr")}>France</{DropdownItem}>
     <{DropdownItem url=url_for('countries', code="hk")}>Hong Kong</{DropdownItem}>
 <{/Dropdown}>
@@ -548,7 +558,41 @@ Hyperflask can be used to create interactive apps thanks to HTMX.
 
 HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
 
-TODO
+HTMX allows you to access AJAX, WebSockets and Server-Sent Events directly in HTML attributes. Instead of writing JavaScript to make requests, you can use attributes like `hx-get`, `hx-post`, and `hx-swap` to specify what should happen.
+
+### Basic example
+
+```html
+<button hx-get="/api/message" hx-target="#result">
+    Load message
+</button>
+<div id="result"></div>
+```
+
+When clicked, this button makes a GET request to `/api/message` and replaces the content of `#result` with the response.
+
+### Core concepts
+
+- **hx-get/post/put/delete**: Specify the HTTP method and URL
+- **hx-target**: Select which element receives the response (uses CSS selectors)
+- **hx-swap**: Define how to insert the response (`innerHTML`, `outerHTML`, `beforeend`, etc.)
+- **hx-trigger**: Control what event triggers the request (defaults to `click` for buttons)
+
+### Example with form submission
+
+```html
+<form hx-post="/todos" hx-target="#todos" hx-swap="beforeend">
+    <input type="text" name="title" required>
+    <button type="submit">Add Todo</button>
+</form>
+<div id="todos"></div>
+```
+
+Instead of a full page reload, HTMX sends the form data via AJAX and appends the response to `#todos`.
+
+### Response handling
+
+Your backend returns only the HTML fragment needed, not the entire page. This makes interactions faster and reduces bandwidth.
 
 ## Interactive components
 
@@ -580,14 +624,15 @@ page.todos = Todo.find_all()
 
 ```jpy
 ---
-from app.models import db, Todo
+from hyperflask import request, transaction
+from app.models import dbTodo
 
 def get():
     todo = Todo.get_or_404(request.args['id'])
     return {"todo": todo}
 
 def delete():
-    with db:
+    with transaction():
         todo = Todo.get_or_404(request.args['id'])
         todo.delete()
     return ""
@@ -605,15 +650,15 @@ def delete():
 
 ```jpy
 ---
-from hyperflask import request, current_app
-from app.models import db, Todo
+from hyperflask import request, current_app, transaction
+from app.models import Todo
 
 def get():
     todo = Todo.get_or_404(request.args['id']) if "id" in request.args else None
     return {"todo": todo}
 
 def post():
-    with db:
+    with transaction():
         if "id" in request.values:
             todo = Todo.get_or_404(request.args['id'])
         else:
@@ -893,10 +938,6 @@ The Image component will auto set the srcset attribute based on those sizes.
 
 It is recommended to have large images as default and auto resize them to smaller ones. Use `assets_images_default_size` to specify the default size to use as the src attribute.
 
-## Using fonts
-
-TODO
-
 ## Embedded scripts and styles
 
 You can define scripts and styles directly in your templates. Their content will be extracted and bundled automatically.
@@ -1043,17 +1084,21 @@ For more control over the mapping, you can use instantiate `Column()` objects.
 Example *app/models.py*:
 
 ```python
-from hyperflask.factory import db
+from hyperflask.models import Model, Column, PrimaryKey
+import datetime
 
-class Task(db.Model):
+class Task(Model):
     table = "tasks"
 
-    id: int
-    title: str = db.Column(type="varchar(20)") # set the column type (used in create_table())
-    done = db.Column("completed", bool, default=False) # no annotation, column name is "completed" but property name will be "done"
+    id: PrimaryKey[int]
+    title: str = Column(type="varchar(20)") # set the column type (used in create_table())
+    created_at: datetime.datetime = Column(default=datetime.datetime.now)
+    done: bool = Column("completed", bool, default=False) # no annotation, column name is "completed" but property name will be "done"
 ```
 
-Once columns are defined via annotations or `db.Column` properties, they are accessible as class and instance properties.
+Once columns are defined via annotations or `Column` properties, they are accessible as class and instance properties.
+
+Use the `PrimaryKey` annotation to denote the primary key column. If no `PrimaryKey` annotation is used, a primary key will be automatically added.
 
 [Read more in sqlorm documentation](https://hyperflask.github.io/sqlorm/models/)
 
@@ -1073,12 +1118,13 @@ These methods (apart from `create()`) return a boolean indicating if the operati
 The data used to insert or update will be limited to "dirty" attributes, which means attributes that have been
 modified since the last DML statement. Setting an attribute will automatically flag it as dirty.
 
-To call this methods, you must be in a transaction context. Use the db object to initiate one.
+To call this methods, you must be in a transaction context, otherwise changes will be rollbacked.
 
 ```py
-from app.models import db, Task
+from hyperflask import transaction
+from app.models import Task
 
-with db:
+with transaction():
     task = Task.create(title="my task") # INSERT INTO tasks (title) VALUES ('my task')
 
     task = Task()
@@ -1204,10 +1250,10 @@ Manage user uploaded files.
 Add a file column to your model:
 
 ```py
-from hyperflask.factory import db
+from hyperflask.models import Model, Column, File
 
-class MyModel(db.Model):
-    file = Column(type=db.File)
+class MyModel(Model):
+    file = Column(type=File)
 ```
 
 In a page using a form:
@@ -1217,7 +1263,7 @@ In a page using a form:
 form = page.form()
 def post():
     if form.validate():
-        with db:
+        with transaction():
             obj = MyModel.create(**form.data)
 ---
 <{Form}>
@@ -1912,7 +1958,7 @@ Hyperflask provides some components to leverage the htmx [sse extension](https:/
 To create a div which content will be replaced on each new message, use `hx_swap="innerHTML"`.
 
 !!! info
-    Using Hyperflask components is optional and htmx sse extension or any EventSource can be used directly.
+    Using Hyperflask components is optional and the htmx sse extension or any EventSource can be used directly.
     
     Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
 
@@ -1928,10 +1974,10 @@ Model objects can be used as topic and/or data when publishing and subscribing. 
 When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.
 
 ```py
-class TodoList(db.Model):
+class TodoList(Model):
     pass
 
-class TodoItem(db.Model):
+class TodoItem(Model):
     __macro__ = "TodoItem"
 
 todolist = TodoList()
@@ -2218,10 +2264,10 @@ For example, you can have a primary server for read/writes and a replica for rea
 Hyperflask-Users requires the creation of a user model.
 
 ```py
-from hyperflask.factory import db
+from hyperflask.models import Model
 from hyperflask_users import UserMixin
 
-class User(UserMixin, db.Model):
+class User(UserMixin, Model):
     pass
 ```
 

@@ -12,10 +12,10 @@
 Hyperflask-Users requires the creation of a user model.
 
 ```py
-from hyperflask.factory import db
+from hyperflask.models import Model
 from hyperflask_users import UserMixin
 
-class User(UserMixin, db.Model):
+class User(UserMixin, Model):
     pass
 ```
 

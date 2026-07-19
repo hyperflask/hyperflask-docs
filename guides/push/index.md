@@ -41,7 +41,7 @@ Hyperflask provides some components to leverage the htmx [sse extension](https:/
 To create a div which content will be replaced on each new message, use `hx_swap="innerHTML"`.
 
 !!! info
-    Using Hyperflask components is optional and htmx sse extension or any EventSource can be used directly.
+    Using Hyperflask components is optional and the htmx sse extension or any EventSource can be used directly.
     
     Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
 
@@ -57,10 +57,10 @@ Model objects can be used as topic and/or data when publishing and subscribing. 
 When using a model class as topic, the topic will be the class name. When using a model object, the topic will be scoped to the object id.
 
 ```py
-class TodoList(db.Model):
+class TodoList(Model):
     pass
 
-class TodoItem(db.Model):
+class TodoItem(Model):
     __macro__ = "TodoItem"
 
 todolist = TodoList()
