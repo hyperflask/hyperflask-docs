@@ -25,13 +25,13 @@ The component becomes both a reusable unit of rendering and an addressable unit 
 
 Supporting this model required more than a few helpers around Flask. Hyperflask introduced two related projects to make backend components feel natural.
 
-The first is **jinja-super-macros**, which adds a component-oriented syntax to Jinja.
+The first is [jinja-super-macros](https://github.com/hyperflask/jinja-super-macros), which adds a component-oriented syntax to Jinja.
 
 Instead of calling a macro like a function and relying on conventions for passing blocks of content, a component can be invoked with syntax such as `<{Card}>...</{Card}>`. Properties are declared alongside the component name, while nested content becomes its children.
 
 The result looks closer to HTML and to the component syntax used by frontend frameworks, while remaining based on Jinja macros.
 
-The second is **JinjaPy**, a new file format created by the Hyperflask project to support this vision. A JinjaPy file combines Python frontmatter with a Jinja template, allowing the code responsible for preparing or handling a component to live next to its markup.
+The second is [jinjapy](https://github.com/hyperflask/jinjapy), a new file format created by the Hyperflask project to support this vision. A JinjaPy file combines Python frontmatter with a Jinja template, allowing the code responsible for preparing or handling a component to live next to its markup.
 
 Putting Python and HTML in the same file may initially look like a violation of separation of concerns. But separation of concerns does not necessarily require separation by file type.
 
