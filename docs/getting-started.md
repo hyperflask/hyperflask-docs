@@ -261,7 +261,7 @@ page.messages = Message.find_all()
 ```
 
 !!! info
-    The MercureStream component uses the [htmx SSE extension](https://htmx.org/extensions/sse/) to connect to the sse stream
+    The MercureStream component uses the [htmx SSE extension](https://four.htmx.org/extensions/hx-sse) to connect to the sse stream
 
 ## Adding authentication
 

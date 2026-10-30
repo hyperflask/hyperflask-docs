@@ -13,3 +13,5 @@ Hello
 ```
 
 Hyperflask will automatically print the messages as [alert messages in a toast](https://daisyui.com/components/toast/). This will also work when flashing messages during ajax requests.
+
+To automatically remove the alerts added during htmx requests after some time, set `flash_toast_remove_after: 5s` in your *config.yml*.

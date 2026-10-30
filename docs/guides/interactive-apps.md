@@ -4,7 +4,16 @@ Hyperflask can be used to create interactive apps thanks to HTMX.
 
 ## HTMX introduction
 
-HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
+HTMX has [comprehensive documentation](https://four.htmx.org/docs) but this section will cover the essential.
+
+!!! info
+    Hyperflask uses htmx 4. If you are used to htmx 2, read [what's new in htmx 4](https://four.htmx.org/docs/whats-new-in-htmx-4). Notably:
+
+    - Attributes are not inherited by default: use the `:inherited` modifier (eg. `<div hx-target:inherited="#output">`)
+    - Extensions are active as soon as they are loaded, `hx-ext` is not needed anymore
+    - Event names use colons (eg. `htmx:after:request` instead of `htmx:afterRequest`)
+
+    Hyperflask configures htmx to not swap error responses (4xx and 5xx) like htmx 2 did. Out of band swaps (like flash messages) are still processed. Use the `HTMX_CONFIG` [configuration](/guides/config) to change htmx options.
 
 HTMX allows you to access AJAX, WebSockets and Server-Sent Events directly in HTML attributes. Instead of writing JavaScript to make requests, you can use attributes like `hx-get`, `hx-post`, and `hx-swap` to specify what should happen.
 
@@ -134,6 +143,7 @@ def post():
 
 !!! tip
     The `request` object in Hyperflask uses [htmx-Flask](https://github.com/sponsfreixes/htmx-flask) subclass that [provides easy access to htmx headers](https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage).
+    Note that htmx 4 does not send the `HX-Trigger`, `HX-Trigger-Name` and `HX-Prompt` headers anymore (use `request.headers.get("HX-Source")` instead of `request.htmx.trigger`) and that `HX-Target` now uses the `tag#id` format.
 
 ## Pure frontend interactions
 
@@ -160,6 +170,14 @@ When a link is fetching a component, the url may not be the right one. Use `hx-h
 <nav hx-active-url="active">
     <a hx-get={{url_for('Component')}} hx-href={{url_for('index', id=1)}}>Page 1</a>
 </nav>
+```
+
+## Removing elements after a delay
+
+Use the built-in `remove-me` htmx extension (a port of the [htmx 1 extension](https://v1.htmx.org/extensions/remove-me/)). The element is removed after the given delay:
+
+```html
+<div class="alert" remove-me="5s">Saved!</div>
 ```
 
 ## HTMX utilities

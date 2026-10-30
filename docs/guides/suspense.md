@@ -44,9 +44,9 @@ This method is also useful when performing API calls.
 !!! tip
     You can also use suspense blocks without using components. Use the `defer()` function as [explained in Flask-Suspense doc](https://github.com/hyperflask/flask-suspense).
 
-!!! warning
-    Suspense can be used with htmx requests but htmx does not support streaming responses out of the box.
-    Add `hx-stream` to elements fetching streaming data to handle it properly.
+!!! info
+    Suspense can be used with htmx requests. htmx does not support streaming responses out of the box but Hyperflask's built-in `hx-stream` extension renders them progressively.
+    Once the response is complete, htmx swaps it and the content inserted by suspense blocks is processed by htmx.
 
 ## Using htmx
 
