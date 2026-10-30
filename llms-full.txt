@@ -90,7 +90,7 @@ This installation method works with any python package manager
 1. Create your project directory: `mkdir example-project && cd example-project`
 2. Create and activate a virtualenv: `python -m venv .venv && source .venv/bin/activate`
 3. `pip install hyperflask`
-5. Run `npm install esbuild tailwindcss @tailwindcss/cli htmx.org htmx-ext-sse bootstrap-icons daisyui`
+5. Run `npm install esbuild tailwindcss @tailwindcss/cli htmx.org@4 bootstrap-icons daisyui`
 4. Run `mkdir pages && echo "Hello world" > pages/index.jpy`
 6. Start a development server using `hyperflask dev`
 
@@ -189,14 +189,14 @@ Each Flask extension may have their own configuration.
 | SECRET_KEY | str | The encryption key for all secret values (including the session) (set by default in .env) | random
 | SITE_TITLE | str |  |
 | SITE_LANG | str |  |
-| HTMX_EXT | list[str] |  |
-| HTMX_BOOST_SITE | bool |  |
+| HTMX_CONFIG | dict | [htmx configuration](https://four.htmx.org/docs#configuration), merged with Hyperflask defaults | `{"noSwap": [204, 304, "4xx", "5xx"]}`
+| HTMX_BOOST_SITE | bool | Boost all links and forms using [hx-boost](https://four.htmx.org/reference/attributes/hx-boost) |
 | EMAIL_BACKGROUND_COLOR | str |  |
 | EMAIL_BACKGROUND_ACCENT_COLOR | str |  |
 | STATIC_MODE | str |  |
 | MARKDOWN_OPTIONS | dict |  |
 | FLASH_TOAST_OOB | bool | Whether to add flash messages to htmx request as oob swaps |
-| FLASH_TOAST_REMOVE_AFTER | str | Use the remove-me htmx extension to auto remove the toast alerts after some time |
+| FLASH_TOAST_REMOVE_AFTER | str | Auto remove the toast alerts added during htmx requests after some time (eg. `5s`) using the built-in remove-me extension |
 | INIT_DATABASE | bool | Whether to automatically init the db on start |
 
 ## Pages
@@ -556,7 +556,16 @@ Hyperflask can be used to create interactive apps thanks to HTMX.
 
 ## HTMX introduction
 
-HTMX has [comprehensive documentation](https://htmx.org/docs/) but this section will cover the essential.
+HTMX has [comprehensive documentation](https://four.htmx.org/docs) but this section will cover the essential.
+
+!!! info
+    Hyperflask uses htmx 4. If you are used to htmx 2, read [what's new in htmx 4](https://four.htmx.org/docs/whats-new-in-htmx-4). Notably:
+
+    - Attributes are not inherited by default: use the `:inherited` modifier (eg. `<div hx-target:inherited="#output">`)
+    - Extensions are active as soon as they are loaded, `hx-ext` is not needed anymore
+    - Event names use colons (eg. `htmx:after:request` instead of `htmx:afterRequest`)
+
+    Hyperflask configures htmx to not swap error responses (4xx and 5xx) like htmx 2 did. Out of band swaps (like flash messages) are still processed. Use the `HTMX_CONFIG` [configuration](/guides/config) to change htmx options.
 
 HTMX allows you to access AJAX, WebSockets and Server-Sent Events directly in HTML attributes. Instead of writing JavaScript to make requests, you can use attributes like `hx-get`, `hx-post`, and `hx-swap` to specify what should happen.
 
@@ -686,6 +695,7 @@ def post():
 
 !!! tip
     The `request` object in Hyperflask uses [htmx-Flask](https://github.com/sponsfreixes/htmx-flask) subclass that [provides easy access to htmx headers](https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage).
+    Note that htmx 4 does not send the `HX-Trigger`, `HX-Trigger-Name` and `HX-Prompt` headers anymore (use `request.headers.get("HX-Source")` instead of `request.htmx.trigger`) and that `HX-Target` now uses the `tag#id` format.
 
 ## Pure frontend interactions
 
@@ -712,6 +722,14 @@ When a link is fetching a component, the url may not be the right one. Use `hx-h
 <nav hx-active-url="active">
     <a hx-get={{url_for('Component')}} hx-href={{url_for('index', id=1)}}>Page 1</a>
 </nav>
+```
+
+## Removing elements after a delay
+
+Use the built-in `remove-me` htmx extension (a port of the [htmx 1 extension](https://v1.htmx.org/extensions/remove-me/)). The element is removed after the given delay:
+
+```html
+<div class="alert" remove-me="5s">Saved!</div>
 ```
 
 ## HTMX utilities
@@ -1377,9 +1395,9 @@ This method is also useful when performing API calls.
 !!! tip
     You can also use suspense blocks without using components. Use the `defer()` function as [explained in Flask-Suspense doc](https://github.com/hyperflask/flask-suspense).
 
-!!! warning
-    Suspense can be used with htmx requests but htmx does not support streaming responses out of the box.
-    Add `hx-stream` to elements fetching streaming data to handle it properly.
+!!! info
+    Suspense can be used with htmx requests. htmx does not support streaming responses out of the box but Hyperflask's built-in `hx-stream` extension renders them progressively.
+    Once the response is complete, htmx swaps it and the content inserted by suspense blocks is processed by htmx.
 
 ## Using htmx
 
@@ -1428,6 +1446,9 @@ Hello
 ```
 
 Hyperflask will automatically print the messages as [alert messages in a toast](https://daisyui.com/components/toast/). This will also work when flashing messages during ajax requests.
+
+To automatically remove the alerts added during htmx requests after some time, set `flash_toast_remove_after: 5s` in your *config.yml*.
+
 
 ## Metadata
 
@@ -1938,7 +1959,7 @@ current_app.sse.publish("messages", current_app.components.ChatMessage(msg="hell
 
 ## Listening for events
 
-Hyperflask provides some components to leverage the htmx [sse extension](https://htmx.org/extensions/sse/). 
+Hyperflask provides some components to leverage the htmx [sse extension](https://four.htmx.org/extensions/hx-sse). 
 
 ```jinja
 <{MercureStream topic="messages"}>
@@ -1963,7 +1984,17 @@ To create a div which content will be replaced on each new message, use `hx_swap
     Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
 
     ```html
-    <div hx-ext="sse" sse-connect="{{mercure_authentified_hub_url('messages')}}" sse-swap="message" hx-swap="beforeend">
+    <div hx-sse:connect="{{mercure_authentified_hub_url('messages')}}" hx-swap="beforeend">
+    </div>
+    ```
+
+    The htmx sse extension only swaps messages without a type and dispatches typed messages as DOM events.
+    Use the `hx-sse:swap` attribute provided by Hyperflask to swap typed messages, on the connected element or its descendants:
+
+    ```html
+    <div hx-sse:connect="{{mercure_authentified_hub_url(['topic1', 'topic2'])}}">
+        <div hx-sse:swap="topic1" hx-swap="beforeend"></div>
+        <div hx-sse:swap="topic2" hx-swap="beforeend"></div>
     </div>
     ```
 
@@ -2012,6 +2043,47 @@ Connect to multiple topics at once and distinguish messages using their type:
     </{MercureStream}>
 </{MercureStreamContext}>
 ```
+
+## Using a Mercure hub on another origin
+
+By default, the Mercure hub is served on the same origin as your app (under `/.well-known/mercure`, proxied by Caddy in the [Docker image](/guides/deploy)). This is the recommended setup.
+
+If the browser connects to a hub on another origin (eg. `mercure_public_hub_url: https://hub.example.com/.well-known/mercure`), htmx 4 will refuse to connect:
+
+ - htmx only performs same-origin requests by default ([`mode` config](https://four.htmx.org/reference/config/htmx-config-mode))
+ - htmx sends `HX-*` headers with every request, which the Mercure hub rejects as it only allows the `authorization`, `cache-control` and `last-event-id` headers in cross-origin requests
+
+Setting `htmx_config: {mode: cors}` is not enough because of the headers, and it would allow all htmx requests to reach other origins.
+Instead, only allow SSE connections to go cross-origin using an htmx extension. Create *app/assets/mercure.js*:
+
+```js
+// Connects to a Mercure hub hosted on another origin
+htmx.registerExtension("mercure-cross-origin", {
+  htmx_before_request(elt, detail) {
+    const request = detail.ctx.request;
+    if (!elt.hasAttribute("hx-sse:connect") || new URL(request.action, location.href).origin === location.origin) return;
+    request.mode = "cors";
+    // the Mercure hub only allows the authorization, cache-control and last-event-id headers
+    for (const name of Object.keys(request.headers)) {
+      if (name.toLowerCase().startsWith("hx-")) delete request.headers[name];
+    }
+  }
+});
+```
+
+Declare it as a [bundle](/guides/assets/#bundles) in your *config.yml*:
+
+```yaml
+assets_bundles:
+  - mercure.js
+```
+
+The hub must also allow your app origin using the [`cors_origins` directive](https://mercure.rocks/docs/hub/config).
+
+!!! note
+    Use the global `htmx` object rather than importing `htmx.org` in your bundles, otherwise a second instance of htmx would be bundled.
+    Authentified hub URLs carry the subscription JWT in the URL so cookies are not needed.
+
 
 ## Security
 

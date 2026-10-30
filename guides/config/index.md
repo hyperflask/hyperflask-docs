@@ -35,12 +35,12 @@ Each Flask extension may have their own configuration.
 | SECRET_KEY | str | The encryption key for all secret values (including the session) (set by default in .env) | random
 | SITE_TITLE | str |  |
 | SITE_LANG | str |  |
-| HTMX_EXT | list[str] |  |
-| HTMX_BOOST_SITE | bool |  |
+| HTMX_CONFIG | dict | [htmx configuration](https://four.htmx.org/docs#configuration), merged with Hyperflask defaults | `{"noSwap": [204, 304, "4xx", "5xx"]}`
+| HTMX_BOOST_SITE | bool | Boost all links and forms using [hx-boost](https://four.htmx.org/reference/attributes/hx-boost) |
 | EMAIL_BACKGROUND_COLOR | str |  |
 | EMAIL_BACKGROUND_ACCENT_COLOR | str |  |
 | STATIC_MODE | str |  |
 | MARKDOWN_OPTIONS | dict |  |
 | FLASH_TOAST_OOB | bool | Whether to add flash messages to htmx request as oob swaps |
-| FLASH_TOAST_REMOVE_AFTER | str | Use the remove-me htmx extension to auto remove the toast alerts after some time |
+| FLASH_TOAST_REMOVE_AFTER | str | Auto remove the toast alerts added during htmx requests after some time (eg. `5s`) using the built-in remove-me extension |
 | INIT_DATABASE | bool | Whether to automatically init the db on start |

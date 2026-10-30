@@ -1010,6 +1010,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#removing-elements-after-a-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removing elements after a delay
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#htmx-utilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2631,6 +2642,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#removing-elements-after-a-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removing elements after a delay
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#htmx-utilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2746,7 +2768,17 @@
 <h1 id="interactive-apps">Interactive apps</h1>
 <p>Hyperflask can be used to create interactive apps thanks to HTMX.</p>
 <h2 id="htmx-introduction">HTMX introduction</h2>
-<p>HTMX has <a href="https://htmx.org/docs/">comprehensive documentation</a> but this section will cover the essential.</p>
+<p>HTMX has <a href="https://four.htmx.org/docs">comprehensive documentation</a> but this section will cover the essential.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Hyperflask uses htmx 4. If you are used to htmx 2, read <a href="https://four.htmx.org/docs/whats-new-in-htmx-4">what's new in htmx 4</a>. Notably:</p>
+<ul>
+<li>Attributes are not inherited by default: use the <code>:inherited</code> modifier (eg. <code>&lt;div hx-target:inherited="#output"&gt;</code>)</li>
+<li>Extensions are active as soon as they are loaded, <code>hx-ext</code> is not needed anymore</li>
+<li>Event names use colons (eg. <code>htmx:after:request</code> instead of <code>htmx:afterRequest</code>)</li>
+</ul>
+<p>Hyperflask configures htmx to not swap error responses (4xx and 5xx) like htmx 2 did. Out of band swaps (like flash messages) are still processed. Use the <code>HTMX_CONFIG</code> <a href="/guides/config">configuration</a> to change htmx options.</p>
+</div>
 <p>HTMX allows you to access AJAX, WebSockets and Server-Sent Events directly in HTML attributes. Instead of writing JavaScript to make requests, you can use attributes like <code>hx-get</code>, <code>hx-post</code>, and <code>hx-swap</code> to specify what should happen.</p>
 <h3 id="basic-example">Basic example</h3>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span> <span class="na">hx-get</span><span class="o">=</span><span class="s">&quot;/api/message&quot;</span> <span class="na">hx-target</span><span class="o">=</span><span class="s">&quot;#result&quot;</span><span class="p">&gt;</span>
@@ -2852,7 +2884,8 @@ To ensure it is included, use <code>current_app.assets.include('@hyperflask/alpi
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The <code>request</code> object in Hyperflask uses <a href="https://github.com/sponsfreixes/htmx-flask">htmx-Flask</a> subclass that <a href="https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage">provides easy access to htmx headers</a>.</p>
+<p>The <code>request</code> object in Hyperflask uses <a href="https://github.com/sponsfreixes/htmx-flask">htmx-Flask</a> subclass that <a href="https://github.com/sponsfreixes/htmx-flask?tab=readme-ov-file#usage">provides easy access to htmx headers</a>.
+Note that htmx 4 does not send the <code>HX-Trigger</code>, <code>HX-Trigger-Name</code> and <code>HX-Prompt</code> headers anymore (use <code>request.headers.get("HX-Source")</code> instead of <code>request.htmx.trigger</code>) and that <code>HX-Target</code> now uses the <code>tag#id</code> format.</p>
 </div>
 <h2 id="pure-frontend-interactions">Pure frontend interactions</h2>
 <p>For simple frontend interactions, we recommend using <a href="https://alpinejs.dev/">Alpine.js</a> with html components.</p>
@@ -2869,6 +2902,10 @@ To ensure it is included, use <code>current_app.assets.include('@hyperflask/alpi
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">nav</span> <span class="na">hx-active-url</span><span class="o">=</span><span class="s">&quot;active&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">hx-get</span><span class="o">=</span><span class="s">{{url_for(&#39;Component&#39;)}}</span> <span class="na">hx-href</span><span class="o">=</span><span class="s">{{url_for(&#39;index&#39;,</span> <span class="na">id</span><span class="o">=</span><span class="s">1)}}</span><span class="p">&gt;</span>Page 1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</code></pre></div>
+<h2 id="removing-elements-after-a-delay">Removing elements after a delay</h2>
+<p>Use the built-in <code>remove-me</code> htmx extension (a port of the <a href="https://v1.htmx.org/extensions/remove-me/">htmx 1 extension</a>). The element is removed after the given delay:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert&quot;</span> <span class="na">remove-me</span><span class="o">=</span><span class="s">&quot;5s&quot;</span><span class="p">&gt;</span>Saved!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 <h2 id="htmx-utilities">HTMX utilities</h2>
 <p>Perform an htmx redirection using <code>htmx_redirect()</code>:</p>

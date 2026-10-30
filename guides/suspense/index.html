@@ -2590,10 +2590,10 @@
 <p class="admonition-title">Tip</p>
 <p>You can also use suspense blocks without using components. Use the <code>defer()</code> function as <a href="https://github.com/hyperflask/flask-suspense">explained in Flask-Suspense doc</a>.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Suspense can be used with htmx requests but htmx does not support streaming responses out of the box.
-Add <code>hx-stream</code> to elements fetching streaming data to handle it properly.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Suspense can be used with htmx requests. htmx does not support streaming responses out of the box but Hyperflask's built-in <code>hx-stream</code> extension renders them progressively.
+Once the response is complete, htmx swaps it and the content inserted by suspense blocks is processed by htmx.</p>
 </div>
 <h2 id="using-htmx">Using htmx</h2>
 <p>Using component endpoints, you can fetch a component on page load.</p>

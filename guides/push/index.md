@@ -21,7 +21,7 @@ current_app.sse.publish("messages", current_app.components.ChatMessage(msg="hell
 
 ## Listening for events
 
-Hyperflask provides some components to leverage the htmx [sse extension](https://htmx.org/extensions/sse/). 
+Hyperflask provides some components to leverage the htmx [sse extension](https://four.htmx.org/extensions/hx-sse). 
 
 ```jinja
 <{MercureStream topic="messages"}>
@@ -46,7 +46,17 @@ To create a div which content will be replaced on each new message, use `hx_swap
     Retrieve the stream URL for an event using `mercure_hub_url(event_names)`. Use `mercure_authentified_hub_url(event_names)` to create authentified URLs that can receive private events.
 
     ```html
-    <div hx-ext="sse" sse-connect="{{mercure_authentified_hub_url('messages')}}" sse-swap="message" hx-swap="beforeend">
+    <div hx-sse:connect="{{mercure_authentified_hub_url('messages')}}" hx-swap="beforeend">
+    </div>
+    ```
+
+    The htmx sse extension only swaps messages without a type and dispatches typed messages as DOM events.
+    Use the `hx-sse:swap` attribute provided by Hyperflask to swap typed messages, on the connected element or its descendants:
+
+    ```html
+    <div hx-sse:connect="{{mercure_authentified_hub_url(['topic1', 'topic2'])}}">
+        <div hx-sse:swap="topic1" hx-swap="beforeend"></div>
+        <div hx-sse:swap="topic2" hx-swap="beforeend"></div>
     </div>
     ```
 
@@ -95,3 +105,43 @@ Connect to multiple topics at once and distinguish messages using their type:
     </{MercureStream}>
 </{MercureStreamContext}>
 ```
+
+## Using a Mercure hub on another origin
+
+By default, the Mercure hub is served on the same origin as your app (under `/.well-known/mercure`, proxied by Caddy in the [Docker image](/guides/deploy)). This is the recommended setup.
+
+If the browser connects to a hub on another origin (eg. `mercure_public_hub_url: https://hub.example.com/.well-known/mercure`), htmx 4 will refuse to connect:
+
+ - htmx only performs same-origin requests by default ([`mode` config](https://four.htmx.org/reference/config/htmx-config-mode))
+ - htmx sends `HX-*` headers with every request, which the Mercure hub rejects as it only allows the `authorization`, `cache-control` and `last-event-id` headers in cross-origin requests
+
+Setting `htmx_config: {mode: cors}` is not enough because of the headers, and it would allow all htmx requests to reach other origins.
+Instead, only allow SSE connections to go cross-origin using an htmx extension. Create *app/assets/mercure.js*:
+
+```js
+// Connects to a Mercure hub hosted on another origin
+htmx.registerExtension("mercure-cross-origin", {
+  htmx_before_request(elt, detail) {
+    const request = detail.ctx.request;
+    if (!elt.hasAttribute("hx-sse:connect") || new URL(request.action, location.href).origin === location.origin) return;
+    request.mode = "cors";
+    // the Mercure hub only allows the authorization, cache-control and last-event-id headers
+    for (const name of Object.keys(request.headers)) {
+      if (name.toLowerCase().startsWith("hx-")) delete request.headers[name];
+    }
+  }
+});
+```
+
+Declare it as a [bundle](/guides/assets/#bundles) in your *config.yml*:
+
+```yaml
+assets_bundles:
+  - mercure.js
+```
+
+The hub must also allow your app origin using the [`cors_origins` directive](https://mercure.rocks/docs/hub/config).
+
+!!! note
+    Use the global `htmx` object rather than importing `htmx.org` in your bundles, otherwise a second instance of htmx would be bundled.
+    Authentified hub URLs carry the subscription JWT in the URL so cookies are not needed.

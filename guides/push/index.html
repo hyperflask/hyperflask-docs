@@ -1439,6 +1439,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-a-mercure-hub-on-another-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a Mercure hub on another origin
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2508,6 +2519,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-a-mercure-hub-on-another-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a Mercure hub on another origin
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2613,7 +2635,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">current_app</span><span class="o">.</span><span class="n">sse</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">ChatMessage</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">))</span>
 </code></pre></div>
 <h2 id="listening-for-events">Listening for events</h2>
-<p>Hyperflask provides some components to leverage the htmx <a href="https://htmx.org/extensions/sse/">sse extension</a>. </p>
+<p>Hyperflask provides some components to leverage the htmx <a href="https://four.htmx.org/extensions/hx-sse">sse extension</a>. </p>
 <div class="highlight"><pre><span></span><code><span class="x">&lt;{MercureStream topic=&quot;messages&quot;}&gt;</span>
 <span class="x">    </span><span class="c">{# default content #}</span>
 <span class="x">&lt;/{MercureStream}&gt;</span>
@@ -2678,7 +2700,14 @@
 <p class="admonition-title">Info</p>
 <p>Using Hyperflask components is optional and the htmx sse extension or any EventSource can be used directly.</p>
 <p>Retrieve the stream URL for an event using <code>mercure_hub_url(event_names)</code>. Use <code>mercure_authentified_hub_url(event_names)</code> to create authentified URLs that can receive private events.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-ext</span><span class="o">=</span><span class="s">&quot;sse&quot;</span> <span class="na">sse-connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url(&#39;messages&#39;)}}&quot;</span> <span class="na">sse-swap</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-sse:connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url(&#39;messages&#39;)}}&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>The htmx sse extension only swaps messages without a type and dispatches typed messages as DOM events.
+Use the <code>hx-sse:swap</code> attribute provided by Hyperflask to swap typed messages, on the connected element or its descendants:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-sse:connect</span><span class="o">=</span><span class="s">&quot;{{mercure_authentified_hub_url([&#39;topic1&#39;, &#39;topic2&#39;])}}&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-sse:swap</span><span class="o">=</span><span class="s">&quot;topic1&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">hx-sse:swap</span><span class="o">=</span><span class="s">&quot;topic2&quot;</span> <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;beforeend&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 </div>
@@ -2717,6 +2746,38 @@
 <span class="x">    &lt;/{MercureStream}&gt;</span>
 <span class="x">&lt;/{MercureStreamContext}&gt;</span>
 </code></pre></div>
+<h2 id="using-a-mercure-hub-on-another-origin">Using a Mercure hub on another origin</h2>
+<p>By default, the Mercure hub is served on the same origin as your app (under <code>/.well-known/mercure</code>, proxied by Caddy in the <a href="/guides/deploy">Docker image</a>). This is the recommended setup.</p>
+<p>If the browser connects to a hub on another origin (eg. <code>mercure_public_hub_url: https://hub.example.com/.well-known/mercure</code>), htmx 4 will refuse to connect:</p>
+<ul>
+<li>htmx only performs same-origin requests by default (<a href="https://four.htmx.org/reference/config/htmx-config-mode"><code>mode</code> config</a>)</li>
+<li>htmx sends <code>HX-*</code> headers with every request, which the Mercure hub rejects as it only allows the <code>authorization</code>, <code>cache-control</code> and <code>last-event-id</code> headers in cross-origin requests</li>
+</ul>
+<p>Setting <code>htmx_config: {mode: cors}</code> is not enough because of the headers, and it would allow all htmx requests to reach other origins.
+Instead, only allow SSE connections to go cross-origin using an htmx extension. Create <em>app/assets/mercure.js</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Connects to a Mercure hub hosted on another origin</span>
+<span class="nx">htmx</span><span class="p">.</span><span class="nx">registerExtension</span><span class="p">(</span><span class="s2">&quot;mercure-cross-origin&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">htmx_before_request</span><span class="p">(</span><span class="nx">elt</span><span class="p">,</span><span class="w"> </span><span class="nx">detail</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">detail</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">request</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">elt</span><span class="p">.</span><span class="nx">hasAttribute</span><span class="p">(</span><span class="s2">&quot;hx-sse:connect&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">action</span><span class="p">,</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">).</span><span class="nx">origin</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">request</span><span class="p">.</span><span class="nx">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cors&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// the Mercure hub only allows the authorization, cache-control and last-event-id headers</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&quot;hx-&quot;</span><span class="p">))</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Declare it as a <a href="/guides/assets/#bundles">bundle</a> in your <em>config.yml</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">assets_bundles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mercure.js</span>
+</code></pre></div>
+<p>The hub must also allow your app origin using the <a href="https://mercure.rocks/docs/hub/config"><code>cors_origins</code> directive</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use the global <code>htmx</code> object rather than importing <code>htmx.org</code> in your bundles, otherwise a second instance of htmx would be bundled.
+Authentified hub URLs carry the subscription JWT in the URL so cookies are not needed.</p>
+</div>
 
 
 

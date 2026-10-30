@@ -2604,15 +2604,15 @@ The format should be <em>config.env_name.yml</em>, so <em>config.production.yml<
 <td></td>
 </tr>
 <tr>
-<td>HTMX_EXT</td>
-<td>list[str]</td>
-<td></td>
-<td></td>
+<td>HTMX_CONFIG</td>
+<td>dict</td>
+<td><a href="https://four.htmx.org/docs#configuration">htmx configuration</a>, merged with Hyperflask defaults</td>
+<td><code>{"noSwap": [204, 304, "4xx", "5xx"]}</code></td>
 </tr>
 <tr>
 <td>HTMX_BOOST_SITE</td>
 <td>bool</td>
-<td></td>
+<td>Boost all links and forms using <a href="https://four.htmx.org/reference/attributes/hx-boost">hx-boost</a></td>
 <td></td>
 </tr>
 <tr>
@@ -2648,7 +2648,7 @@ The format should be <em>config.env_name.yml</em>, so <em>config.production.yml<
 <tr>
 <td>FLASH_TOAST_REMOVE_AFTER</td>
 <td>str</td>
-<td>Use the remove-me htmx extension to auto remove the toast alerts after some time</td>
+<td>Auto remove the toast alerts added during htmx requests after some time (eg. <code>5s</code>) using the built-in remove-me extension</td>
 <td></td>
 </tr>
 <tr>
