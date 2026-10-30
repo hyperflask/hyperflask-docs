@@ -146,7 +146,7 @@ Let's add a form to our chat interface. Replace `app/pages/index.jpy` with the f
 </{HxForm}>
 ```
 
-We are using [htmx](https://htmx.org/) to submit our form using AJAX. Using `hx-target` and `hx-swap` we are telling htmx to put the returned content from our component call at the end of the messages div.
+We are using [htmx](https://four.htmx.org/) to submit our form using AJAX. Using `hx-target` and `hx-swap` we are telling htmx to put the returned content from our component call at the end of the messages div.
 
 Try it now and chat with yourself!
 
