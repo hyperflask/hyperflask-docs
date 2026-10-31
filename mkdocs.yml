@@ -146,6 +146,8 @@ plugins:
         - components/layout.md
         - components/daisyui/index.md
 
+hooks:
+  - agent_skill.py
 
 extra_css:
   - assets/stylesheets/extra.css
