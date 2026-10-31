@@ -23,7 +23,7 @@ To work in the dev container, one of:
 
 If Docker is missing or not running, stop and ask the user to install or start it. Do not install system software without the user's consent.
 
-Without Docker, Hyperflask can still run directly on the host if it has Python >= 3.10, [uv](https://docs.astral.sh/uv/) and [nodejs](https://nodejs.org) >= 22. This is not the recommended setup: mention it to the user and only use it if they agree.
+Without Docker, Hyperflask can still run directly on the host if it has Python >= 3.11, [uv](https://docs.astral.sh/uv/) and [nodejs](https://nodejs.org) >= 24. This is not the recommended setup: mention it to the user and only use it if they agree.
 
 ## 2. Ask the user for the project options
 
@@ -37,19 +37,13 @@ Make sure the project folder does not already exist.
 
 ## 3. Create the project
 
-The official `start.sh` script is interactive. Use the following non-interactive equivalent instead, from the parent directory. Replace the values of `PROJECT_NAME` and `AGENT`:
+Run the official `start.sh` script from the parent directory. Provide the options using the `HYPERFLASK_PROJECT_NAME` and `HYPERFLASK_AGENT` environment variables so that it runs without prompting:
 
 ```bash
-docker run --rm \
-  -v "$(pwd)":/workspace \
-  --user "$(id -u):$(id -g)" \
-  -e PROJECT_NAME="My Hyperflask App" \
-  -e AGENT=claude \
-  nikolaik/python-nodejs:python3.14-nodejs24 \
-  bash -c 'cd /workspace && uv tool run cruft create --no-input --extra-context "{\"project_name\": \"$PROJECT_NAME\", \"agent\": \"$AGENT\"}" https://github.com/hyperflask/hyperflask-start'
+curl -L https://start.hyperflask.dev | HYPERFLASK_PROJECT_NAME="My Hyperflask App" HYPERFLASK_AGENT=claude bash
 ```
 
-This uses the same image as the dev container. It generates the project with [cruft](https://cruft.github.io/cruft/), creates a `.env` file with a secret key and installs the agent skills (including the hyperflask skill).
+This runs in a docker container using the same image as the dev container. It generates the project with [cruft](https://cruft.github.io/cruft/), creates a `.env` file with a secret key and installs the agent skills (including the hyperflask skill).
 
 If the host already has uv and nodejs, the same can be done without Docker:
 
