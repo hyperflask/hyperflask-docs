@@ -1469,10 +1469,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#disable-embedding-via-iframes" class="md-nav__link">
+  <a href="#embedding-via-iframes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disable embedding via iframes
+        Embedding via iframes
       
     </span>
   </a>
@@ -2549,10 +2549,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#disable-embedding-via-iframes" class="md-nav__link">
+  <a href="#embedding-via-iframes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disable embedding via iframes
+        Embedding via iframes
       
     </span>
   </a>
@@ -2688,7 +2688,7 @@
 </ul>
 <h2 id="content-security-policy">Content Security Policy</h2>
 <p>A <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP">Content Security Policy</a> (CSP) is activated by default.</p>
-<p>When a policy is active, <code>X-XSS-Protection: 1; mode=block</code> and <code>X-Content-Type-Options: nosniff</code> headers are also set.</p>
+<p>The <code>X-Content-Type-Options: nosniff</code> header is always set.</p>
 <p>You can disable the CSP header using <code>csp_header: false</code> in the config.</p>
 <h3 id="default-policy">Default policy</h3>
 <table>
@@ -2763,9 +2763,10 @@
 <div class="highlight"><pre><span></span><code><span class="nt">csp_safe_src</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;&#39;self&#39;&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;*.gstatic.com&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;fonts.googleapis.com&quot;</span><span class="p p-Indicator">]</span>
 </code></pre></div>
 <p>These sources can be used in any directive of a custom policy using the <code>'safe-src'</code> keyword.</p>
-<h3 id="disable-embedding-via-iframes">Disable embedding via iframes</h3>
-<p>To disable embedding via iframes, add <code>csp_frame_ancestors: false</code> to your config.</p>
-<p>To only allow embedding from a list of sources, set the value to a list of sources.</p>
+<h3 id="embedding-via-iframes">Embedding via iframes</h3>
+<p>Embedding via iframes is disabled by default (<code>frame-ancestors 'none'</code>).</p>
+<p>To only allow embedding from a list of sources, set <code>csp_frame_ancestors</code> to a list of sources. To allow embedding from anywhere, set it to <code>true</code>.</p>
+<p>Specific endpoints can be made embeddable using <code>csp_frame_ancestors_safe_endpoints</code>. Items are either an endpoint name (embeddable from anywhere) or a tuple of an endpoint name and a list of additional sources.</p>
 <h3 id="custom-policy">Custom policy</h3>
 <p>The <code>csp_header</code> can be a dict where keys are directive names. Using a dict will completely override the default policy. However, unsafe eval and inline configuration still applies. Disable them so they don't impact your custom policy.</p>
 <h2 id="referrer-policy">Referrer Policy</h2>

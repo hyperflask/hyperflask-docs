@@ -708,6 +708,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#agent-in-the-dev-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent in the dev container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-the-agent-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -723,17 +734,6 @@
     <span class="md-ellipsis">
       
         Customizing AGENTS.md
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-agents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using agents
       
     </span>
   </a>
@@ -2452,6 +2452,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#agent-in-the-dev-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent in the dev container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-the-agent-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2467,17 +2478,6 @@
     <span class="md-ellipsis">
       
         Customizing AGENTS.md
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-agents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using agents
       
     </span>
   </a>
@@ -2564,7 +2564,38 @@
 <li>A proper <code>AGENTS.md</code> file</li>
 <li>A set of usefull skills (including the Hyperflask skill)</li>
 <li>Testing tools for agents</li>
+<li>Your coding agent installed and authenticated in the dev container</li>
 </ul>
+<h2 id="agent-in-the-dev-container">Agent in the dev container</h2>
+<p>When creating a project, Hyperflask-Start asks which coding agent you want to use: Claude Code, OpenAI Codex or OpenCode.</p>
+<p>The selected agent is installed in the dev container. Your credentials and settings are mounted from your host machine, so the agent is authenticated and ready to use from a terminal inside the container (<code>claude</code>, <code>codex</code> or <code>opencode</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Mounted from the host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>~/.claude</code> and <code>~/.claude.json</code></td>
+</tr>
+<tr>
+<td>OpenAI Codex</td>
+<td><code>~/.codex</code></td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td><code>~/.config/opencode</code> and <code>~/.local/share/opencode</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On macOS, Claude Code stores its credentials in the Keychain. You will need to log in once inside the container.</p>
+</div>
+<p>Running the agent inside the dev container gives it access to the same environment as your app: dependencies, database, browser for testing, etc.</p>
 <h2 id="installing-the-agent-skill">Installing the agent skill</h2>
 <p>The hyperflask skill contains the full Hyperflask documentation. It is installed automatically in projects created with Hyperflask-Start.</p>
 <p>To install or update it in an existing project, run:</p>
@@ -2572,18 +2603,6 @@
 </code></pre></div>
 <h2 id="customizing-agentsmd">Customizing AGENTS.md</h2>
 <p>The provided file is very generic and does not describe your project. Add your project description at the top of the file.</p>
-<h2 id="using-agents">Using agents</h2>
-<p>Use any agent tool inside your project directory and ask it to build features for you.</p>
-<p>Example tools:</p>
-<ul>
-<li>Github Copilot inside VS Code</li>
-<li>Claude Code</li>
-<li>OpenCode</li>
-<li>OpenAI Codex</li>
-<li>Gemini CLI</li>
-<li>Google Antigravity</li>
-</ul>
-<p>OpenCode is an excellent choice.</p>
 
 
 

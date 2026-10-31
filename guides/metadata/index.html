@@ -1350,6 +1350,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#theme-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme color
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2636,6 +2647,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#theme-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme color
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2901,6 +2923,16 @@
 <p>Will generate:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;robots&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;index, follow&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;googlebot&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;index, max-video-preview:-1&quot;</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="theme-color">Theme color</h3>
+<p>Use a string for a single color or a dict to use different colors depending on the color scheme. Keys other than <code>light</code> and <code>dark</code> are used as media queries.</p>
+<div class="highlight"><pre><span></span><code><span class="n">page</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;theme-color&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;light&quot;</span><span class="p">:</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;dark&quot;</span><span class="p">:</span> <span class="s2">&quot;#0b1020&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Will generate:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;theme-color&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;#ffffff&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;(prefers-color-scheme: light)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;theme-color&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;#0b1020&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;(prefers-color-scheme: dark)&quot;</span><span class="p">&gt;</span>
 </code></pre></div>
 <h2 id="opengraph">OpenGraph</h2>
 <div class="highlight"><pre><span></span><code><span class="n">page</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>

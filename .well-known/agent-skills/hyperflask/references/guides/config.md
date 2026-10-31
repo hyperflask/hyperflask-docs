@@ -34,7 +34,7 @@ Each Flask extension may have their own configuration.
 | --- | --- | --- | --- |
 | SECRET_KEY | str | The encryption key for all secret values (including the session) (set by default in .env) | random
 | SITE_TITLE | str |  |
-| SITE_LANG | str |  |
+| SITE_LANG | str | Language of the `<html>` tag (BCP 47 tag, eg. `en` or `pt-BR`) | locale selected by Babel |
 | HTMX_CONFIG | dict | [htmx configuration](https://four.htmx.org/docs#configuration), merged with Hyperflask defaults | `{"noSwap": [204, 304, "4xx", "5xx"]}`
 | HTMX_BOOST_SITE | bool | Boost all links and forms using [hx-boost](https://four.htmx.org/reference/attributes/hx-boost) |
 | EMAIL_BACKGROUND_COLOR | str |  |
