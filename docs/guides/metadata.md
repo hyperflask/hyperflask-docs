@@ -129,6 +129,23 @@ Will generate:
 <meta name="googlebot" content="index, max-video-preview:-1">
 ```
 
+### Theme color
+
+Use a string for a single color or a dict to use different colors depending on the color scheme. Keys other than `light` and `dark` are used as media queries.
+
+```py
+page.metadata = {
+    "theme-color": {"light": "#ffffff", "dark": "#0b1020"}
+}
+```
+
+Will generate:
+
+```html
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+```
+
 ## OpenGraph
 
 ```py

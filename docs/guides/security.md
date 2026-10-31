@@ -14,7 +14,7 @@ This will:
 
 A [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) (CSP) is activated by default.
 
-When a policy is active, `X-XSS-Protection: 1; mode=block` and `X-Content-Type-Options: nosniff` headers are also set.
+The `X-Content-Type-Options: nosniff` header is always set.
 
 You can disable the CSP header using `csp_header: false` in the config.
 
@@ -54,11 +54,13 @@ csp_safe_src: ["'self'", "*.gstatic.com", "fonts.googleapis.com"]
 
 These sources can be used in any directive of a custom policy using the `'safe-src'` keyword.
 
-### Disable embedding via iframes
+### Embedding via iframes
 
-To disable embedding via iframes, add `csp_frame_ancestors: false` to your config.
+Embedding via iframes is disabled by default (`frame-ancestors 'none'`).
 
-To only allow embedding from a list of sources, set the value to a list of sources.
+To only allow embedding from a list of sources, set `csp_frame_ancestors` to a list of sources. To allow embedding from anywhere, set it to `true`.
+
+Specific endpoints can be made embeddable using `csp_frame_ancestors_safe_endpoints`. Items are either an endpoint name (embeddable from anywhere) or a tuple of an endpoint name and a list of additional sources.
 
 ### Custom policy
 
