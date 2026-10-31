@@ -24,6 +24,15 @@ Additional VS Code extensions will be suggested when you open a project:
 
 [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) is the starter kit for Hyperflask projects. It is the recommended experience.
 
+!!! tip "Let your coding agent do it"
+    Using a coding agent? Simply ask it to set up Hyperflask for you:
+
+    ```
+    Set up a new Hyperflask project following https://hyperflask.dev/install.md
+    ```
+
+    The agent will check the requirements, ask for your project options and create the project.
+
 Launch the following command to create your project:
 
     curl -L https://raw.githubusercontent.com/hyperflask/hyperflask-start/main/start.sh | bash
@@ -59,9 +68,9 @@ Although **VS Code with dev containers is the recommended experience**, it is no
 First [create a project using Hyperflask-Start](#starting-a-new-project-using-hyperflask-start).
 
 1. Ensure that your system meet the requirements:
-    - Python (>=3.10)
+    - Python (>=3.11)
     - [uv](https://docs.astral.sh/uv/)
-    - [nodejs](https://nodejs.org/fr) (>=22)
+    - [nodejs](https://nodejs.org/fr) (>=24)
 2. Run `npm install`
 3. Launch app using `uv run hyperflask dev`
 

@@ -166,12 +166,12 @@ page.metadata = {
 Will generate:
 
 ```html
-<meta name="og:title" content="My article">
-<meta name="og:site_name" content="My site">
-<meta name="og:image" content="http://localhost:5000/static/og.png">
-<meta name="og:image:width" content="800">
-<meta name="og:image:height" content="600">
-<meta name="og:image:alt" content="My image">
+<meta property="og:title" content="My article">
+<meta property="og:site_name" content="My site">
+<meta property="og:image" content="http://localhost:5000/static/og.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="My image">
 ```
 
 ## Twitter

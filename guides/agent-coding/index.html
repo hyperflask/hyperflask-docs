@@ -719,6 +719,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#developing-from-the-cli-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developing from the CLI only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-the-agent-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2463,6 +2474,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#developing-from-the-cli-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developing from the CLI only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-the-agent-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2596,6 +2618,15 @@
 <p>On macOS, Claude Code stores its credentials in the Keychain. You will need to log in once inside the container.</p>
 </div>
 <p>Running the agent inside the dev container gives it access to the same environment as your app: dependencies, database, browser for testing, etc.</p>
+<h2 id="developing-from-the-cli-only">Developing from the CLI only</h2>
+<p>VS Code is not required to code with agents. Using <a href="../setup/#launching-with-devcontainers-cli">devcontainers-cli</a>, you can start the dev container and launch your agent from any terminal.</p>
+<ol>
+<li><a href="https://github.com/devcontainers/cli#npm-install">Install devcontainers-cli</a></li>
+<li>From your project folder, start the dev container: <code>devcontainer up --workspace-folder .</code></li>
+<li>Launch your agent inside the container: <code>devcontainer exec claude</code> (or <code>codex</code>, <code>opencode</code>)</li>
+</ol>
+<p>In another terminal, launch your app: <code>devcontainer exec uv run hyperflask dev</code></p>
+<p>The agent runs inside the dev container with your mounted credentials, exactly as it would from a VS Code terminal.</p>
 <h2 id="installing-the-agent-skill">Installing the agent skill</h2>
 <p>The hyperflask skill contains the full Hyperflask documentation. It is installed automatically in projects created with Hyperflask-Start.</p>
 <p>To install or update it in an existing project, run:</p>
