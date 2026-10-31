@@ -46,6 +46,15 @@ Additional VS Code extensions will be suggested when you open a project:
 
 ## Installation
 
+!!! tip "Let your coding agent do it"
+    Using a coding agent? Simply ask it to set up Hyperflask for you:
+
+    ```
+    Set up a new Hyperflask project following https://hyperflask.dev/install.md
+    ```
+
+    The agent will check the requirements, ask for your project options and create the project.
+
 We will use [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) to create our project.
 
 Launch the following command to create your project:

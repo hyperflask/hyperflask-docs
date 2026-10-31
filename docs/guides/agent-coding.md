@@ -26,6 +26,18 @@ The selected agent is installed in the dev container. Your credentials and setti
 
 Running the agent inside the dev container gives it access to the same environment as your app: dependencies, database, browser for testing, etc.
 
+## Developing from the CLI only
+
+VS Code is not required to code with agents. Using [devcontainers-cli](setup.md#launching-with-devcontainers-cli), you can start the dev container and launch your agent from any terminal.
+
+1. [Install devcontainers-cli](https://github.com/devcontainers/cli#npm-install)
+2. From your project folder, start the dev container: `devcontainer up --workspace-folder .`
+3. Launch your agent inside the container: `devcontainer exec claude` (or `codex`, `opencode`)
+
+In another terminal, launch your app: `devcontainer exec uv run hyperflask dev`
+
+The agent runs inside the dev container with your mounted credentials, exactly as it would from a VS Code terminal.
+
 ## Installing the agent skill
 
 The hyperflask skill contains the full Hyperflask documentation. It is installed automatically in projects created with Hyperflask-Start.

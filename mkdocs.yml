@@ -148,6 +148,7 @@ plugins:
 
 hooks:
   - agent_skill.py
+  - agent_install.py
 
 extra_css:
   - assets/stylesheets/extra.css
