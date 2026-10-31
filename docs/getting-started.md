@@ -59,7 +59,7 @@ We will use [Hyperflask-Start](https://github.com/hyperflask/hyperflask-start) t
 
 Launch the following command to create your project:
 
-    curl -L https://raw.githubusercontent.com/hyperflask/hyperflask-start/main/start.sh | bash
+    curl -L https://start.hyperflask.dev | bash
 
 This will prompt you for some options and create the project in a new folder.
 
